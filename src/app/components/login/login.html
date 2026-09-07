@@ -1,0 +1,272 @@
+<div class="login-page">
+
+  <div class="login-card">
+
+    <!-- =====================================================
+         LEFT SIDE
+         ===================================================== -->
+    <div class="branding-panel">
+
+      <!-- LOGO -->
+      <div class="brand">
+
+        <img
+          src="assets/images/EV_Charging_Solutions_ERP_Logo_with_Text.png"
+          alt="EV Charging Solutions ERP"
+          class="brand-logo">
+
+      </div>
+
+
+      <!-- CITY BACKGROUND -->
+      <div class="city-background">
+
+        <span class="building building-1"></span>
+        <span class="building building-2"></span>
+        <span class="building building-3"></span>
+        <span class="building building-4"></span>
+        <span class="building building-5"></span>
+        <span class="building building-6"></span>
+        <span class="building building-7"></span>
+
+      </div>
+
+
+      <!-- =================================================
+           EV ILLUSTRATION
+           IMPORTANT:
+           Put the actual illustration from the reference
+           image here.
+           ================================================= -->
+
+      <div class="illustration-wrapper">
+
+        <img
+          src="assets/images/ev-login-illustration.png"
+          alt="EV Charging"
+          class="ev-illustration">
+
+      </div>
+
+
+      <!-- COPYRIGHT -->
+      <div class="copyright">
+        © 2025 EV Charging Solutions ERP. All rights reserved.
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         RIGHT SIDE LOGIN
+         ===================================================== -->
+
+    <div class="login-panel">
+
+      <div class="login-content">
+
+        <!-- WELCOME -->
+        <div class="welcome-title">
+          Welcome Back!
+        </div>
+
+        <div class="welcome-subtitle">
+          Please login to your account
+        </div>
+
+
+        <!-- USER TYPE -->
+        <div class="form-group">
+
+          <label class="form-label">
+            User Type
+          </label>
+
+          <div class="user-types">
+
+            <button
+              type="button"
+              class="user-type"
+              [class.active]="selectedUserType === 'Admin'"
+              (click)="selectUserType('Admin')">
+
+              Admin
+
+            </button>
+
+            <button
+              type="button"
+              class="user-type"
+              [class.active]="selectedUserType === 'Dealer'"
+              (click)="selectUserType('Dealer')">
+
+              Dealer
+
+            </button>
+
+            <button
+              type="button"
+              class="user-type"
+              [class.active]="selectedUserType === 'Technician'"
+              (click)="selectUserType('Technician')">
+
+              Technician
+
+            </button>
+
+            <button
+              type="button"
+              class="user-type"
+              [class.active]="selectedUserType === 'Customer'"
+              (click)="selectUserType('Customer')">
+
+              Customer
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             USERNAME
+             ================================================= -->
+
+        <div class="form-group">
+
+          <label
+            for="username"
+            class="form-label">
+
+            Username
+
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">
+
+              <mat-icon>
+                person_outline
+              </mat-icon>
+
+            </span>
+
+            <input
+              id="username"
+              type="text"
+              class="login-input"
+              placeholder="Enter username"
+              [(ngModel)]="username">
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PASSWORD
+             ================================================= -->
+
+        <div class="form-group">
+
+          <label
+            for="password"
+            class="form-label">
+
+            Password
+
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">
+
+              <mat-icon>
+                lock_outline
+              </mat-icon>
+
+            </span>
+
+            <input
+              id="password"
+              class="login-input password-input"
+              [type]="hidePassword ? 'password' : 'text'"
+              placeholder="Enter password"
+              [(ngModel)]="password">
+
+
+            <button
+              type="button"
+              class="password-button"
+              (click)="hidePassword = !hidePassword">
+
+              <mat-icon>
+                {{ hidePassword
+                    ? 'visibility_off'
+                    : 'visibility'
+                }}
+              </mat-icon>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             REMEMBER ME / FORGOT PASSWORD
+             ================================================= -->
+
+        <div class="login-options">
+
+          <label class="remember-wrapper">
+
+            <input
+              type="checkbox"
+              [(ngModel)]="rememberMe"
+              class="remember-checkbox">
+
+            <span class="custom-checkbox"></span>
+
+            <span class="remember-text">
+              Remember me
+            </span>
+
+          </label>
+
+
+          <a
+            href="javascript:void(0)"
+            class="forgot-password"
+            (click)="forgotPassword()">
+
+            Forgot Password?
+
+          </a>
+
+        </div>
+
+
+        <!-- =================================================
+             LOGIN BUTTON
+             ================================================= -->
+
+        <button
+          type="button"
+          class="login-button"
+          (click)="login()">
+
+          Login
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

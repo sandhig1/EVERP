@@ -1,0 +1,709 @@
+<div class="dashboard-page">
+
+
+  <!-- ========================================================
+       PAGE HEADER
+  ========================================================= -->
+  <div class="page-header">
+
+    <div>
+
+      <h1>
+        Admin Dashboard
+      </h1>
+
+      <p>
+        Overview of your EV charging business
+      </p>
+
+    </div>
+
+
+    <button
+      mat-flat-button
+      class="new-project-button">
+
+      <mat-icon>
+        add
+      </mat-icon>
+
+      New Project
+
+    </button>
+
+  </div>
+
+
+
+  <!-- ========================================================
+       STATISTICS CARDS
+  ========================================================= -->
+  <div class="stats-grid">
+
+
+    <!-- TOTAL ENQUIRIES -->
+    <div class="stat-card">
+
+      <div class="stat-icon enquiries">
+
+        <mat-icon>
+          groups
+        </mat-icon>
+
+      </div>
+
+
+      <div class="stat-content">
+
+        <span>
+          Total Enquiries
+        </span>
+
+        <strong>
+          42
+        </strong>
+
+        <small class="growth">
+
+          <mat-icon>
+            trending_up
+          </mat-icon>
+
+          12% this month
+
+        </small>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- TOTAL QUOTATIONS -->
+    <div class="stat-card">
+
+      <div class="stat-icon quotations">
+
+        <mat-icon>
+          request_quote
+        </mat-icon>
+
+      </div>
+
+
+      <div class="stat-content">
+
+        <span>
+          Total Quotations
+        </span>
+
+        <strong>
+          28
+        </strong>
+
+        <small class="growth">
+
+          <mat-icon>
+            trending_up
+          </mat-icon>
+
+          8% this month
+
+        </small>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- TOTAL CUSTOMERS -->
+    <div class="stat-card">
+
+      <div class="stat-icon customers">
+
+        <mat-icon>
+          people
+        </mat-icon>
+
+      </div>
+
+
+      <div class="stat-content">
+
+        <span>
+          Total Customers
+        </span>
+
+        <strong>
+          256
+        </strong>
+
+        <small class="growth">
+
+          <mat-icon>
+            trending_up
+          </mat-icon>
+
+          15% this month
+
+        </small>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- TOTAL REVENUE -->
+    <div class="stat-card">
+
+      <div class="stat-icon revenue">
+
+        <mat-icon>
+          currency_rupee
+        </mat-icon>
+
+      </div>
+
+
+      <div class="stat-content">
+
+        <span>
+          Total Revenue
+        </span>
+
+        <strong>
+          ₹ 1.25 Cr
+        </strong>
+
+        <small class="growth">
+
+          <mat-icon>
+            trending_up
+          </mat-icon>
+
+          18% this month
+
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ========================================================
+       MAIN DASHBOARD
+  ========================================================= -->
+  <div class="dashboard-grid">
+
+
+    <!-- ======================================================
+         PROJECT STATUS
+    ======================================================= -->
+    <div class="dashboard-card project-card">
+
+      <div class="card-header">
+
+        <div>
+
+          <h2>
+            Project Status
+          </h2>
+
+          <p>
+            Current project distribution
+          </p>
+
+        </div>
+
+
+        <button
+          mat-icon-button>
+
+          <mat-icon>
+            more_vert
+          </mat-icon>
+
+        </button>
+
+      </div>
+
+
+      <div class="project-body">
+
+
+        <!-- DONUT -->
+        <div class="donut-container">
+
+          <div class="donut-chart">
+
+            <div class="donut-center">
+
+              <strong>
+                42
+              </strong>
+
+              <span>
+                Projects
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- LEGEND -->
+        <div class="project-legend">
+
+
+          <div class="legend-row">
+
+            <span class="legend-dot completed"></span>
+
+            <span>
+              Completed
+            </span>
+
+            <strong>
+              12
+            </strong>
+
+          </div>
+
+
+          <div class="legend-row">
+
+            <span class="legend-dot progress"></span>
+
+            <span>
+              In Progress
+            </span>
+
+            <strong>
+              15
+            </strong>
+
+          </div>
+
+
+          <div class="legend-row">
+
+            <span class="legend-dot hold"></span>
+
+            <span>
+              On Hold
+            </span>
+
+            <strong>
+              5
+            </strong>
+
+          </div>
+
+
+          <div class="legend-row">
+
+            <span class="legend-dot planned"></span>
+
+            <span>
+              Planned
+            </span>
+
+            <strong>
+              10
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         REVENUE OVERVIEW
+    ======================================================= -->
+    <div class="dashboard-card revenue-card">
+
+      <div class="card-header">
+
+        <div>
+
+          <h2>
+            Revenue Overview
+          </h2>
+
+          <p>
+            Monthly revenue performance
+          </p>
+
+        </div>
+
+
+        <button
+          mat-icon-button>
+
+          <mat-icon>
+            more_vert
+          </mat-icon>
+
+        </button>
+
+      </div>
+
+
+
+      <div class="revenue-body">
+
+        <div class="chart-wrapper">
+
+
+          <!-- Y AXIS -->
+          <div class="y-axis">
+
+            <span>₹40L</span>
+            <span>₹30L</span>
+            <span>₹20L</span>
+            <span>₹10L</span>
+            <span>₹0</span>
+
+          </div>
+
+
+
+          <!-- CHART -->
+          <div class="bar-chart">
+
+
+            <div class="horizontal-lines">
+
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+
+            </div>
+
+
+            <div class="bars">
+
+
+              <div class="bar-column">
+
+                <div
+                  class="bar"
+                  style="height: 48%;">
+                </div>
+
+                <span>
+                  Jan
+                </span>
+
+              </div>
+
+
+              <div class="bar-column">
+
+                <div
+                  class="bar"
+                  style="height: 42%;">
+                </div>
+
+                <span>
+                  Feb
+                </span>
+
+              </div>
+
+
+              <div class="bar-column">
+
+                <div
+                  class="bar"
+                  style="height: 55%;">
+                </div>
+
+                <span>
+                  Mar
+                </span>
+
+              </div>
+
+
+              <div class="bar-column">
+
+                <div
+                  class="bar"
+                  style="height: 70%;">
+                </div>
+
+                <span>
+                  Apr
+                </span>
+
+              </div>
+
+
+              <div class="bar-column">
+
+                <div
+                  class="bar"
+                  style="height: 78%;">
+                </div>
+
+                <span>
+                  May
+                </span>
+
+              </div>
+
+
+              <div class="bar-column">
+
+                <div
+                  class="bar"
+                  style="height: 95%;">
+                </div>
+
+                <span>
+                  Jun
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         RECENT ACTIVITIES
+    ======================================================= -->
+    <div class="dashboard-card activities-card">
+
+      <div class="card-header">
+
+        <div>
+
+          <h2>
+            Recent Activities
+          </h2>
+
+          <p>
+            Latest system activities
+          </p>
+
+        </div>
+
+
+        <button
+          mat-icon-button>
+
+          <mat-icon>
+            more_vert
+          </mat-icon>
+
+        </button>
+
+      </div>
+
+
+
+      <div class="activities-list">
+
+
+        <div class="activity">
+
+          <span class="activity-dot"></span>
+
+          <div>
+
+            <p>
+              Purchase Order
+              <strong>PO-3005-001</strong>
+              created
+            </p>
+
+            <small>
+              2 hours ago
+            </small>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="activity">
+
+          <span class="activity-dot"></span>
+
+          <div>
+
+            <p>
+              Payment received from
+              <strong>White Solutions</strong>
+            </p>
+
+            <small>
+              4 hours ago
+            </small>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="activity">
+
+          <span class="activity-dot"></span>
+
+          <div>
+
+            <p>
+              Installation
+              <strong>INST-3005-003</strong>
+              completed
+            </p>
+
+            <small>
+              1 day ago
+            </small>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="activity">
+
+          <span class="activity-dot"></span>
+
+          <div>
+
+            <p>
+              New enquiry received from
+              <strong>ABC Industries</strong>
+            </p>
+
+            <small>
+              1 day ago
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ========================================================
+       QUICK ACTIONS
+  ========================================================= -->
+  <div class="quick-actions">
+
+
+    <div class="quick-card">
+
+      <div class="quick-icon">
+        <mat-icon>person_add</mat-icon>
+      </div>
+
+      <div>
+
+        <strong>
+          Add Customer
+        </strong>
+
+        <span>
+          Create a new customer
+        </span>
+
+      </div>
+
+      <mat-icon>
+        arrow_forward
+      </mat-icon>
+
+    </div>
+
+
+
+    <div class="quick-card">
+
+      <div class="quick-icon">
+        <mat-icon>receipt_long</mat-icon>
+      </div>
+
+      <div>
+
+        <strong>
+          Create Quotation
+        </strong>
+
+        <span>
+          Prepare a new quotation
+        </span>
+
+      </div>
+
+      <mat-icon>
+        arrow_forward
+      </mat-icon>
+
+    </div>
+
+
+
+    <div class="quick-card">
+
+      <div class="quick-icon">
+        <mat-icon>ev_station</mat-icon>
+      </div>
+
+      <div>
+
+        <strong>
+          New Installation
+        </strong>
+
+        <span>
+          Schedule installation
+        </span>
+
+      </div>
+
+      <mat-icon>
+        arrow_forward
+      </mat-icon>
+
+    </div>
+
+  </div>
+
+</div>

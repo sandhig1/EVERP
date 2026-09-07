@@ -1,0 +1,1390 @@
+<div class="erp-layout"
+     [class.sidebar-collapsed]="isSidebarCollapsed">
+
+
+  <!-- ==========================================================
+       SIDEBAR
+  =========================================================== -->
+  <aside class="sidebar">
+
+
+    <!-- ========================================================
+         LOGO
+    ========================================================= -->
+    <div class="sidebar-logo">
+
+      <div class="logo-box">
+        <mat-icon>ev_station</mat-icon>
+      </div>
+
+      <div class="logo-details">
+
+        <div class="logo-title">
+          EV Charging
+        </div>
+
+        <div class="logo-subtitle">
+          Solutions ERP
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ========================================================
+         SIDE MENU
+    ========================================================= -->
+    <div class="sidebar-menu">
+
+
+      <!-- ======================================================
+           DASHBOARD
+      ======================================================= -->
+      <a
+        class="menu-item"
+        routerLink="/home/dashboard-admin"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+
+        <mat-icon>
+          dashboard
+        </mat-icon>
+
+        <span class="menu-text">
+          Dashboard
+        </span>
+
+      </a>
+
+
+
+      <!-- ======================================================
+     CRM
+======================================================= -->
+<div class="menu-group">
+
+  <div
+    class="menu-item"
+    (click)="toggleCRM()">
+
+    <mat-icon>
+      groups
+    </mat-icon>
+
+    <span class="menu-text">
+      CRM
+    </span>
+
+    <mat-icon
+      class="menu-arrow"
+      [class.rotate]="crmExpanded">
+
+      chevron_right
+
+    </mat-icon>
+
+  </div>
+
+
+  <!-- CRM SUBMENU -->
+  <div
+    class="submenu"
+    *ngIf="crmExpanded">
+
+    <!-- Inquiries -->
+    <a
+      routerLink="/home/crm/inquiries"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        contact_page
+      </mat-icon>
+
+      <span>
+        Inquiries
+      </span>
+
+    </a>
+
+
+    <!-- Leads -->
+    <a
+      routerLink="/home/crm/leads"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        trending_up
+      </mat-icon>
+
+      <span>
+        Leads
+      </span>
+
+    </a>
+
+
+    <!-- Customers -->
+    <a
+      routerLink="/home/crm/customers"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        people
+      </mat-icon>
+
+      <span>
+        Customers
+      </span>
+
+    </a>
+
+  </div>
+
+</div>
+
+
+
+      <!-- ======================================================
+     SITE SURVEY
+======================================================= -->
+<div class="menu-group">
+
+  <div
+    class="menu-item"
+    (click)="toggleSiteSurvey()">
+
+    <mat-icon>
+      assignment
+    </mat-icon>
+
+    <span class="menu-text">
+      Site Survey
+    </span>
+
+    <mat-icon
+      class="menu-arrow"
+      [class.rotate]="siteSurveyExpanded">
+
+      chevron_right
+
+    </mat-icon>
+
+  </div>
+
+
+  <!-- SITE SURVEY SUBMENU -->
+  <div
+    class="submenu"
+    *ngIf="siteSurveyExpanded">
+
+
+    <!-- Site Detail -->
+    <a
+      routerLink="/home/site-survey/site-detail"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        location_on
+      </mat-icon>
+
+      <span>
+        Site Detail
+      </span>
+
+    </a>
+
+
+    <!-- Site Survey Schedule -->
+    <a
+      routerLink="/home/site-survey/schedule"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        event
+      </mat-icon>
+
+      <span>
+        Site Survey Schedule
+      </span>
+
+    </a>
+
+
+    <!-- Survey Report -->
+    <a
+      routerLink="/home/site-survey/survey-report"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        description
+      </mat-icon>
+
+      <span>
+        Survey Report
+      </span>
+
+    </a>
+
+
+    <!-- BOQ -->
+    <a
+      routerLink="/home/site-survey/boq"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        receipt_long
+      </mat-icon>
+
+      <span>
+        BOQ
+      </span>
+
+    </a>
+
+  </div>
+
+</div>
+
+        <!-- ======================================================
+     SALES & QUOTATIONS
+======================================================= -->
+<div class="menu-group">
+
+  <div
+    class="menu-item"
+    (click)="toggleSales()">
+
+    <mat-icon>
+      request_quote
+    </mat-icon>
+
+    <span class="menu-text">
+      Sales &amp; Quotations
+    </span>
+
+    <mat-icon
+      class="menu-arrow"
+      [class.rotate]="salesExpanded">
+
+      chevron_right
+
+    </mat-icon>
+
+  </div>
+
+
+  <!-- SALES & QUOTATIONS SUBMENU -->
+  <div
+    class="submenu"
+    *ngIf="salesExpanded">
+
+
+    <!-- Quotations -->
+    <a
+      routerLink="/home/sales/quotations"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        request_quote
+      </mat-icon>
+
+      <span>
+        Quotations
+      </span>
+
+    </a>
+
+
+    <!-- Sales Order -->
+    <a
+      routerLink="/home/sales/sales-order"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        shopping_cart_checkout
+      </mat-icon>
+
+      <span>
+        Sales Order
+      </span>
+
+    </a>
+
+
+  </div>
+
+</div>
+
+
+      <!-- ======================================================
+           PROJECTS
+      ======================================================= -->
+      <a
+        class="menu-item"
+        routerLink="/home/projects"
+        routerLinkActive="active">
+
+        <mat-icon>
+          business_center
+        </mat-icon>
+
+        <span class="menu-text">
+          Projects
+        </span>
+
+      </a>
+
+
+
+      <!-- ======================================================
+     PROCUREMENT
+======================================================= -->
+<div class="menu-group">
+
+  <div
+    class="menu-item"
+    (click)="toggleProcurement()">
+
+    <mat-icon>
+      shopping_cart
+    </mat-icon>
+
+    <span class="menu-text">
+      Procurement
+    </span>
+
+    <mat-icon
+      class="menu-arrow"
+      [class.rotate]="procurementExpanded">
+
+      chevron_right
+
+    </mat-icon>
+
+  </div>
+
+
+  <!-- PROCUREMENT SUBMENU -->
+  <div
+    class="submenu"
+    *ngIf="procurementExpanded">
+
+
+    <!-- Suppliers -->
+    <a
+      routerLink="/home/procurement/suppliers"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        local_shipping
+      </mat-icon>
+
+      <span>
+        Suppliers
+      </span>
+
+    </a>
+
+
+    <!-- Purchase Orders -->
+    <a
+      routerLink="/home/procurement/purchase-orders"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        shopping_bag
+      </mat-icon>
+
+      <span>
+        Purchase Orders
+      </span>
+
+    </a>
+
+
+    <!-- Purchase Invoices -->
+    <a
+      routerLink="/home/procurement/purchase-invoices"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        receipt
+      </mat-icon>
+
+      <span>
+        Purchase Invoices
+      </span>
+
+    </a>
+
+  </div>
+
+</div>
+
+
+
+      <!-- ======================================================
+     INVENTORY
+======================================================= -->
+<div class="menu-group">
+
+  <div
+    class="menu-item"
+    (click)="toggleInventory()">
+
+    <mat-icon>
+      inventory_2
+    </mat-icon>
+
+    <span class="menu-text">
+      Inventory
+    </span>
+
+    <mat-icon
+      class="menu-arrow"
+      [class.rotate]="inventoryExpanded">
+
+      chevron_right
+
+    </mat-icon>
+
+  </div>
+
+
+  <!-- INVENTORY SUBMENU -->
+  <div
+    class="submenu"
+    *ngIf="inventoryExpanded">
+
+
+    <!-- Products -->
+    <a
+      routerLink="/home/inventory/products"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        inventory
+      </mat-icon>
+
+      <span>
+        Products
+      </span>
+
+    </a>
+
+
+    <!-- Storage / Location -->
+    <a
+      routerLink="/home/inventory/storage-location"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        warehouse
+      </mat-icon>
+
+      <span>
+        Storage / Location
+      </span>
+
+    </a>
+
+
+    <!-- GRN -->
+    <a
+      routerLink="/home/inventory/grn"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        move_to_inbox
+      </mat-icon>
+
+      <span>
+        GRN
+      </span>
+
+    </a>
+
+  </div>
+
+</div>
+
+
+
+      <!-- ======================================================
+     INSTALLATION & SERVICES
+======================================================= -->
+<div class="menu-group">
+
+  <div
+    class="menu-item"
+    (click)="toggleInstallation()">
+
+    <mat-icon>
+      engineering
+    </mat-icon>
+
+    <span class="menu-text">
+      Installation &amp; Services
+    </span>
+
+    <mat-icon
+      class="menu-arrow"
+      [class.rotate]="installationExpanded">
+
+      chevron_right
+
+    </mat-icon>
+
+  </div>
+
+
+  <!-- INSTALLATION SUBMENU -->
+  <div
+    class="submenu"
+    *ngIf="installationExpanded">
+
+
+    <!-- Installation -->
+    <a
+      routerLink="/home/installation/installation"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        build
+      </mat-icon>
+
+      <span>
+        Installation
+      </span>
+
+    </a>
+
+
+    <!-- Technician Assignment -->
+    <a
+      routerLink="/home/installation/technician-assignment"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        engineering
+      </mat-icon>
+
+      <span>
+        Technician Assignment
+      </span>
+
+    </a>
+
+
+    <!-- Service Requests -->
+    <a
+      routerLink="/home/installation/service-requests"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        support_agent
+      </mat-icon>
+
+      <span>
+        Service Requests
+      </span>
+
+    </a>
+
+  </div>
+
+</div>
+
+
+
+      <!-- ======================================================
+     FINANCE
+======================================================= -->
+<div class="menu-group">
+
+  <div
+    class="menu-item"
+    (click)="toggleFinance()">
+
+    <mat-icon>
+      account_balance
+    </mat-icon>
+
+    <span class="menu-text">
+      Finance
+    </span>
+
+    <mat-icon
+      class="menu-arrow"
+      [class.rotate]="financeExpanded">
+
+      chevron_right
+
+    </mat-icon>
+
+  </div>
+
+
+  <!-- FINANCE SUBMENU -->
+  <div
+    class="submenu"
+    *ngIf="financeExpanded">
+
+
+    <!-- Invoice -->
+    <a
+      routerLink="/home/finance/invoice"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        receipt_long
+      </mat-icon>
+
+      <span>
+        Invoice
+      </span>
+
+    </a>
+
+
+    <!-- Receipts -->
+    <a
+      routerLink="/home/finance/receipts"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        payments
+      </mat-icon>
+
+      <span>
+        Receipts
+      </span>
+
+    </a>
+
+
+    <!-- Payments -->
+    <a
+      routerLink="/home/finance/payments"
+      routerLinkActive="submenu-active">
+
+      <mat-icon>
+        account_balance_wallet
+      </mat-icon>
+
+      <span>
+        Payments
+      </span>
+
+    </a>
+
+  </div>
+
+</div>
+
+
+      <!-- ======================================================
+           REPORTS
+      ======================================================= -->
+      <div class="menu-group">
+
+        <div
+          class="menu-item"
+          (click)="toggleReports()">
+
+          <mat-icon>
+            bar_chart
+          </mat-icon>
+
+          <span class="menu-text">
+            Reports
+          </span>
+
+          <mat-icon
+            class="menu-arrow"
+            [class.rotate]="reportsExpanded">
+
+            chevron_right
+
+          </mat-icon>
+
+        </div>
+
+
+        <!-- Reports submenu -->
+
+        <div
+          class="submenu"
+          *ngIf="reportsExpanded">
+
+          <a
+            routerLink="/home/reports"
+            routerLinkActive="submenu-active">
+
+            <span>
+              Reports
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ======================================================
+           MASTERS
+      ======================================================= -->
+      <div class="menu-group">
+
+
+        <div
+          class="menu-item"
+          (click)="toggleMasters()">
+
+          <mat-icon>
+            settings_applications
+          </mat-icon>
+
+          <span class="menu-text">
+            Masters
+          </span>
+
+          <mat-icon
+            class="menu-arrow"
+            [class.rotate]="mastersExpanded">
+
+            chevron_right
+
+          </mat-icon>
+
+        </div>
+
+
+
+        <!-- ====================================================
+             MASTERS SUBMENU
+        ===================================================== -->
+        <div
+          class="submenu"
+          *ngIf="mastersExpanded">
+
+
+          <!-- Products -->
+          <a
+            routerLink="/home/masters/products"
+            routerLinkActive="submenu-active">
+
+            <mat-icon>
+              inventory
+            </mat-icon>
+
+            <span>
+              Products
+            </span>
+
+          </a>
+
+
+          <!-- Product Categories -->
+          <a
+            routerLink="/home/masters/product-categories"
+            routerLinkActive="submenu-active">
+
+            <mat-icon>
+              category
+            </mat-icon>
+
+            <span>
+              Product Categories
+            </span>
+
+          </a>
+
+
+          <!-- Customers -->
+          <a
+            routerLink="/home/masters/customers"
+            routerLinkActive="submenu-active">
+
+            <mat-icon>
+              people
+            </mat-icon>
+
+            <span>
+              Customers
+            </span>
+
+          </a>
+
+
+          <!-- Unit of Measurement -->
+          <a
+            routerLink="/home/masters/unit-of-measurement"
+            routerLinkActive="submenu-active">
+
+            <mat-icon>
+              straighten
+            </mat-icon>
+
+            <span>
+              Unit of Measurement
+            </span>
+
+          </a>
+
+
+          <!-- Technicians / Staff -->
+          <a
+            routerLink="/home/masters/technicians"
+            routerLinkActive="submenu-active">
+
+            <mat-icon>
+              engineering
+            </mat-icon>
+
+            <span>
+              Technicians / Staff
+            </span>
+
+          </a>
+
+
+          <!-- Warehouse / Location -->
+          <a
+            routerLink="/home/masters/warehouse-location"
+            routerLinkActive="submenu-active">
+
+            <mat-icon>
+              warehouse
+            </mat-icon>
+
+            <span>
+              Warehouse / Location
+            </span>
+
+          </a>
+
+
+          <!-- Incentive Rules -->
+          <a
+            routerLink="/home/masters/incentive-rules"
+            routerLinkActive="submenu-active">
+
+            <mat-icon>
+              paid
+            </mat-icon>
+
+            <span>
+              Incentive Rules
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ======================================================
+           SETTINGS
+      ======================================================= -->
+      <div class="menu-group">
+
+
+        <div
+          class="menu-item"
+          (click)="toggleSettings()">
+
+          <mat-icon>
+            settings
+          </mat-icon>
+
+          <span class="menu-text">
+            Settings
+          </span>
+
+          <mat-icon
+            class="menu-arrow"
+            [class.rotate]="settingsExpanded">
+
+            chevron_right
+
+          </mat-icon>
+
+        </div>
+
+
+
+        <!-- ====================================================
+             SETTINGS SUBMENU
+        ===================================================== -->
+        <div
+          class="submenu"
+          *ngIf="settingsExpanded">
+
+
+          <!-- User Config -->
+          <a
+            routerLink="/home/settings/user-config"
+            routerLinkActive="submenu-active">
+
+            <mat-icon>
+              manage_accounts
+            </mat-icon>
+
+            <span>
+              User Config
+            </span>
+
+          </a>
+
+
+          <!-- Theme Selection -->
+          <a
+            routerLink="/home/settings/theme-selection"
+            routerLinkActive="submenu-active">
+
+            <mat-icon>
+              palette
+            </mat-icon>
+
+            <span>
+              Theme Selection
+            </span>
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- ==========================================================
+       MAIN AREA
+  =========================================================== -->
+  <div class="main-area">
+
+
+    <!-- ========================================================
+         HEADER
+    ========================================================= -->
+    <header class="top-header">
+
+
+      <!-- ======================================================
+           HEADER LEFT
+      ======================================================= -->
+      <div class="header-left">
+
+
+        <!-- Sidebar Toggle -->
+
+        <button
+          mat-icon-button
+          class="header-button"
+          (click)="toggleSidebar()">
+
+          <mat-icon>
+            menu
+          </mat-icon>
+
+        </button>
+
+
+        <div class="header-title">
+          EV Charging Solutions
+        </div>
+
+      </div>
+
+
+
+      <!-- ======================================================
+           HEADER RIGHT
+      ======================================================= -->
+      <div class="header-right">
+
+
+        <!-- ====================================================
+             SEARCH
+        ===================================================== -->
+        <button
+          mat-icon-button
+          class="header-button"
+          title="Search">
+
+          <mat-icon>
+            search
+          </mat-icon>
+
+        </button>
+
+
+
+        <!-- ====================================================
+             NOTIFICATION
+        ===================================================== -->
+        <div class="notification-wrapper">
+
+
+          <!-- Notification Button -->
+
+          <button
+            mat-icon-button
+            class="header-button notification-button"
+            title="Notifications">
+
+            <mat-icon>
+              notifications_none
+            </mat-icon>
+
+
+            <!-- Notification Count -->
+
+            <span class="notification-count">
+              3
+            </span>
+
+          </button>
+
+
+
+          <!-- ==================================================
+               NOTIFICATION DROPDOWN
+          =================================================== -->
+          <div class="notification-dropdown">
+
+
+            <!-- Header -->
+
+            <div class="notification-header">
+
+              <strong>
+                Notifications
+              </strong>
+
+              <span>
+                3 New
+              </span>
+
+            </div>
+
+
+
+            <!-- Notification 1 -->
+
+            <div class="notification-item">
+
+              <div class="notification-icon blue">
+
+                <mat-icon>
+                  request_quote
+                </mat-icon>
+
+              </div>
+
+
+              <div class="notification-content">
+
+                <div class="notification-title">
+                  New quotation received
+                </div>
+
+                <div class="notification-time">
+                  10 minutes ago
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Notification 2 -->
+
+            <div class="notification-item">
+
+              <div class="notification-icon green">
+
+                <mat-icon>
+                  engineering
+                </mat-icon>
+
+              </div>
+
+
+              <div class="notification-content">
+
+                <div class="notification-title">
+                  Installation completed
+                </div>
+
+                <div class="notification-time">
+                  1 hour ago
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Notification 3 -->
+
+            <div class="notification-item">
+
+              <div class="notification-icon orange">
+
+                <mat-icon>
+                  shopping_cart
+                </mat-icon>
+
+              </div>
+
+
+              <div class="notification-content">
+
+                <div class="notification-title">
+                  Purchase order approved
+                </div>
+
+                <div class="notification-time">
+                  2 hours ago
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Notification Footer -->
+
+            <div class="notification-footer">
+
+              <a routerLink="/home/notifications">
+                View all notifications
+              </a>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ====================================================
+             PROFILE
+        ===================================================== -->
+        <div class="profile-wrapper">
+
+
+          <!-- Profile Header -->
+
+          <div class="profile-section">
+
+
+            <div class="profile-avatar">
+
+              <mat-icon>
+                person
+              </mat-icon>
+
+            </div>
+
+
+            <div class="profile-info">
+
+              <div class="profile-name">
+                Admin User
+              </div>
+
+              <div class="profile-role">
+                Administrator
+              </div>
+
+            </div>
+
+
+            <mat-icon class="profile-arrow">
+              keyboard_arrow_down
+            </mat-icon>
+
+          </div>
+
+
+
+          <!-- ==================================================
+               PROFILE DROPDOWN
+          =================================================== -->
+          <div class="profile-dropdown">
+
+
+            <!-- Profile Header -->
+
+            <div class="profile-dropdown-header">
+
+              <div class="profile-large-avatar">
+
+                <mat-icon>
+                  person
+                </mat-icon>
+
+              </div>
+
+
+              <div>
+
+                <strong>
+                  Admin User
+                </strong>
+
+                <span>
+                  Administrator
+                </span>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Divider -->
+
+            <div class="dropdown-divider"></div>
+
+
+
+            <!-- Installation Requests -->
+
+            <a
+              routerLink="/home/installation-requests"
+              class="profile-menu-item">
+
+              <mat-icon>
+                assignment
+              </mat-icon>
+
+              <span>
+                Installation Requests
+              </span>
+
+            </a>
+
+
+
+            <!-- Quotations -->
+
+            <a
+              routerLink="/home/quotations"
+              class="profile-menu-item">
+
+              <mat-icon>
+                request_quote
+              </mat-icon>
+
+              <span>
+                Quotations
+              </span>
+
+            </a>
+
+
+
+            <!-- Projects -->
+
+            <a
+              routerLink="/home/projects"
+              class="profile-menu-item">
+
+              <mat-icon>
+                business_center
+              </mat-icon>
+
+              <span>
+                Projects
+              </span>
+
+            </a>
+
+
+
+            <!-- Installations -->
+
+            <a
+              routerLink="/home/installations"
+              class="profile-menu-item">
+
+              <mat-icon>
+                engineering
+              </mat-icon>
+
+              <span>
+                Installations
+              </span>
+
+            </a>
+
+
+
+            <!-- Divider -->
+
+            <div class="dropdown-divider"></div>
+
+
+
+            <!-- Logout -->
+
+            <a
+              class="profile-menu-item logout-item"
+              (click)="logout()">
+
+              <mat-icon>
+                logout
+              </mat-icon>
+
+              <span>
+                Logout
+              </span>
+
+            </a>
+
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </header>
+
+
+
+    <!-- ========================================================
+         PAGE CONTENT
+    ========================================================= -->
+    <main class="page-container">
+
+      <router-outlet></router-outlet>
+
+    </main>
+
+
+  </div>
+
+</div>

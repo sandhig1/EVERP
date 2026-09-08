@@ -1,0 +1,640 @@
+/* =========================================
+   PAGE CONTAINER
+========================================= */
+
+.page-container {
+  width: 100%;
+  min-height: 100%;
+  padding: 18px 20px;
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+}
+
+.header-left {
+  min-width: 0;
+}
+
+.page-header h1 {
+  margin: 0 0 14px 0;
+  color: #174ea6;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* Installation Request List Button */
+.btn-installation-list {
+  height: 44px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 1px solid #079b72;
+  border-radius: 5px;
+
+  background:#079b72;
+  color: white;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.btn-installation-list:hover {
+  background: #078a66;
+  border-color: #078a66;
+}
+
+.list-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* =========================================
+   BREADCRUMB
+========================================= */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 13px;
+  color: #667384;
+
+  font-weight: 500;
+}
+
+.home-icon {
+  font-size: 15px;
+  color: #68778a;
+}
+
+.arrow {
+  font-size: 18px;
+  color: #8b97a6;
+
+  line-height: 1;
+}
+
+
+/* =========================================
+   REQUEST CARD / FORM CONTENT
+========================================= */
+
+.request-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  border: 1px solid #b8c4d1;
+
+  border-radius: 8px;
+
+  padding: 25px 28px 22px 28px;
+
+  background: #ffffff;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.request-card h2 {
+  margin: 0 0 28px 0;
+
+  color: #263a57;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   FORM ROW
+========================================= */
+
+.form-row {
+  width: 100%;
+
+  display: flex;
+
+  gap: 25px;
+
+  margin-bottom: 27px;
+}
+
+
+/* =========================================
+   THREE COLUMN ROW
+   Customer | Charger Type | Date
+========================================= */
+
+.three-columns {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr;
+
+  gap: 25px;
+}
+
+
+/* =========================================
+   TWO COLUMN ROW
+   City | State
+========================================= */
+
+.two-columns {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 25px;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin-bottom: 26px;
+}
+
+.form-row .form-group {
+  margin-bottom: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #29384d;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  line-height: 1.4;
+}
+
+
+/* Required star */
+
+.required {
+  color: #d32f2f;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   INPUT / SELECT / TEXTAREA
+========================================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #aeb9c6;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #334155;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* =========================================
+   INPUT & SELECT
+========================================= */
+
+.form-group input,
+.form-group select {
+  height: 46px;
+
+  padding: 0 13px;
+}
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+.form-group select {
+  cursor: pointer;
+
+  appearance: auto;
+}
+
+
+/* =========================================
+   PLACEHOLDER
+========================================= */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #7d8998;
+
+  opacity: 1;
+}
+
+
+/* =========================================
+   FOCUS STATE
+========================================= */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #6b7f96;
+
+  box-shadow:
+    0 0 0 2px rgba(91, 141, 239, 0.10);
+}
+
+
+/* =========================================
+   DATE INPUT
+========================================= */
+
+.date-input-wrapper {
+  width: 100%;
+}
+
+.date-input-wrapper input {
+  cursor: pointer;
+}
+
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+.requirement-group {
+  margin-bottom: 22px;
+}
+
+.form-group textarea {
+  min-height: 95px;
+
+  padding: 11px 13px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   ACTION BUTTON CONTAINER
+========================================= */
+
+.form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 8px;
+}
+
+
+/* =========================================
+   CANCEL BUTTON
+========================================= */
+
+.btn-cancel {
+  min-width: 92px;
+
+  height: 46px;
+
+  padding: 0 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #aeb9c6;
+
+  border-radius: 5px;
+
+  color: #44546a;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background: #f5f7fa;
+
+  border-color: #8e9baa;
+}
+
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.btn-submit {
+  min-width: 158px;
+
+  height: 46px;
+
+  padding: 0 22px;
+
+  background: #079b72;
+
+  border: 1px solid #079b72;
+
+  border-radius: 5px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+
+/* Submit Hover */
+
+.btn-submit:hover:not(:disabled) {
+  background: #078a66;
+
+  border-color: #078a66;
+}
+
+
+/* Submit Active */
+
+.btn-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+
+/* =========================================
+   DISABLED SUBMIT BUTTON
+========================================= */
+
+.btn-submit:disabled {
+  background: #a9cfc3;
+
+  border-color: #a9cfc3;
+
+  color: #ffffff;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   OPTIONAL - SELECT ARROW SPACING
+========================================= */
+
+.form-group select {
+  padding-right: 35px;
+}
+
+/* =========================================
+   SWEET ALERT - INSTALLATION SUCCESS
+========================================= */
+
+.installation-success-popup {
+  width: 520px !important;
+  padding: 20px !important;
+}
+
+
+/* SweetAlert title container */
+
+.installation-success-title {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+
+/* First line */
+
+.success-title {
+  white-space: nowrap;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  color: #263238;
+
+  line-height: 1.2;
+
+  margin-top: 5px;
+}
+
+
+/* Second line */
+
+.success-request-no {
+  margin-top: 8px;
+
+  font-size: 8px;
+  font-weight: bold;
+
+  color: #687582;
+
+  line-height: 0.8;
+}
+
+
+/* Close button */
+
+.installation-success-button {
+  min-width: 85px !important;
+
+  height: 40px !important;
+
+  padding: 0 20px !important;
+
+  border-radius: 5px !important;
+
+  font-size: 14px !important;
+
+  font-weight: 600 !important;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+
+  .installation-success-popup {
+    width: calc(100% - 30px) !important;
+  }
+
+  .success-title {
+    font-size: 20px;
+
+    white-space: normal;
+  }
+
+  .success-request-no {
+    font-size: 8px;
+  }
+
+}
+
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .three-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+  .page-container {
+    padding: 15px;
+  }
+
+
+  .request-card {
+    padding: 20px;
+  }
+
+
+  .three-columns,
+  .two-columns {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+
+  .form-row {
+    margin-bottom: 0;
+  }
+
+
+  .form-group {
+    margin-bottom: 22px;
+  }
+
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+
+  .btn-cancel,
+  .btn-submit {
+    flex: 1;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 450px) {
+
+  .page-header h1 {
+    font-size: 20px;
+  }
+
+
+  .request-card {
+    padding: 17px;
+  }
+
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+
+  .btn-cancel,
+  .btn-submit {
+    width: 100%;
+  }
+
+}

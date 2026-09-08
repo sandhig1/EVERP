@@ -1,0 +1,1188 @@
+/* =========================================================
+   RESET / BASE
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.signup-page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  padding: 12px;
+}
+
+
+/* =========================================================
+   MAIN SIGNUP CARD
+========================================================= */
+
+.signup-card {
+  width: 100%;
+  max-width: 940px;
+
+  min-height: 620px;
+
+  display: grid;
+
+  grid-template-columns: 49% 51%;
+
+  background: #ffffff;
+
+  border: 2px solid #d7e7f7;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 8px rgba(40, 100, 160, 0.08);
+}
+
+
+/* =========================================================
+   LEFT BRANDING PANEL
+========================================================= */
+
+.branding-panel {
+  position: relative;
+
+  min-height: 618px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #edf8ff 0%,
+      #eaf7ff 42%,
+      #f7fcff 100%
+    );
+}
+
+
+/* =========================================================
+   LIGHT CITY BACKGROUND
+========================================================= */
+
+.branding-panel::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 145px;
+
+  height: 250px;
+
+  opacity: 0.7;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(183, 222, 243, 0.65),
+      rgba(223, 244, 255, 0.05)
+    );
+
+  clip-path: polygon(
+    0% 63%,
+
+    5% 63%,
+    5% 48%,
+
+    10% 48%,
+    10% 55%,
+
+    15% 55%,
+    15% 38%,
+
+    20% 38%,
+    20% 53%,
+
+    25% 53%,
+    25% 30%,
+
+    30% 30%,
+    30% 49%,
+
+    35% 49%,
+    35% 42%,
+
+    40% 42%,
+    40% 53%,
+
+    45% 53%,
+    45% 35%,
+
+    50% 35%,
+    50% 49%,
+
+    55% 49%,
+    55% 31%,
+
+    60% 31%,
+    60% 47%,
+
+    65% 47%,
+    65% 39%,
+
+    70% 39%,
+    70% 50%,
+
+    75% 50%,
+    75% 33%,
+
+    80% 33%,
+    80% 48%,
+
+    85% 48%,
+    85% 40%,
+
+    90% 40%,
+    90% 52%,
+
+    95% 52%,
+    95% 44%,
+
+    100% 44%,
+    100% 100%,
+
+    0% 100%
+  );
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+  position: absolute;
+
+  top: 40px;
+  left: 62px;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.brand-logo {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 12px;
+}
+
+.logo-circle {
+  position: relative;
+
+  width: 47px;
+  height: 47px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 5px solid #35aa70;
+
+  border-radius: 50%;
+
+  background: transparent;
+}
+
+.logo-circle::before {
+  content: "";
+
+  position: absolute;
+
+  width: 11px;
+  height: 28px;
+
+  left: 13px;
+  top: 5px;
+
+  background: #35aa70;
+
+  border-radius: 8px;
+
+  transform: rotate(28deg);
+}
+
+.logo-bolt {
+  position: relative;
+
+  z-index: 2;
+
+  color: #1268c5;
+
+  font-size: 19px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   BRAND TEXT
+========================================================= */
+
+.brand-name {
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1.25;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  color: #164d94;
+}
+
+.brand-name span:first-child {
+  color: #18539c;
+}
+
+.brand-name span:last-child {
+  color: #174c91;
+}
+
+
+/* =========================================================
+   EV ILLUSTRATION
+========================================================= */
+
+.ev-illustration {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 133px;
+
+  z-index: 5;
+
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.ev-illustration img {
+  display: block;
+
+  width: 94%;
+
+  max-width: 455px;
+
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   BRANDING FOOTER
+========================================================= */
+
+.branding-footer {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 48px;
+
+  z-index: 10;
+
+  text-align: center;
+
+  color: #789bc2;
+
+  font-size: 10px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   RIGHT FORM PANEL
+========================================================= */
+
+.form-panel {
+  background: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 45px;
+}
+
+
+/* =========================================================
+   FORM CONTAINER
+========================================================= */
+
+.form-container {
+  width: 100%;
+
+  max-width: 380px;
+}
+
+
+/* =========================================================
+   FORM HEADER
+========================================================= */
+
+.form-header {
+  margin-bottom: 24px;
+
+  opacity: 1;
+}
+
+.form-header h1 {
+  margin: 0;
+
+  color: #123f7a !important;
+
+  font-size: 20px;
+
+  line-height: 1.3;
+
+  font-weight: 700;
+
+  opacity: 1;
+}
+
+.form-header p {
+  margin: 7px 0 0;
+
+  color: #8196b2;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  font-weight: 400;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.form-group {
+  width: 100%;
+
+  margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   CONTROL LABELS
+========================================================= */
+
+.form-group > label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #29486b !important;
+
+  font-size: 13px;
+
+  line-height: 1.2;
+
+  font-weight: 600;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+   Increased height: 36px -> 42px
+   Darker border: #d3dfeb -> #b8c9da
+========================================================= */
+
+.input-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  background: #ffffff;
+
+  border: 1px solid #b8c9da;
+
+  border-radius: 6px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input-wrapper:focus-within {
+  border-color: #1976d2;
+
+  box-shadow:
+    0 0 0 2px rgba(25, 118, 210, 0.08);
+}
+
+
+/* =========================================================
+   FONT AWESOME / INPUT ICON
+========================================================= */
+
+.input-icon {
+  width: 39px;
+
+  height: 100%;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #7194ba;
+
+  font-size: 14px;
+
+  line-height: 1;
+}
+
+.input-wrapper:focus-within .input-icon {
+  color: #1976d2;
+}
+
+
+/* =========================================================
+   TEXT INPUT
+========================================================= */
+
+.input-wrapper input {
+  width: 100%;
+
+  height: 100%;
+
+  min-width: 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #344f70 !important;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 400;
+
+  padding: 0 10px 0 0;
+
+  opacity: 1;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+}
+
+
+/* =========================================================
+   INPUT PLACEHOLDER
+========================================================= */
+
+.input-wrapper input::placeholder {
+  color: #8195ad !important;
+
+  font-size: 13px;
+
+  font-weight: 400;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   PASSWORD INPUT
+========================================================= */
+
+.input-wrapper input[type="password"] {
+  color: #344f70 !important;
+
+  font-size: 13px;
+
+  font-weight: 400;
+}
+
+.input-wrapper input[type="password"]::placeholder {
+  color: #8195ad !important;
+
+  font-size: 13px;
+
+  font-weight: 400;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   PASSWORD ICON
+========================================================= */
+
+.password-icon {
+  color: #7194ba !important;
+}
+
+
+/* =========================================================
+   PASSWORD EYE
+========================================================= */
+
+.password-eye {
+  width: 38px;
+
+  height: 100%;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #7194ba !important;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.password-eye:hover {
+  color: #1976d2 !important;
+}
+
+
+/* =========================================================
+   USER TYPE RADIO CONTAINER
+   Increased height and darker border
+========================================================= */
+
+.user-type-wrapper {
+  width: 100%;
+
+  min-height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px 18px;
+
+  padding: 9px 12px;
+
+  background: #ffffff;
+
+  border: 1px solid #b8c9da;
+
+  border-radius: 6px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.user-type-wrapper:focus-within {
+  border-color: #1976d2;
+
+  box-shadow:
+    0 0 0 2px rgba(25, 118, 210, 0.08);
+}
+
+
+/* =========================================================
+   RADIO OPTION
+========================================================= */
+
+.user-type-option {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+/* =========================================================
+   HIDE NATIVE RADIO
+========================================================= */
+
+.user-type-option input {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
+}
+
+
+/* =========================================================
+   RADIO LABEL
+========================================================= */
+
+.user-type-option label {
+  display: flex;
+
+  align-items: center;
+
+  margin: 0 !important;
+
+  color: #344f70 !important;
+
+  font-size: 12px !important;
+
+  line-height: 1.2;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   CUSTOM RADIO CIRCLE
+   Slightly darker border
+========================================================= */
+
+.radio-circle {
+  width: 15px;
+
+  height: 15px;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-right: 6px;
+
+  background: #ffffff;
+
+  border: 1.5px solid #5f7895;
+
+  border-radius: 50%;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* =========================================================
+   SELECTED RADIO
+========================================================= */
+
+.user-type-option input:checked
++ label
+.radio-circle {
+  background: #ffffff;
+
+  border-color: #1976d2;
+}
+
+
+/* =========================================================
+   RADIO INNER DOT
+========================================================= */
+
+.user-type-option input:checked
++ label
+.radio-circle::after {
+  content: "";
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #1976d2;
+}
+
+
+/* =========================================================
+   SELECTED RADIO TEXT
+========================================================= */
+
+.user-type-option input:checked
++ label {
+  color: #145ca8 !important;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   RADIO HOVER
+========================================================= */
+
+.user-type-option label:hover {
+  color: #145ca8 !important;
+}
+
+.user-type-option label:hover .radio-circle {
+  border-color: #1976d2;
+}
+
+
+/* =========================================================
+   TERMS & CONDITIONS
+========================================================= */
+
+.terms-row {
+  margin-top: 5px;
+
+  margin-bottom: 25px;
+}
+
+.checkbox-container {
+  position: relative;
+
+  width: fit-content;
+
+  display: flex;
+
+  align-items: center;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   HIDE CHECKBOX
+========================================================= */
+
+.checkbox-container input {
+  position: absolute;
+
+  width: 1px;
+
+  height: 1px;
+
+  opacity: 0;
+}
+
+
+/* =========================================================
+   CUSTOM CHECKBOX
+========================================================= */
+
+.custom-checkbox {
+  width: 16px;
+
+  height: 16px;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-right: 6px;
+
+  background: #ffffff;
+
+  border: 2px solid #2385e5;
+
+  border-radius: 3px;
+}
+
+
+/* =========================================================
+   CHECKED CHECKBOX
+========================================================= */
+
+.checkbox-container input:checked
++ .custom-checkbox {
+  background: #1976d2;
+
+  border-color: #1976d2;
+}
+
+.checkbox-container input:checked
++ .custom-checkbox::after {
+  content: "✓";
+
+  color: #ffffff;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   TERMS TEXT
+========================================================= */
+
+.terms-text {
+  color: #657d99;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  white-space: nowrap;
+}
+
+.terms-text a {
+  color: #196bc2;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.terms-text a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   SIGNUP BUTTON
+   Increased height: 42px -> 44px
+========================================================= */
+
+.signup-button {
+  width: 100%;
+
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: #0868d7;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 2px 5px rgba(0, 100, 210, 0.15);
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.signup-button:hover {
+  background: #075bc0;
+
+  box-shadow:
+    0 4px 10px rgba(0, 100, 210, 0.18);
+}
+
+.signup-button:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================================
+   LOGIN TEXT
+========================================================= */
+
+.login-text {
+  margin-top: 16px;
+
+  text-align: center;
+
+  color: #7c90aa;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+.login-text a {
+  color: #126bd0;
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+.login-text a:hover {
+  color: #074aa8;
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .signup-page {
+    padding: 20px;
+  }
+
+  .signup-card {
+    max-width: 500px;
+
+    grid-template-columns: 1fr;
+  }
+
+  .branding-panel {
+    min-height: 300px;
+  }
+
+  .brand {
+    position: relative;
+
+    top: auto;
+    left: auto;
+
+    padding: 25px 30px;
+  }
+
+  .ev-illustration {
+    bottom: 30px;
+  }
+
+  .ev-illustration img {
+    width: 80%;
+
+    max-width: 360px;
+  }
+
+  .branding-footer {
+    display: none;
+  }
+
+  .form-panel {
+    padding:
+      35px 40px 40px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+  .signup-page {
+    padding: 0;
+
+    align-items: flex-start;
+  }
+
+  .signup-card {
+    width: 100%;
+
+    min-height: 100vh;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+  }
+
+  .branding-panel {
+    min-height: 235px;
+  }
+
+  .brand {
+    padding: 20px;
+  }
+
+  .brand-name {
+    font-size: 17px;
+  }
+
+  .brand-logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .logo-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ev-illustration {
+    bottom: 5px;
+  }
+
+  .ev-illustration img {
+    width: 85%;
+  }
+
+  .form-panel {
+    padding:
+      28px 22px 35px;
+  }
+
+  .form-container {
+    max-width: none;
+  }
+
+  .form-header h1 {
+    font-size: 19px;
+  }
+
+  /* Slightly smaller labels on mobile */
+  .form-group > label {
+    font-size: 12px;
+  }
+
+  /* Keep controls readable */
+  .input-wrapper {
+    height: 42px;
+  }
+
+  .input-wrapper input,
+  .input-wrapper input::placeholder {
+    font-size: 13px;
+  }
+
+  .user-type-wrapper {
+    min-height: 42px;
+  }
+
+  .user-type-option label {
+    font-size: 11px !important;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .branding-panel {
+    min-height: 205px;
+  }
+
+  .brand {
+    padding: 16px;
+  }
+
+  .brand-name {
+    font-size: 15px;
+  }
+
+  .form-panel {
+    padding:
+      25px 18px 30px;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .terms-row {
+    margin-bottom: 20px;
+  }
+
+  .terms-text {
+    font-size: 9px;
+  }
+
+  .user-type-wrapper {
+    min-height: 42px;
+
+    gap: 8px 12px;
+
+    padding: 9px 9px;
+  }
+
+  .user-type-option label {
+    font-size: 10px !important;
+  }
+}

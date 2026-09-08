@@ -1,0 +1,394 @@
+<div class="page-container">
+
+  <!-- =========================================
+       PAGE HEADER
+  ========================================== -->
+
+  <div class="page-header">
+
+    <div class="header-left">
+      <h1>Dealer - Installation Request List</h1>
+
+      <div class="breadcrumb">
+        <span class="home-icon">⌂</span>
+        <span>Installations Request</span>
+        <span class="arrow">›</span>
+        <span>Installation Request List</span>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn-new-installation"
+      (click)="newInstallationRequest()">
+
+      <span class="plus-icon">+</span>
+      New Installation Request
+
+    </button>
+
+  </div>
+
+
+  <!-- =========================================
+       FILTER / SEARCH CARD
+  ========================================== -->
+
+  <div class="filter-card">
+
+    <div class="filter-row">
+
+      <!-- Search -->
+      <div class="filter-group search-group">
+
+        <label for="search">
+          Search
+        </label>
+
+        <div class="search-wrapper">
+
+          <span class="search-icon">⌕</span>
+
+          <input
+            type="text"
+            id="search"
+            [(ngModel)]="searchText"
+            placeholder="Search installation no. or customer">
+
+        </div>
+
+      </div>
+
+
+      <!-- Status -->
+      <div class="filter-group">
+
+        <label for="status">
+          Status
+        </label>
+
+        <select
+          id="status"
+          [(ngModel)]="selectedStatus">
+
+          <option value="">All Status</option>
+          <option value="Pending">Pending</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- Charger Type -->
+      <div class="filter-group">
+
+        <label for="chargerType">
+          Charger Type
+        </label>
+
+        <select
+          id="chargerType"
+          [(ngModel)]="selectedChargerType">
+
+          <option value="">All Charger Types</option>
+          <option value="AC Charger">AC Charger</option>
+          <option value="DC Charger">DC Charger</option>
+          <option value="Fast Charger">Fast Charger</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- Search Button -->
+      <div class="filter-button-container">
+
+        <button
+          type="button"
+          class="btn-search"
+          (click)="applyFilters()">
+
+          Search
+
+        </button>
+
+        <button
+          type="button"
+          class="btn-reset"
+          (click)="resetFilters()">
+
+          Reset
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================
+       INSTALLATION LIST CARD
+  ========================================== -->
+
+  <div class="list-card">
+
+    <!-- Card Header -->
+
+    <div class="list-card-header">
+
+      <div>
+        <h2>Installation Requests</h2>
+        <p>View and manage all installation requests</p>
+      </div>
+
+      <div class="total-count">
+        Total: <strong>{{ installations.length }}</strong>
+      </div>
+
+    </div>
+
+
+    <!-- =========================================
+         TABLE
+    ========================================== -->
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Installation No.</th>
+
+            <th>Customer</th>
+
+            <th>Charger Type</th>
+
+            <th>Site Address</th>
+
+            <th>City</th>
+
+            <th>Preferred Date</th>
+
+            <th>Status</th>
+
+            <th class="action-column">
+              Action
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr *ngFor="let installation of installations">
+
+            <!-- Installation Number -->
+            <td>
+              <span class="installation-number">
+                {{ installation.installationNo }}
+              </span>
+            </td>
+
+
+            <!-- Customer -->
+            <td>
+              <div class="customer-cell">
+
+                <div class="customer-avatar">
+                  {{ installation.customer.charAt(0) }}
+                </div>
+
+                <span>
+                  {{ installation.customer }}
+                </span>
+
+              </div>
+            </td>
+
+
+            <!-- Charger Type -->
+            <td>
+              <span class="charger-type">
+                {{ installation.chargerType }}
+              </span>
+            </td>
+
+
+            <!-- Site Address -->
+            <td>
+              <span class="site-address">
+                {{ installation.siteAddress }}
+              </span>
+            </td>
+
+
+            <!-- City -->
+            <td>
+              {{ installation.city }}
+            </td>
+
+
+            <!-- Preferred Date -->
+            <td>
+              {{ installation.preferredDate }}
+            </td>
+
+
+            <!-- Status -->
+            <td>
+
+              <span
+                class="status-badge"
+                [ngClass]="{
+                  'status-pending': installation.status === 'Pending',
+                  'status-progress': installation.status === 'In Progress',
+                  'status-completed': installation.status === 'Completed',
+                  'status-cancelled': installation.status === 'Cancelled'
+                }">
+
+                <span class="status-dot"></span>
+
+                {{ installation.status }}
+
+              </span>
+
+            </td>
+
+
+            <!-- Action -->
+            <td class="action-column">
+
+              <button
+                type="button"
+                class="view-button"
+                title="View Installation"
+                (click)="viewInstallation(installation)">
+
+                <span class="view-icon">◉</span>
+
+              </button>
+
+            </td>
+
+          </tr>
+
+
+          <!-- Empty State -->
+
+          <tr *ngIf="installations.length === 0">
+
+            <td
+              colspan="8"
+              class="empty-state">
+
+              <div class="empty-icon">
+                ⌕
+              </div>
+
+              <h3>No installations found</h3>
+
+              <p>
+                No installation requests match your search criteria.
+              </p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- =========================================
+         PAGINATION
+    ========================================== -->
+
+    <div class="pagination-container">
+
+      <div class="pagination-info">
+        Showing
+        <strong>1</strong>
+        to
+        <strong>{{ installations.length }}</strong>
+        of
+        <strong>{{ installations.length }}</strong>
+        installations
+      </div>
+
+
+      <div class="pagination">
+
+        <button
+          type="button"
+          class="page-button navigation-button"
+          disabled>
+
+          ‹
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button active">
+
+          1
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button">
+
+          2
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button">
+
+          3
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button">
+
+          4
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button navigation-button">
+
+          ›
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

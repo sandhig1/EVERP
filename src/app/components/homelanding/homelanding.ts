@@ -15,4 +15,8 @@ export class HomeLanding {
   loginNow(){
       this.router.navigate(['/login']);
   }
+
+  signUp(){
+      this.router.navigate(['/signup']);
+  }
 }

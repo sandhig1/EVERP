@@ -952,3 +952,37 @@ body {
   }
 
 }
+
+/* ============================================================
+   SIGNUP LINK
+   ============================================================ */
+
+.signup-text {
+  width: 100%;
+  margin-top: 18px;
+
+  text-align: center;
+
+  color: #6b7580;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.signup-link {
+  color: #1462d2;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.signup-link:hover {
+  color: #074aa8;
+  text-decoration: underline;
+}

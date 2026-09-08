@@ -1,0 +1,160 @@
+<div class="technician-dashboard">
+  <!-- Page heading -->
+  <div class="page-title">
+    <h1>Technician Dashboard</h1>
+  </div>
+
+  <!-- Summary cards -->
+  <section class="summary-grid">
+    <article class="summary-card">
+      <div class="summary-icon blue">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0" />
+        </svg>
+      </div>
+      <div>
+        <span>My Assignments</span>
+        <strong>8</strong>
+      </div>
+    </article>
+
+    <article class="summary-card">
+      <div class="summary-icon mint">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 20a8 8 0 1 0-8-8 8 8 0 0 0 8 8Zm0-12v4l3 2" />
+        </svg>
+      </div>
+      <div>
+        <span>In Progress</span>
+        <strong>3</strong>
+      </div>
+    </article>
+
+    <article class="summary-card">
+      <div class="summary-icon green">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="4" width="16" height="16" rx="2" />
+          <path d="m8 12 2.5 2.5L16 9" />
+        </svg>
+      </div>
+      <div>
+        <span>Completed</span>
+        <strong>5</strong>
+      </div>
+    </article>
+
+    <article class="summary-card">
+      <div class="summary-icon purple">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-6 8a6 6 0 0 1 12 0" />
+          <path d="M18 15h4m-2-2v4" />
+        </svg>
+      </div>
+      <div>
+        <span>Pending</span>
+        <strong>2</strong>
+      </div>
+    </article>
+  </section>
+
+  <!-- Schedule + work progress -->
+  <section class="dashboard-row">
+    <article class="dashboard-card schedule-card">
+      <div class="card-heading">
+        <h2>Today's Schedule</h2>
+      </div>
+
+      <div class="schedule-list">
+        <div class="schedule-item">
+          <div class="schedule-time">10:00 AM</div>
+          <div class="schedule-details">
+            <strong>INST-2025-001</strong>
+            <span>Green Valley Society</span>
+          </div>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-time">12:30 PM</div>
+          <div class="schedule-details">
+            <strong>INST-2025-002</strong>
+            <span>Phoenix Mall</span>
+          </div>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-time">05:00 PM</div>
+          <div class="schedule-details">
+            <strong>INST-2025-003</strong>
+            <span>Rajput Nagar</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dashboard-card progress-card">
+      <div class="card-heading">
+        <h2>Work Progress</h2>
+      </div>
+
+      <div class="progress-content">
+        <div class="donut-chart" aria-label="8 total: 5 completed, 3 in progress, 2 pending">
+          <div class="donut-center">
+            <strong>8</strong>
+            <span>Total</span>
+          </div>
+        </div>
+
+        <div class="progress-legend">
+          <div class="legend-row">
+            <span class="legend-label">
+              <i class="legend-dot completed"></i>
+              Completed
+            </span>
+            <strong>5</strong>
+          </div>
+
+          <div class="legend-row">
+            <span class="legend-label">
+              <i class="legend-dot in-progress"></i>
+              In Progress
+            </span>
+            <strong>3</strong>
+          </div>
+
+          <div class="legend-row">
+            <span class="legend-label">
+              <i class="legend-dot pending"></i>
+              Pending
+            </span>
+            <strong>2</strong>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Service requests -->
+  <section class="dashboard-card service-card">
+    <div class="card-heading">
+      <h2>Service Requests</h2>
+    </div>
+
+    <div class="request-grid">
+      <div class="request-item">
+        <div class="request-info">
+          <strong>SR-2025-007</strong>
+          <span>EV Charger not working</span>
+        </div>
+        <span class="status-pill new">New</span>
+      </div>
+
+      <div class="request-item">
+        <div class="request-info">
+          <strong>SR-2025-006</strong>
+          <span>Charging issue</span>
+        </div>
+        <span class="status-pill progress">In Progress</span>
+      </div>
+    </div>
+  </section>
+</div>

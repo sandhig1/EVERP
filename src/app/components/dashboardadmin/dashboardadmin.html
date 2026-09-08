@@ -1,191 +1,303 @@
 <div class="dashboard-page">
 
+  <!-- =========================================================
+       DASHBOARD HEADER
+  ========================================================== -->
+  <div class="dashboard-header">
 
-  <!-- ========================================================
-       PAGE HEADER
-  ========================================================= -->
-  <div class="page-header">
+    <div class="dashboard-title-section">
 
-    <div>
+      <div class="dashboard-icon">
+        <mat-icon>dashboard</mat-icon>
+      </div>
 
-      <h1>
-        Admin Dashboard
-      </h1>
-
-      <p>
-        Overview of your EV charging business
-      </p>
+      <div>
+        <h2>Dashboard</h2>
+        <p>Overview of your EV charging business</p>
+      </div>
 
     </div>
 
-
+    <!-- ADD PROJECT -->
     <button
-      mat-flat-button
-      class="new-project-button">
+      type="button"
+      class="add-project-btn"
+      routerLink="/home/projects/create">
 
-      <mat-icon>
-        add
-      </mat-icon>
-
-      New Project
+      <mat-icon>add</mat-icon>
+      <span>Project</span>
 
     </button>
 
   </div>
 
 
+  <!-- =========================================================
+       COMPACT FILTER
+  ========================================================== -->
+  <div class="filter-card">
 
-  <!-- ========================================================
-       STATISTICS CARDS
-  ========================================================= -->
-  <div class="stats-grid">
+  <div class="filter-title">
+    <mat-icon>filter_alt</mat-icon>
+    <span>Filter</span>
+  </div>
+
+  <div class="filter-options">
+
+    <!-- ALL -->
+    <label class="radio-option">
+      <input
+        type="radio"
+        name="dashboardPeriod"
+        value="ALL"
+        [(ngModel)]="selectedPeriod"
+        (change)="onPeriodChange()">
+
+      <span class="custom-radio"></span>
+      <span class="radio-label">All</span>
+    </label>
+
+
+    <!-- YTD -->
+    <label class="radio-option">
+      <input
+        type="radio"
+        name="dashboardPeriod"
+        value="YTD"
+        [(ngModel)]="selectedPeriod"
+        (change)="onPeriodChange()">
+
+      <span class="custom-radio"></span>
+      <span class="radio-label">YTD</span>
+    </label>
+
+
+    <!-- FROM & TO DATE -->
+    <label class="radio-option">
+      <input
+        type="radio"
+        name="dashboardPeriod"
+        value="CUSTOM"
+        [(ngModel)]="selectedPeriod"
+        (change)="onPeriodChange()">
+
+      <span class="custom-radio"></span>
+      <span class="radio-label">From &amp; To Date</span>
+    </label>
+
+
+    <!-- FROM DATE -->
+    <div
+      class="date-control"
+      *ngIf="selectedPeriod=='CUSTOM'">
+
+      <label>From</label>
+
+      <div class="date-input-wrapper">
+        <mat-icon>event</mat-icon>
+
+        <input
+          type="date"
+          [(ngModel)]="fromDate">
+      </div>
+
+    </div>
+
+
+    <!-- TO DATE -->
+    <div
+      class="date-control"
+      *ngIf="selectedPeriod === 'CUSTOM'">
+
+      <label>To</label>
+
+      <div class="date-input-wrapper">
+        <mat-icon>event</mat-icon>
+
+        <input
+          type="date"
+          [(ngModel)]="toDate">
+      </div>
+
+    </div>
+
+
+    <!-- APPLY -->
+    <button
+      type="button"
+      class="apply-filter-btn"
+      (click)="applyFilter()">
+
+      <mat-icon>check</mat-icon>
+      <span>Apply</span>
+
+    </button>
+
+
+    <!-- RESET -->
+    <button
+      type="button"
+      class="reset-filter-btn"
+      title="Reset"
+      (click)="resetFilter()">
+
+      <mat-icon>refresh</mat-icon>
+
+    </button>
+
+  </div>
+
+</div>
+
+
+  <!-- =========================================================
+       SUMMARY CARDS
+  ========================================================== -->
+  <div class="summary-grid">
 
 
     <!-- TOTAL ENQUIRIES -->
-    <div class="stat-card">
+    <div class="summary-card">
 
-      <div class="stat-icon enquiries">
+      <div class="summary-top">
 
-        <mat-icon>
-          groups
-        </mat-icon>
-
-      </div>
-
-
-      <div class="stat-content">
+        <div class="summary-icon enquiries">
+          <mat-icon>
+            contact_page
+          </mat-icon>
+        </div>
 
         <span>
           Total Enquiries
         </span>
 
-        <strong>
-          42
-        </strong>
+      </div>
 
-        <small class="growth">
+      <div class="summary-value">
+        {{ totalEnquiries }}
+      </div>
 
-          <mat-icon>
-            trending_up
-          </mat-icon>
+      <div class="summary-footer">
 
-          12% this month
+        <span class="growth-positive">
+          <mat-icon>trending_up</mat-icon>
+          12.5%
+        </span>
 
-        </small>
+        <span>
+          vs previous period
+        </span>
 
       </div>
 
     </div>
 
 
-
     <!-- TOTAL QUOTATIONS -->
-    <div class="stat-card">
+    <div class="summary-card">
 
-      <div class="stat-icon quotations">
+      <div class="summary-top">
 
-        <mat-icon>
-          request_quote
-        </mat-icon>
-
-      </div>
-
-
-      <div class="stat-content">
+        <div class="summary-icon quotations">
+          <mat-icon>
+            request_quote
+          </mat-icon>
+        </div>
 
         <span>
           Total Quotations
         </span>
 
-        <strong>
-          28
-        </strong>
+      </div>
 
-        <small class="growth">
+      <div class="summary-value">
+        {{ totalQuotations }}
+      </div>
 
-          <mat-icon>
-            trending_up
-          </mat-icon>
+      <div class="summary-footer">
 
-          8% this month
+        <span class="growth-positive">
+          <mat-icon>trending_up</mat-icon>
+          8.4%
+        </span>
 
-        </small>
+        <span>
+          vs previous period
+        </span>
 
       </div>
 
     </div>
 
 
-
     <!-- TOTAL CUSTOMERS -->
-    <div class="stat-card">
+    <div class="summary-card">
 
-      <div class="stat-icon customers">
+      <div class="summary-top">
 
-        <mat-icon>
-          people
-        </mat-icon>
-
-      </div>
-
-
-      <div class="stat-content">
+        <div class="summary-icon customers">
+          <mat-icon>
+            groups
+          </mat-icon>
+        </div>
 
         <span>
           Total Customers
         </span>
 
-        <strong>
-          256
-        </strong>
+      </div>
 
-        <small class="growth">
+      <div class="summary-value">
+        {{ totalCustomers }}
+      </div>
 
-          <mat-icon>
-            trending_up
-          </mat-icon>
+      <div class="summary-footer">
 
-          15% this month
+        <span class="growth-positive">
+          <mat-icon>trending_up</mat-icon>
+          15.2%
+        </span>
 
-        </small>
+        <span>
+          vs previous period
+        </span>
 
       </div>
 
     </div>
 
 
-
     <!-- TOTAL REVENUE -->
-    <div class="stat-card">
+    <div class="summary-card">
 
-      <div class="stat-icon revenue">
+      <div class="summary-top">
 
-        <mat-icon>
-          currency_rupee
-        </mat-icon>
-
-      </div>
-
-
-      <div class="stat-content">
+        <div class="summary-icon revenue">
+          <mat-icon>
+            payments
+          </mat-icon>
+        </div>
 
         <span>
           Total Revenue
         </span>
 
-        <strong>
-          ₹ 1.25 Cr
-        </strong>
+      </div>
 
-        <small class="growth">
+      <div class="summary-value revenue-value">
+        ₹ {{ totalRevenue | number:'1.0-0' }}
+      </div>
 
-          <mat-icon>
-            trending_up
-          </mat-icon>
+      <div class="summary-footer">
 
-          18% this month
+        <span class="growth-positive">
+          <mat-icon>trending_up</mat-icon>
+          18.7%
+        </span>
 
-        </small>
+        <span>
+          vs previous period
+        </span>
 
       </div>
 
@@ -194,35 +306,32 @@
   </div>
 
 
-
-  <!-- ========================================================
-       MAIN DASHBOARD
-  ========================================================= -->
+  <!-- =========================================================
+       CHART SECTION
+  ========================================================== -->
   <div class="dashboard-grid">
 
 
-    <!-- ======================================================
-         PROJECT STATUS
-    ======================================================= -->
-    <div class="dashboard-card project-card">
+    <!-- =======================================================
+         PROJECT STATUS PIE CHART
+    ======================================================== -->
+    <div class="dashboard-card">
 
       <div class="card-header">
 
         <div>
-
-          <h2>
+          <h3>
             Project Status
-          </h2>
+          </h3>
 
           <p>
             Current project distribution
           </p>
-
         </div>
 
-
         <button
-          mat-icon-button>
+          type="button"
+          class="card-menu-btn">
 
           <mat-icon>
             more_vert
@@ -233,87 +342,496 @@
       </div>
 
 
-      <div class="project-body">
+      <div class="project-chart-container">
 
+        <!-- PIE CHART -->
+        <div class="pie-chart">
 
-        <!-- DONUT -->
-        <div class="donut-container">
+          <div class="pie-center">
 
-          <div class="donut-chart">
+            <strong>
+              100
+            </strong>
 
-            <div class="donut-center">
-
-              <strong>
-                42
-              </strong>
-
-              <span>
-                Projects
-              </span>
-
-            </div>
+            <span>
+              Projects
+            </span>
 
           </div>
 
         </div>
 
 
-
         <!-- LEGEND -->
-        <div class="project-legend">
+        <div class="pie-legend">
 
 
-          <div class="legend-row">
+          <!-- COMPLETED -->
+          <div
+            class="pie-legend-item"
+            title="Completed: 35%">
 
-            <span class="legend-dot completed"></span>
+            <span
+              class="legend-color completed">
+            </span>
 
-            <span>
+            <span class="legend-name">
               Completed
             </span>
 
             <strong>
-              12
+              35%
             </strong>
 
           </div>
 
 
-          <div class="legend-row">
+          <!-- IN PROGRESS -->
+          <div
+            class="pie-legend-item"
+            title="In Progress: 40%">
 
-            <span class="legend-dot progress"></span>
+            <span
+              class="legend-color in-progress">
+            </span>
 
-            <span>
+            <span class="legend-name">
               In Progress
             </span>
 
             <strong>
-              15
+              40%
             </strong>
 
           </div>
 
 
-          <div class="legend-row">
+          <!-- PENDING -->
+          <div
+            class="pie-legend-item"
+            title="Pending: 15%">
 
-            <span class="legend-dot hold"></span>
+            <span
+              class="legend-color pending">
+            </span>
 
-            <span>
+            <span class="legend-name">
+              Pending
+            </span>
+
+            <strong>
+              15%
+            </strong>
+
+          </div>
+
+
+          <!-- ON HOLD -->
+          <div
+            class="pie-legend-item"
+            title="On Hold: 10%">
+
+            <span
+              class="legend-color on-hold">
+            </span>
+
+            <span class="legend-name">
               On Hold
             </span>
 
             <strong>
-              5
+              10%
             </strong>
 
           </div>
 
+        </div>
 
-          <div class="legend-row">
+      </div>
 
-            <span class="legend-dot planned"></span>
+    </div>
+
+
+    <!-- =======================================================
+         REVENUE BAR CHART
+    ======================================================== -->
+    <div class="dashboard-card">
+
+      <div class="card-header">
+
+        <div>
+
+          <h3>
+            Revenue Map
+          </h3>
+
+          <p>
+            Revenue distribution by location
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          class="card-menu-btn">
+
+          <mat-icon>
+            more_vert
+          </mat-icon>
+
+        </button>
+
+      </div>
+
+
+      <div class="revenue-chart-container">
+
+
+        <!-- BAR CHART -->
+        <div class="revenue-bars">
+
+
+          <!-- MAHARASHTRA -->
+          <div
+            class="revenue-bar-item"
+            title="Maharashtra - ₹4.8L">
+
+            <div class="bar-value">
+              ₹4.8L
+            </div>
+
+            <div class="bar-track">
+
+              <div
+                class="bar-fill"
+                style="height: 90%;">
+
+              </div>
+
+            </div>
+
+            <div class="bar-label">
+              Maharashtra
+            </div>
+
+          </div>
+
+
+          <!-- KARNATAKA -->
+          <div
+            class="revenue-bar-item"
+            title="Karnataka - ₹3.9L">
+
+            <div class="bar-value">
+              ₹3.9L
+            </div>
+
+            <div class="bar-track">
+
+              <div
+                class="bar-fill"
+                style="height: 74%;">
+
+              </div>
+
+            </div>
+
+            <div class="bar-label">
+              Karnataka
+            </div>
+
+          </div>
+
+
+          <!-- DELHI -->
+          <div
+            class="revenue-bar-item"
+            title="Delhi - ₹3.2L">
+
+            <div class="bar-value">
+              ₹3.2L
+            </div>
+
+            <div class="bar-track">
+
+              <div
+                class="bar-fill"
+                style="height: 61%;">
+
+              </div>
+
+            </div>
+
+            <div class="bar-label">
+              Delhi
+            </div>
+
+          </div>
+
+
+          <!-- TAMIL NADU -->
+          <div
+            class="revenue-bar-item"
+            title="Tamil Nadu - ₹2.8L">
+
+            <div class="bar-value">
+              ₹2.8L
+            </div>
+
+            <div class="bar-track">
+
+              <div
+                class="bar-fill"
+                style="height: 53%;">
+
+              </div>
+
+            </div>
+
+            <div class="bar-label">
+              Tamil Nadu
+            </div>
+
+          </div>
+
+
+          <!-- GUJARAT -->
+          <div
+            class="revenue-bar-item"
+            title="Gujarat - ₹2.4L">
+
+            <div class="bar-value">
+              ₹2.4L
+            </div>
+
+            <div class="bar-track">
+
+              <div
+                class="bar-fill"
+                style="height: 45%;">
+
+              </div>
+
+            </div>
+
+            <div class="bar-label">
+              Gujarat
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       LOWER DASHBOARD
+  ========================================================== -->
+  <div class="dashboard-grid lower-grid">
+
+
+    <!-- RECENT ENQUIRIES -->
+    <div class="dashboard-card">
+
+      <div class="card-header">
+
+        <div>
+
+          <h3>
+            Recent Enquiries
+          </h3>
+
+          <p>
+            Latest customer enquiries
+          </p>
+
+        </div>
+
+        <a
+          routerLink="/home/crm/inquiries"
+          class="view-all-link">
+
+          View All
+
+          <mat-icon>
+            arrow_forward
+          </mat-icon>
+
+        </a>
+
+      </div>
+
+
+      <div class="table-wrapper">
+
+        <table class="dashboard-table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Enquiry No.
+              </th>
+
+              <th>
+                Customer
+              </th>
+
+              <th>
+                Location
+              </th>
+
+              <th>
+                Status
+              </th>
+
+              <th>
+                Date
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr>
+
+              <td>
+                <strong>ENQ-1025</strong>
+              </td>
+
+              <td>
+                ABC Industries
+              </td>
+
+              <td>
+                Mumbai
+              </td>
+
+              <td>
+                <span class="table-status new">
+                  New
+                </span>
+              </td>
+
+              <td>
+                07 Sep 2026
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                <strong>ENQ-1024</strong>
+              </td>
+
+              <td>
+                Green Mobility Pvt Ltd
+              </td>
+
+              <td>
+                Pune
+              </td>
+
+              <td>
+                <span class="table-status contacted">
+                  Contacted
+                </span>
+              </td>
+
+              <td>
+                06 Sep 2026
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                <strong>ENQ-1023</strong>
+              </td>
+
+              <td>
+                City EV Solutions
+              </td>
+
+              <td>
+                Bengaluru
+              </td>
+
+              <td>
+                <span class="table-status quotation">
+                  Quotation
+                </span>
+              </td>
+
+              <td>
+                05 Sep 2026
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+
+    <!-- UPCOMING INSTALLATIONS -->
+    <div class="dashboard-card">
+
+      <div class="card-header">
+
+        <div>
+
+          <h3>
+            Upcoming Installations
+          </h3>
+
+          <p>
+            Scheduled installation activities
+          </p>
+
+        </div>
+
+        <a
+          routerLink="/home/installations"
+          class="view-all-link">
+
+          View All
+
+          <mat-icon>
+            arrow_forward
+          </mat-icon>
+
+        </a>
+
+      </div>
+
+
+      <div class="installation-list">
+
+
+        <div class="installation-item">
+
+          <div class="installation-date">
 
             <span>
-              Planned
+              SEP
             </span>
 
             <strong>
@@ -322,385 +840,91 @@
 
           </div>
 
-        </div>
+          <div class="installation-details">
 
-      </div>
+            <strong>
+              Tata Motors Charging Station
+            </strong>
 
-    </div>
-
-
-
-    <!-- ======================================================
-         REVENUE OVERVIEW
-    ======================================================= -->
-    <div class="dashboard-card revenue-card">
-
-      <div class="card-header">
-
-        <div>
-
-          <h2>
-            Revenue Overview
-          </h2>
-
-          <p>
-            Monthly revenue performance
-          </p>
-
-        </div>
-
-
-        <button
-          mat-icon-button>
-
-          <mat-icon>
-            more_vert
-          </mat-icon>
-
-        </button>
-
-      </div>
-
-
-
-      <div class="revenue-body">
-
-        <div class="chart-wrapper">
-
-
-          <!-- Y AXIS -->
-          <div class="y-axis">
-
-            <span>₹40L</span>
-            <span>₹30L</span>
-            <span>₹20L</span>
-            <span>₹10L</span>
-            <span>₹0</span>
+            <span>
+              Pune, Maharashtra
+            </span>
 
           </div>
 
+          <span class="installation-status">
+            Scheduled
+          </span>
+
+        </div>
 
 
-          <!-- CHART -->
-          <div class="bar-chart">
+        <div class="installation-item">
 
+          <div class="installation-date">
 
-            <div class="horizontal-lines">
+            <span>
+              SEP
+            </span>
 
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-
-            </div>
-
-
-            <div class="bars">
-
-
-              <div class="bar-column">
-
-                <div
-                  class="bar"
-                  style="height: 48%;">
-                </div>
-
-                <span>
-                  Jan
-                </span>
-
-              </div>
-
-
-              <div class="bar-column">
-
-                <div
-                  class="bar"
-                  style="height: 42%;">
-                </div>
-
-                <span>
-                  Feb
-                </span>
-
-              </div>
-
-
-              <div class="bar-column">
-
-                <div
-                  class="bar"
-                  style="height: 55%;">
-                </div>
-
-                <span>
-                  Mar
-                </span>
-
-              </div>
-
-
-              <div class="bar-column">
-
-                <div
-                  class="bar"
-                  style="height: 70%;">
-                </div>
-
-                <span>
-                  Apr
-                </span>
-
-              </div>
-
-
-              <div class="bar-column">
-
-                <div
-                  class="bar"
-                  style="height: 78%;">
-                </div>
-
-                <span>
-                  May
-                </span>
-
-              </div>
-
-
-              <div class="bar-column">
-
-                <div
-                  class="bar"
-                  style="height: 95%;">
-                </div>
-
-                <span>
-                  Jun
-                </span>
-
-              </div>
-
-            </div>
+            <strong>
+              12
+            </strong>
 
           </div>
 
-        </div>
+          <div class="installation-details">
 
-      </div>
+            <strong>
+              Green Energy Hub
+            </strong>
 
-    </div>
-
-
-
-    <!-- ======================================================
-         RECENT ACTIVITIES
-    ======================================================= -->
-    <div class="dashboard-card activities-card">
-
-      <div class="card-header">
-
-        <div>
-
-          <h2>
-            Recent Activities
-          </h2>
-
-          <p>
-            Latest system activities
-          </p>
-
-        </div>
-
-
-        <button
-          mat-icon-button>
-
-          <mat-icon>
-            more_vert
-          </mat-icon>
-
-        </button>
-
-      </div>
-
-
-
-      <div class="activities-list">
-
-
-        <div class="activity">
-
-          <span class="activity-dot"></span>
-
-          <div>
-
-            <p>
-              Purchase Order
-              <strong>PO-3005-001</strong>
-              created
-            </p>
-
-            <small>
-              2 hours ago
-            </small>
+            <span>
+              Bengaluru, Karnataka
+            </span>
 
           </div>
 
+          <span class="installation-status">
+            Scheduled
+          </span>
+
         </div>
 
 
+        <div class="installation-item">
 
-        <div class="activity">
+          <div class="installation-date">
 
-          <span class="activity-dot"></span>
+            <span>
+              SEP
+            </span>
 
-          <div>
-
-            <p>
-              Payment received from
-              <strong>White Solutions</strong>
-            </p>
-
-            <small>
-              4 hours ago
-            </small>
+            <strong>
+              15
+            </strong>
 
           </div>
 
-        </div>
+          <div class="installation-details">
 
+            <strong>
+              City EV Charging
+            </strong>
 
-
-        <div class="activity">
-
-          <span class="activity-dot"></span>
-
-          <div>
-
-            <p>
-              Installation
-              <strong>INST-3005-003</strong>
-              completed
-            </p>
-
-            <small>
-              1 day ago
-            </small>
+            <span>
+              Chennai, Tamil Nadu
+            </span>
 
           </div>
 
-        </div>
-
-
-
-        <div class="activity">
-
-          <span class="activity-dot"></span>
-
-          <div>
-
-            <p>
-              New enquiry received from
-              <strong>ABC Industries</strong>
-            </p>
-
-            <small>
-              1 day ago
-            </small>
-
-          </div>
+          <span class="installation-status">
+            Scheduled
+          </span>
 
         </div>
 
       </div>
-
-    </div>
-
-  </div>
-
-
-
-  <!-- ========================================================
-       QUICK ACTIONS
-  ========================================================= -->
-  <div class="quick-actions">
-
-
-    <div class="quick-card">
-
-      <div class="quick-icon">
-        <mat-icon>person_add</mat-icon>
-      </div>
-
-      <div>
-
-        <strong>
-          Add Customer
-        </strong>
-
-        <span>
-          Create a new customer
-        </span>
-
-      </div>
-
-      <mat-icon>
-        arrow_forward
-      </mat-icon>
-
-    </div>
-
-
-
-    <div class="quick-card">
-
-      <div class="quick-icon">
-        <mat-icon>receipt_long</mat-icon>
-      </div>
-
-      <div>
-
-        <strong>
-          Create Quotation
-        </strong>
-
-        <span>
-          Prepare a new quotation
-        </span>
-
-      </div>
-
-      <mat-icon>
-        arrow_forward
-      </mat-icon>
-
-    </div>
-
-
-
-    <div class="quick-card">
-
-      <div class="quick-icon">
-        <mat-icon>ev_station</mat-icon>
-      </div>
-
-      <div>
-
-        <strong>
-          New Installation
-        </strong>
-
-        <span>
-          Schedule installation
-        </span>
-
-      </div>
-
-      <mat-icon>
-        arrow_forward
-      </mat-icon>
 
     </div>
 

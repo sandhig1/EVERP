@@ -14,6 +14,8 @@ import { NgIf } from '@angular/common';
   styleUrl: './home.css',
 })
 export class Home {
+  UserType=localStorage.getItem("UserType");
+  
   isSidebarCollapsed = false;
 
   // ==========================================================
@@ -40,6 +42,8 @@ export class Home {
 
   reportsExpanded = false;
 
+  //New Count
+  newInquiryCount = 10;
 
 
   toggleSidebar(): void {

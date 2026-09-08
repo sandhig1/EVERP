@@ -117,9 +117,22 @@ export class Login {
       
     }*/
 
-      alert('login');
+   
 
-      this.router1.navigate(['/dashboard-admin']);
+      if (this.selectedUserType=='Admin'){
+        localStorage.setItem("UserType", "Admin");
+        this.router1.navigate(['/dashboard-admin']);
+      }else if (this.selectedUserType=='Dealer'){
+        localStorage.setItem("UserType", "Dealer");
+        this.router1.navigate(['/dashboard-dealer']);
+      }else if (this.selectedUserType=='Technician'){
+        localStorage.setItem("UserType", "Technician");
+        this.router1.navigate(['/dashboard-technician']);
+      }else if (this.selectedUserType=='Customer'){
+        localStorage.setItem("UserType", "Customer");
+        this.router1.navigate(['/dashboard-customer']);
+      }
+      
 
   } //End login() function
 

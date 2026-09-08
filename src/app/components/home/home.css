@@ -279,6 +279,61 @@
   color: #ffffff;
 }
 
+/* ============================================================
+   SUBMENU ITEM
+============================================================ */
+
+.submenu-item {
+  position: relative;
+
+  width: 100%;
+}
+
+
+/* ============================================================
+   INQUIRY COUNT BADGE
+============================================================ */
+
+.inquiry-badge {
+  margin-left: auto;
+
+  min-width: 20px;
+  height: 18px;
+
+  padding: 0 6px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #e45b5b;
+
+  color: #ffffff;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  line-height: 18px;
+}
+
+
+/* Slightly different appearance on hover */
+
+.submenu-item:hover .inquiry-badge {
+  background: #d94b4b;
+}
+
+
+/* Active submenu */
+
+.submenu-item.submenu-active .inquiry-badge {
+  background: #e45b5b;
+}
+
 
 /* ============================================================
    MAIN AREA

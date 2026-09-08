@@ -94,19 +94,29 @@
     *ngIf="crmExpanded">
 
     <!-- Inquiries -->
-    <a
-      routerLink="/home/crm/inquiries"
-      routerLinkActive="submenu-active">
+<a
+  routerLink="/home/crm/inquiries"
+  routerLinkActive="submenu-active"
+  class="submenu-item">
 
-      <mat-icon>
-        contact_page
-      </mat-icon>
+  <mat-icon>
+    contact_page
+  </mat-icon>
 
-      <span>
-        Inquiries
-      </span>
+  <span class="submenu-text">
+    Inquiries
+  </span>
 
-    </a>
+  <!-- New Inquiry Count -->
+  <span
+    class="inquiry-badge"
+    *ngIf="newInquiryCount > 0">
+
+    {{ newInquiryCount }}
+
+  </span>
+
+</a>
 
 
     <!-- Leads -->
@@ -1210,11 +1220,11 @@
             <div class="profile-info">
 
               <div class="profile-name">
-                Admin User
+                {{UserType}} User
               </div>
 
               <div class="profile-role">
-                Administrator
+                {{UserType}}
               </div>
 
             </div>
@@ -1250,11 +1260,11 @@
               <div>
 
                 <strong>
-                  Admin User
+                  {{UserType}} User
                 </strong>
 
                 <span>
-                  Administrator
+                  {{UserType}}
                 </span>
 
               </div>

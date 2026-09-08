@@ -1,0 +1,629 @@
+:root {
+  --blue: #1769d5;
+  --blue-soft: #eaf3ff;
+
+  --green: #1fa77a;
+  --green-soft: #eaf9f3;
+
+  --orange: #f49a2f;
+  --red: #e85d5d;
+
+  --text: #18324b;
+  --muted: #718198;
+
+  --border: #e5ebf2;
+
+  --bg: #f7f9fc;
+  --white: #ffffff;
+}
+
+
+/* =========================================================
+   DEALER DASHBOARD
+   Sidebar / Header / Main Menu are NOT included.
+   They are already present in home.html.
+   ========================================================= */
+
+.dealer-dashboard {
+  width: 100%;
+  min-height: 100%;
+
+  padding: 24px 28px 34px;
+
+  background: var(--bg);
+
+  color: var(--text);
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 14px;
+
+  box-sizing: border-box;
+}
+
+
+.dealer-dashboard * {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
+.page-title {
+  margin: 0 0 18px;
+
+  color: #183957;
+
+  font-size: 20px;
+  line-height: 1.3;
+
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+   ========================================================= */
+
+.stats-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+
+.stat-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-height: 94px;
+
+  padding: 17px 18px;
+
+  /*
+    Force white background so it is not overridden
+    by styles from home.html.
+  */
+  background: #ffffff !important;
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  box-shadow:
+    0 4px 16px rgba(27, 55, 84, 0.06);
+}
+
+
+.stat-icon {
+  width: 45px;
+  height: 45px;
+
+  flex: 0 0 45px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  font-size: 21px;
+
+  font-weight: 700;
+}
+
+
+.stat-icon.blue {
+  color: var(--blue);
+
+  background: var(--blue-soft);
+}
+
+
+.stat-icon.green {
+  color: var(--green);
+
+  background: var(--green-soft);
+}
+
+
+.stat-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+.stat-value {
+  display: block;
+
+  color: #193650;
+
+  font-size: 20px;
+
+  line-height: 1.1;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   MAIN DASHBOARD ROW
+   ========================================================= */
+
+.dashboard-row {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.05fr);
+
+  gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+
+.dashboard-panel {
+  background: #ffffff !important;
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  box-shadow:
+    0 4px 16px rgba(27, 55, 84, 0.06);
+
+  padding: 18px;
+}
+
+
+.panel-title {
+  margin: 0 0 16px;
+
+  color: #193957;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   INSTALLATION STATUS DONUT
+   ========================================================= */
+
+/* =========================================================
+   INSTALLATION STATUS DONUT CHART
+   ========================================================= */
+
+.status-layout {
+  min-height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 42px;
+}
+
+
+/* Colored donut */
+
+.donut-chart {
+  width: 132px;
+  height: 132px;
+
+  flex: 0 0 132px;
+
+  border-radius: 50%;
+
+  /*
+    Total = 22
+    In Progress = 6   -> 27.27%
+    Completed = 12    -> 54.55%
+    Pending = 4       -> 18.18%
+  */
+
+  background:
+    conic-gradient(
+      #1769d5 0deg 98.18deg,
+      #1fa77a 98.18deg 294.54deg,
+      #f49a2f 294.54deg 360deg
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* White center */
+
+.donut-inner {
+  width: 82px;
+  height: 82px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+.donut-inner span {
+  color: #193957;
+
+  font-size: 21px;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+
+.donut-inner small {
+  margin-top: 5px;
+
+  color: #718198;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   STATUS LEGEND
+   ========================================================= */
+
+.status-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.status-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 150px;
+}
+
+.status-legend .dot {
+  display: inline-block;
+  width: 12px !important;
+  height: 12px !important;
+  min-width: 12px;
+  min-height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-legend .dot.blue {
+  background-color: #1769d5 !important;
+}
+
+.status-legend .dot.green {
+  background-color: #1fa77a !important;
+}
+
+.status-legend .dot.orange {
+  background-color: #f49a2f !important;
+}
+
+.status-legend span {
+  color: #18324b;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-legend b {
+  margin-left: auto;
+  color: #18324b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+.dot {
+  width: 9px;
+  height: 9px;
+
+  flex: 0 0 9px;
+
+  border-radius: 50%;
+}
+
+
+.dot.blue {
+  background: var(--blue);
+}
+
+
+.dot.green {
+  background: var(--green);
+}
+
+
+.dot.orange {
+  background: var(--orange);
+}
+
+
+/* =========================================================
+   RECENT INSTALLATIONS
+   ========================================================= */
+
+.installation-list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+.installation-item {
+  min-height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  border-bottom:
+    1px solid #edf1f5;
+}
+
+
+.installation-item:last-child {
+  border-bottom: 0;
+}
+
+
+.installation-icon {
+  width: 29px;
+  height: 29px;
+
+  flex: 0 0 29px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 6px;
+
+  color: #4e85bc;
+
+  background: #f3f7fc;
+}
+
+
+.installation-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.installation-info strong {
+  display: block;
+
+  color: #334d65;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+
+.installation-info span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #718398;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.badge {
+  padding: 5px 9px;
+
+  border-radius: 12px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  font-style: normal;
+
+  white-space: nowrap;
+}
+
+
+.badge.progress {
+  color: #1d72d6;
+
+  background: #edf5ff;
+}
+
+
+.badge.complete {
+  color: #22a177;
+
+  background: #eaf9f3;
+}
+
+
+.badge.pending {
+  color: #e85d5d;
+
+  background: #fff0f0;
+}
+
+
+/* =========================================================
+   INCENTIVE OVERVIEW
+   ========================================================= */
+
+.incentive-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 15px;
+}
+
+
+.incentive-card {
+  min-height: 76px;
+
+  padding: 15px 14px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  background: #fbfcfe;
+
+  border:
+    1px solid #edf1f5;
+
+  border-radius: 8px;
+}
+
+
+.incentive-card span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #74869a;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+.incentive-card strong {
+  color: #193957;
+
+  font-size: 16px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+  .stats-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  .dashboard-row {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .dealer-dashboard {
+    padding:
+      20px
+      14px
+      30px;
+  }
+
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .incentive-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .status-layout {
+    gap: 25px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .status-layout {
+    flex-direction: column;
+  }
+
+
+  .status-legend {
+    width: 100%;
+  }
+
+
+  .installation-item {
+    align-items: flex-start;
+
+    padding:
+      10px
+      0;
+  }
+
+
+  .badge {
+    margin-left: auto;
+  }
+
+}

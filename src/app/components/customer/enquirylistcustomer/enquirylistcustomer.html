@@ -1,0 +1,370 @@
+<div class="page-container">
+
+  <!-- =========================================
+       PAGE HEADER
+  ========================================== -->
+
+  <div class="page-header">
+
+    <div class="header-left">
+      <h1>Enquiry List</h1>
+
+      <div class="breadcrumb">
+        <span class="home-icon">⌂</span>
+        <span>Enquiries</span>
+        <span class="arrow">›</span>
+        <span>Enquiry List</span>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn-new-enquiry"
+      (click)="newEnquiry()">
+
+      <span class="plus-icon">+</span>
+      New Enquiry
+
+    </button>
+
+  </div>
+
+
+  <!-- =========================================
+       FILTER / SEARCH CARD
+  ========================================== -->
+
+  <div class="filter-card">
+
+    <div class="filter-row">
+
+      <!-- Search -->
+      <div class="filter-group search-group">
+
+        <label for="search">
+          Search
+        </label>
+
+        <div class="search-wrapper">
+
+          <span class="search-icon">⌕</span>
+
+          <input
+            type="text"
+            id="search"
+            [(ngModel)]="searchText"
+            placeholder="Search enquiry no.">
+
+        </div>
+
+      </div>
+
+
+      <!-- Status -->
+      <div class="filter-group">
+
+        <label for="status">
+          Status
+        </label>
+
+        <select
+          id="status"
+          [(ngModel)]="selectedStatus">
+
+          <option value="">All Status</option>
+          <option value="Pending">Pending</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- Charger Type -->
+      <div class="filter-group">
+
+        <label for="chargerType">
+          Charger Type
+        </label>
+
+        <select
+          id="chargerType"
+          [(ngModel)]="selectedChargerType">
+
+          <option value="">All Charger Types</option>
+          <option value="AC Charger">AC Charger</option>
+          <option value="DC Charger">DC Charger</option>
+          <option value="Fast Charger">Fast Charger</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- Search Button -->
+      <div class="filter-button-container">
+
+        <button
+          type="button"
+          class="btn-search"
+          (click)="applyFilters()">
+
+          Search
+
+        </button>
+
+        <button
+          type="button"
+          class="btn-reset"
+          (click)="resetFilters()">
+
+          Reset
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================
+       ENQUIRY LIST CARD
+  ========================================== -->
+
+  <div class="list-card">
+
+    <!-- Card Header -->
+
+    <div class="list-card-header">
+
+      <div>
+        <h2>Enquiries</h2>
+        <p>View and manage all enquiries</p>
+      </div>
+
+      <div class="total-count">
+        Total: <strong>{{ enquiries.length }}</strong>
+      </div>
+
+    </div>
+
+
+    <!-- =========================================
+         TABLE
+    ========================================== -->
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Enquiry No.</th>
+
+            <th>Charger Type</th>
+
+            <th>Site Address</th>
+
+  
+            <th>Preferred Date</th>
+
+            <th>Status</th>
+
+            <th class="action-column">
+              Action
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr *ngFor="let enquiry of enquiries">
+
+            <!-- Enquiry Number -->
+            <td>
+              <span class="enquiry-number">
+                {{ enquiry.enquiryNo }}
+              </span>
+            </td>
+
+            <!-- Charger Type -->
+            <td>
+              <span class="charger-type">
+                {{ enquiry.chargerType }}
+              </span>
+            </td>
+
+
+            <!-- Site Address -->
+            <td>
+              <span class="site-address">
+                {{ enquiry.siteAddress }}
+              </span>
+            </td>
+
+
+            <!-- City -->
+
+
+            <!-- Preferred Date -->
+            <td>
+              {{ enquiry.preferredDate }}
+            </td>
+
+
+            <!-- Status -->
+            <td>
+
+              <span
+                class="status-badge"
+                [ngClass]="{
+                  'status-pending': enquiry.status === 'Pending',
+                  'status-progress': enquiry.status === 'In Progress',
+                  'status-completed': enquiry.status === 'Completed',
+                  'status-cancelled': enquiry.status === 'Cancelled'
+                }">
+
+                <span class="status-dot"></span>
+
+                {{ enquiry.status }}
+
+              </span>
+
+            </td>
+
+
+            <!-- Action -->
+            <td class="action-column">
+
+              <button
+                type="button"
+                class="view-button"
+                title="View Enquiry"
+                (click)="viewEnquiry(enquiry)">
+                <span class="view-icon">◉</span>
+                <span class="view-text">View</span>
+              </button>
+
+            </td>
+
+          </tr>
+
+
+          <!-- Empty State -->
+
+          <tr *ngIf="enquiries.length === 0">
+
+            <td
+              colspan="6"
+              class="empty-state">
+
+              <div class="empty-icon">
+                ⌕
+              </div>
+
+              <h3>No enquiries found</h3>
+
+              <p>
+                No enquiries match your search criteria.
+              </p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- =========================================
+         PAGINATION
+    ========================================== -->
+
+    <div class="pagination-container">
+
+      <div class="pagination-info">
+        Showing
+        <strong>1</strong>
+        to
+        <strong>{{ enquiries.length }}</strong>
+        of
+        <strong>{{ enquiries.length }}</strong>
+        enquiries
+      </div>
+
+
+      <div class="pagination">
+
+        <button
+          type="button"
+          class="page-button navigation-button"
+          disabled>
+
+          ‹
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button active">
+
+          1
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button">
+
+          2
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button">
+
+          3
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button">
+
+          4
+
+        </button>
+
+
+        <button
+          type="button"
+          class="page-button navigation-button">
+
+          ›
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

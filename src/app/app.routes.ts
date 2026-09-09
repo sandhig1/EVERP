@@ -10,6 +10,10 @@ import { Dashboardcustomer } from './components/dashboardcustomer/dashboardcusto
 import { Signup } from './components/signup/signup';
 import { Installationreqdealer } from './components/dealer/installationreqdealer/installationreqdealer';
 import { Installationreqlistdealer } from './components/dealer/installationreqlistdealer/installationreqlistdealer';
+import {Installationreqlistadmin } from './components/admin/installationreqlistadmin/installationreqlistadmin';
+import { Enquirycreationcustomer } from './components/customer/enquirycreationcustomer/enquirycreationcustomer';
+import { EnquiryListCustomer } from './components/customer/enquirylistcustomer/enquirylistcustomer';
+import { enquiryviewcustomer } from './components/customer/enquiryviewcustomer/enquiryviewcustomer';
 
 export const routes: Routes = [
     {path:'', component:HomeLanding},
@@ -23,6 +27,10 @@ export const routes: Routes = [
             {path:'dashboard-customer', component:Dashboardcustomer},
             {path:'installation-request-dealer', component:Installationreqdealer},
             {path:'installation-request-list-dealer', component:Installationreqlistdealer},
+            {path:'installation-request-list-admin', component:Installationreqlistadmin},
+            {path:'enquiry-creation-customer', component:Enquirycreationcustomer},
+            {path:'enquiry-list-customer', component:EnquiryListCustomer},
+            {path:'enquiry-view-customer', component:enquiryviewcustomer},
             
         ]
     }

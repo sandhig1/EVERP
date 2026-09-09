@@ -1,0 +1,594 @@
+<div class="page-container">
+
+  <!-- =========================
+       PAGE HEADER
+       ========================= -->
+  <div class="page-header">
+    <div>
+      <h2>Admin - Installation Request List</h2>
+
+      <div class="breadcrumb">
+        <span>Home</span>
+        <span class="breadcrumb-separator">/</span>
+        <span>Installation Requests</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       FILTER CARD
+       ========================= -->
+  <div class="filter-card">
+
+    <!-- ROW 1 -->
+    <div class="filter-grid row-one">
+
+      <!-- Search -->
+      <div class="form-group search-group">
+        <label for="searchText">Search</label>
+
+        <div class="search-input-wrapper">
+          <span class="search-icon">⌕</span>
+
+          <input
+            id="searchText"
+            type="text"
+            [(ngModel)]="searchText"
+            (keyup.enter)="applyFilters()"
+            placeholder="Search installation no., name or address"
+          />
+        </div>
+      </div>
+
+
+      <!-- Status -->
+      <div class="form-group">
+        <label for="status">Status</label>
+
+        <select
+          id="status"
+          [(ngModel)]="selectedStatus">
+
+          <option value="">All Status</option>
+
+          <option
+            *ngFor="let status of statusList"
+            [value]="status">
+
+            {{ status }}
+
+          </option>
+        </select>
+      </div>
+
+
+      <!-- Charger Type -->
+      <div class="form-group">
+        <label for="chargerType">Charger Type</label>
+
+        <select
+          id="chargerType"
+          [(ngModel)]="selectedChargerType">
+
+          <option value="">All Charger Types</option>
+
+          <option
+            *ngFor="let charger of chargerTypes"
+            [value]="charger">
+
+            {{ charger }}
+
+          </option>
+
+        </select>
+      </div>
+
+    </div>
+
+
+    <!-- ROW 2 -->
+    <div class="filter-grid row-two">
+
+      <!-- Request From -->
+      <div class="form-group">
+        <label for="requestFrom">Request From</label>
+
+        <select
+          id="requestFrom"
+          [(ngModel)]="requestFromType"
+          (change)="onRequestFromChange()">
+
+          <option value="">Dealer / Customer</option>
+
+          <option value="Dealer">
+            Dealer
+          </option>
+
+          <option value="Customer">
+            Customer
+          </option>
+
+        </select>
+      </div>
+
+
+      <!-- Dealer / Customer -->
+      <div class="form-group">
+        <label for="requester">Dealer / Customer</label>
+
+        <select
+          id="requester"
+          [(ngModel)]="selectedRequester">
+
+          <option value="">
+            All Dealer / Customer
+          </option>
+
+          <option
+            *ngFor="let requester of requesterList"
+            [value]="requester">
+
+            {{ requester }}
+
+          </option>
+
+        </select>
+      </div>
+
+
+      <!-- Search / Reset -->
+      <div class="filter-actions">
+
+        <button
+          type="button"
+          class="btn btn-search"
+          (click)="applyFilters()">
+
+          <span>⌕</span>
+          Search
+
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-reset"
+          (click)="resetFilters()">
+
+          <span>↻</span>
+          Reset
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       RESULT BAR
+       ========================= -->
+  <div class="result-bar">
+
+    <div>
+
+      <strong>
+        Installation Requests
+      </strong>
+
+      <span class="result-count">
+        {{ filteredInstallations.length }} Requests
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       TABLE CARD
+       ========================= -->
+  <div class="table-card">
+
+    <div class="table-scroll">
+
+      <table>
+
+        <!-- =========================
+             TABLE HEADER
+             ========================= -->
+        <thead>
+
+          <tr>
+
+            <th class="installation-column">
+              Installation No.
+            </th>
+
+            <th class="request-column">
+              Request From
+            </th>
+
+            <th class="charger-column">
+              Charger Type
+            </th>
+
+            <th class="address-column">
+              Address
+            </th>
+
+            <th class="date-column">
+              Preferred Date
+            </th>
+
+            <th class="status-column">
+              Status
+            </th>
+
+            <th class="action-column">
+              Action
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <!-- =========================
+             TABLE BODY
+             ========================= -->
+        <tbody>
+
+          <tr
+            *ngFor="let installation of paginatedInstallations">
+
+
+            <!-- Installation No + Request Date -->
+            <td class="installation-column">
+
+              <div class="installation-cell">
+
+                <span class="installation-number">
+                  {{ installation.installationNo }}
+                </span>
+
+                <span class="installation-date">
+                  Dt: {{ installation.requestDate }}
+                </span>
+
+              </div>
+
+            </td>
+
+
+            <!-- Request From -->
+            <td class="request-column">
+
+              <div class="request-from-cell">
+
+                <div class="request-name">
+                  {{ installation.requestName }}
+                </div>
+
+                <span
+                  class="request-type-badge"
+                  [ngClass]="{
+                    'dealer-type':
+                      installation.requestFrom === 'Dealer',
+
+                    'customer-type':
+                      installation.requestFrom === 'Customer'
+                  }">
+
+                  {{ installation.requestFrom }}
+
+                </span>
+
+              </div>
+
+            </td>
+
+
+            <!-- Charger Type -->
+            <td class="charger-column">
+
+              <span class="charger-type">
+                {{ installation.chargerType }}
+              </span>
+
+            </td>
+
+
+            <!-- Address -->
+            <td class="address-column">
+
+              <div class="address-cell">
+
+                <span class="address-icon">
+                  ⌖
+                </span>
+
+                <div>
+
+                  <div class="site-address">
+                    {{ installation.siteAddress }}
+                  </div>
+
+                  <div class="city-state">
+                    {{ installation.city }},
+                    {{ installation.state }}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <!-- Preferred Date -->
+            <td class="date-column">
+
+              <div class="date-cell">
+
+                <span class="calendar-icon">
+                  ▣
+                </span>
+
+                <span>
+                  {{ installation.preferredDate }}
+                </span>
+
+              </div>
+
+            </td>
+
+
+            <!-- Status -->
+            <td class="status-column">
+
+              <span
+                class="status-badge"
+                [ngClass]="getStatusClass(installation.status)">
+
+                {{ installation.status }}
+
+              </span>
+
+            </td>
+
+
+            <!-- =========================
+                 ACTIONS
+                 ========================= -->
+            <td class="action-column">
+
+              <div class="action-buttons">
+
+
+                <!-- VIEW -->
+                <button
+                  type="button"
+                  class="action-link view-action"
+                  (click)="viewInstallation(installation)"
+                  title="View Installation">
+
+                  <span class="action-icon eye-icon">
+                    ◉
+                  </span>
+
+                  <span>
+                    View
+                  </span>
+
+                </button>
+
+
+                <!-- EDIT -->
+                <button
+                  type="button"
+                  class="action-link edit-action"
+                  (click)="editInstallation(installation)"
+                  title="Edit Installation">
+
+                  <span class="action-icon pencil-icon">
+                    ✎
+                  </span>
+
+                  <span>
+                    Edit
+                  </span>
+
+                </button>
+
+
+                <!-- ACCEPT -->
+                <button
+                  *ngIf="installation.status === 'Created'"
+                  type="button"
+                  class="action-link accept-action"
+                  (click)="acceptReject(installation, 'Accept')"
+                  title="Accept Installation Request">
+
+                  <span class="action-icon">
+                    ✓
+                  </span>
+
+                  <span>
+                    Accept
+                  </span>
+
+                </button>
+
+
+                <!-- REJECT -->
+                <button
+                  *ngIf="installation.status === 'Created'"
+                  type="button"
+                  class="action-link reject-action"
+                  (click)="acceptReject(installation, 'Reject')"
+                  title="Reject Installation Request">
+
+                  <span class="action-icon">
+                    ✕
+                  </span>
+
+                  <span>
+                    Reject
+                  </span>
+
+                </button>
+
+
+                <!-- ASSIGN TECHNICIAN -->
+                <button
+                  *ngIf="installation.status === 'Accepted'"
+                  type="button"
+                  class="action-link technician-action"
+                  (click)="assignTechnician(installation)"
+                  title="Assign Technician">
+
+                  <span class="action-icon technician-icon">
+                    ♟
+                  </span>
+
+                  <span>
+                    Assign Technician
+                  </span>
+
+                </button>
+
+
+                <!-- SCHEDULE SURVEY -->
+                <button
+                  *ngIf="installation.status === 'Technician Assigned'"
+                  type="button"
+                  class="action-link survey-action"
+                  (click)="scheduleSurvey(installation)"
+                  title="Schedule Survey">
+
+                  <span class="action-icon survey-icon">
+                    ◷
+                  </span>
+
+                  <span>
+                    Schedule Survey
+                  </span>
+
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+
+          <!-- =========================
+               EMPTY STATE
+               ========================= -->
+          <tr
+            *ngIf="paginatedInstallations.length === 0">
+
+            <td
+              colspan="7"
+              class="empty-state">
+
+              <div class="empty-icon">
+                ⌕
+              </div>
+
+              <div class="empty-title">
+                No installation requests found
+              </div>
+
+              <div class="empty-text">
+                Try changing your search or filter criteria.
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- =========================
+         PAGINATION
+         ========================= -->
+    <div
+      class="pagination-container"
+      *ngIf="filteredInstallations.length > 0">
+
+
+      <!-- Pagination Information -->
+      <div class="pagination-info">
+
+        Showing
+        <strong>{{ startItem }}</strong>
+        -
+        <strong>{{ endItem }}</strong>
+
+        of
+
+        <strong>
+          {{ filteredInstallations.length }}
+        </strong>
+
+        requests
+
+      </div>
+
+
+      <!-- Pagination Controls -->
+      <div class="pagination-controls">
+
+        <!-- Previous -->
+        <button
+          type="button"
+          class="pagination-button"
+          [disabled]="currentPage === 1"
+          (click)="previousPage()">
+
+          ‹
+
+        </button>
+
+
+        <!-- Pages -->
+        <button
+          type="button"
+          class="pagination-button page-number"
+          *ngFor="let page of pages"
+          [class.active]="currentPage === page"
+          (click)="goToPage(page)">
+
+          {{ page }}
+
+        </button>
+
+
+        <!-- Next -->
+        <button
+          type="button"
+          class="pagination-button"
+          [disabled]="currentPage === totalPages"
+          (click)="nextPage()">
+
+          ›
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

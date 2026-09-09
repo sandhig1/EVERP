@@ -93,6 +93,72 @@
     class="submenu"
     *ngIf="crmExpanded">
 
+    <!-- Installation Request List -->
+<a
+  routerLink="/installation-request-list-admin"
+  routerLinkActive="submenu-active"
+  class="submenu-item">
+
+  <mat-icon>
+    contact_page
+  </mat-icon>
+
+  <span class="submenu-text">
+    Installation Requests
+  </span>
+
+  <!-- New Inquiry Count -->
+  <span
+    class="inquiry-badge"
+    *ngIf="newInquiryCount > 0">
+
+    {{ newInquiryCount }}
+
+  </span>
+
+</a>
+<!-- Enquiry Creation Customer -->
+<a
+  routerLink="/enquiry-creation-customer"
+  routerLinkActive="submenu-active"
+  class="submenu-item">
+
+  <mat-icon>
+    contact_page
+  </mat-icon>
+
+  <span class="submenu-text">
+    Create Enquiry 
+  </span>
+
+</a>
+
+<!-- Enquiries - Customer -->
+<a
+  routerLink="/enquiry-list-customer"
+  routerLinkActive="submenu-active"
+  class="submenu-item">
+
+  <mat-icon>
+    contact_page
+  </mat-icon>
+
+  <span class="submenu-text">
+    Enquiries - Customer
+  </span>
+
+  <!-- Approved Enquiry Count -->
+  <span
+    class="inquiry-badge"
+    *ngIf="newInquiryCount > 0">
+
+    {{ newInquiryCount }}
+
+  </span>
+
+</a>
+
+
     <!-- Inquiries -->
 <a
   routerLink="/home/crm/inquiries"

@@ -1,0 +1,141 @@
+<div class="print-page">
+
+  <!-- Screen-only toolbar -->
+  <div class="page-toolbar no-print">
+    <button type="button" class="btn-back" (click)="backToEnquiryList()">
+      <span class="toolbar-icon">←</span>
+      Back to Enquiry List
+    </button>
+
+    <button type="button" class="btn-print" (click)="printEnquiry()">
+      <span class="print-icon">🖨</span>
+      Print Enquiry
+    </button>
+  </div>
+
+  <!-- Printable document -->
+  <div class="document-card">
+
+    <div class="document-header">
+      <div class="brand-section">
+        <div class="brand-mark">EV</div>
+        <div>
+          <h1>Enquiry Details</h1>
+          <p>Customer Enquiry</p>
+        </div>
+      </div>
+
+      <div class="document-meta">
+        <div class="meta-item">
+          <span>Enquiry No.</span>
+          <strong>{{ enquiry.enquiryNo }}</strong>
+        </div>
+        <div class="meta-item">
+          <span>Enquiry Date</span>
+          <strong>{{ enquiry.enquiryDate }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-strip">
+      <span class="status-label">Enquiry Status</span>
+      <span class="status-badge"
+            [ngClass]="{
+              'status-pending': enquiry.status === 'Pending',
+              'status-progress': enquiry.status === 'In Progress',
+              'status-completed': enquiry.status === 'Completed',
+              'status-cancelled': enquiry.status === 'Cancelled'
+            }">
+        <span class="status-dot"></span>
+        {{ enquiry.status }}
+      </span>
+    </div>
+
+    <section class="detail-section">
+      <div class="section-title">
+        <span class="section-number">01</span>
+        <div>
+          <h2>Enquiry Information</h2>
+          <p>Basic information submitted for the enquiry</p>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-item">
+          <span class="detail-label">Enquiry No.</span>
+          <span class="detail-value">{{ enquiry.enquiryNo }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label">Charger Type</span>
+          <span class="detail-value">{{ enquiry.chargerType }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label">Preferred Date</span>
+          <span class="detail-value">{{ enquiry.preferredDate }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label">Status</span>
+          <span class="detail-value">{{ enquiry.status }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <div class="section-title">
+        <span class="section-number">02</span>
+        <div>
+          <h2>Site Address</h2>
+          <p>Location provided for the enquiry</p>
+        </div>
+      </div>
+
+      <div class="address-box">
+        <div class="address-icon">⌖</div>
+        <div class="address-content">
+          <span class="detail-label">Complete Address</span>
+          <p>
+            {{ enquiry.siteAddress }}<span *ngIf="enquiry.city">, {{ enquiry.city }}</span><span *ngIf="enquiry.state">, {{ enquiry.state }}</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <div class="section-title">
+        <span class="section-number">03</span>
+        <div>
+          <h2>Additional Details</h2>
+          <p>Other information associated with this enquiry</p>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-item">
+          <span class="detail-label">Customer</span>
+          <span class="detail-value">{{ enquiry.customer }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label">Requested Charger</span>
+          <span class="detail-value">{{ enquiry.chargerType }}</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="document-footer">
+      <div>
+        <strong>Enquiry Details</strong>
+        <span>This document is generated for customer reference.</span>
+      </div>
+
+      <div class="footer-right">
+        <span>Enquiry No.</span>
+        <strong>{{ enquiry.enquiryNo }}</strong>
+      </div>
+    </div>
+
+  </div>
+</div>

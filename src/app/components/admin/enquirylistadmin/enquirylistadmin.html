@@ -1,0 +1,201 @@
+<div class="page-container">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="header-left">
+      <h1>Enquiry List - Admin</h1>
+      <div class="breadcrumb">
+        <span class="home-icon">⌂</span>
+        <span>Admin</span>
+        <span class="arrow">›</span>
+        <span>Enquiries</span>
+        <span class="arrow">›</span>
+        <span>Enquiry List</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER CARD -->
+  <div class="filter-card">
+    <div class="filter-row">
+
+      <div class="filter-group search-group">
+        <label for="search">Search</label>
+        <div class="search-wrapper">
+          <span class="search-icon">⌕</span>
+          <input
+            type="text"
+            id="search"
+            [(ngModel)]="searchText"
+            placeholder="Search enquiry no. or customer">
+        </div>
+      </div>
+
+      <div class="filter-group request-from-group">
+        <label>Request From</label>
+        <div class="radio-options">
+          <label class="radio-option">
+            <input type="radio" name="requestFrom" value="All" [(ngModel)]="selectedRequestFrom">
+            <span>All</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="requestFrom" value="Customer" [(ngModel)]="selectedRequestFrom">
+            <span>Customer</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="requestFrom" value="Walk-in" [(ngModel)]="selectedRequestFrom">
+            <span>Walk-in</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group" *ngIf="selectedRequestFrom === 'Customer'">
+        <label for="customer">Customer</label>
+        <select id="customer" [(ngModel)]="selectedCustomer">
+          <option value="">All Customers</option>
+          <option *ngFor="let customer of customers" [value]="customer">
+            {{ customer }}
+          </option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="status">Status</label>
+        <select id="status" [(ngModel)]="selectedStatus">
+          <option value="">All Status</option>
+          <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="chargerType">Charger Type</label>
+        <select id="chargerType" [(ngModel)]="selectedChargerType">
+          <option value="">All Charger Types</option>
+          <option value="AC Charger">AC Charger</option>
+          <option value="DC Charger">DC Charger</option>
+          <option value="Fast Charger">Fast Charger</option>
+        </select>
+      </div>
+
+      <div class="filter-button-container">
+        <button type="button" class="btn-search" (click)="applyFilters()">Search</button>
+        <button type="button" class="btn-reset" (click)="resetFilters()">Reset</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LIST CARD -->
+  <div class="list-card">
+
+    <div class="list-card-header">
+      <div>
+        <h2>Enquiries</h2>
+        <p>View and manage all customer and walk-in enquiries</p>
+      </div>
+      <div class="total-count">
+        Total: <strong>{{ enquiries.length }}</strong>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Enquiry No.</th>
+            <th>Customer</th>
+            <th>Charger Type</th>
+            <th>Site Address</th>
+            <th>Preferred Date</th>
+            <th>Status</th>
+            <th class="action-column">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let enquiry of enquiries">
+
+            <td>
+              <div class="enquiry-number">{{ enquiry.enquiryNo }}</div>
+              <div class="enquiry-date">Dt: {{ enquiry.enquiryDate }}</div>
+              <span
+                class="request-source"
+                [ngClass]="{
+                  'customer-source': enquiry.requestFrom === 'Customer',
+                  'walkin-source': enquiry.requestFrom === 'Walk-in'
+                }">
+                <span class="source-icon">
+                  {{ enquiry.requestFrom === 'Customer' ? '●' : '●' }}
+                </span>
+                {{ enquiry.requestFrom === 'Customer' ? 'Customer Enquiry' : 'Walk-In Enquiry' }}
+              </span>
+            </td>
+
+            <td>
+              <span class="customer-name">{{ enquiry.customer }}</span>
+            </td>
+
+            <td>
+              <span class="charger-type">{{ enquiry.chargerType }}</span>
+            </td>
+
+            <td>
+              <span class="site-address">{{ enquiry.siteAddress }}</span>
+            </td>
+
+            <td>{{ enquiry.preferredDate }}</td>
+
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(enquiry.status)">
+                <span class="status-dot"></span>
+                {{ enquiry.status }}
+              </span>
+            </td>
+
+            <td class="action-column">
+              <div class="action-list">
+
+                <button
+                  *ngFor="let action of getActions(enquiry)"
+                  type="button"
+                  class="action-button"
+                  [ngClass]="action.className"
+                  [title]="action.label"
+                  (click)="performAction(enquiry, action)">
+                  <span class="action-icon">{{ action.icon }}</span>
+                  <span class="action-text">{{ action.label }}</span>
+                </button>
+
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="enquiries.length === 0">
+            <td colspan="7" class="empty-state">
+              <div class="empty-icon">⌕</div>
+              <h3>No enquiries found</h3>
+              <p>No enquiries match your search criteria.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-container">
+      <div class="pagination-info">
+        Showing <strong>1</strong> to <strong>{{ enquiries.length }}</strong>
+        of <strong>{{ enquiries.length }}</strong> enquiries
+      </div>
+
+      <div class="pagination">
+        <button type="button" class="page-button navigation-button" disabled>‹</button>
+        <button type="button" class="page-button active">1</button>
+        <button type="button" class="page-button">2</button>
+        <button type="button" class="page-button">3</button>
+        <button type="button" class="page-button">4</button>
+        <button type="button" class="page-button navigation-button">›</button>
+      </div>
+    </div>
+
+  </div>
+</div>

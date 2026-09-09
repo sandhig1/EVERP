@@ -1,0 +1,355 @@
+<div class="lead-generation-page">
+
+  <!-- Page Header -->
+  <div class="lead-generation-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+
+    <div class="header-left">
+
+      <h2>New Lead</h2>
+
+      <div class="lead-breadcrumb">
+        <span class="home-icon">⌂</span>
+        <span>My Leads</span>
+        <span class="arrow">›</span>
+        <span>New Lead</span>
+      </div>
+
+    </div>
+
+    <button
+      type="button"
+      class="btn-list"
+      (click)="goToLeadList()">
+
+      <i class="fa-solid fa-list"></i>
+
+      Lead List
+
+    </button>
+
+  </div>
+
+
+  <!-- Main Card -->
+  <div class="lead-card">
+
+    <!-- Card Header -->
+    <div class="lead-card-header">
+
+      <div class="lead-title-section">
+        <div class="lead-avatar">
+          <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div>
+          <h3>Lead</h3>
+          <span class="lead-subtitle">
+            Lead Information
+          </span>
+        </div>
+      </div>
+
+      <div class="status-badge">
+        New Lead
+      </div>
+
+    </div>
+
+
+    <!-- Form -->
+    <form #leadForm="ngForm"
+          (ngSubmit)="submitLead(leadForm)"
+          novalidate>
+
+      <div class="form-body">
+
+        <!-- Lead ID -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-hashtag"></i>
+            Lead ID
+          </label>
+
+          <input type="text"
+                 name="leadId"
+                 [(ngModel)]="lead.leadId"
+                 class="form-control"
+                 readonly>
+        </div>
+
+
+        <!-- Company Name -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-building"></i>
+            Company Name
+            <span class="required">*</span>
+          </label>
+
+          <input type="text"
+                 name="companyName"
+                 [(ngModel)]="lead.companyName"
+                 #companyName="ngModel"
+                 class="form-control"
+                 placeholder="Enter company name"
+                 required>
+
+          <div class="validation-error"
+               *ngIf="companyName.invalid && companyName.touched">
+            Company name is required.
+          </div>
+        </div>
+
+
+        <!-- Contact Person -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-user"></i>
+            Contact Person
+            <span class="required">*</span>
+          </label>
+
+          <input type="text"
+                 name="contactPerson"
+                 [(ngModel)]="lead.contactPerson"
+                 #contactPerson="ngModel"
+                 class="form-control"
+                 placeholder="Enter contact person"
+                 required>
+
+          <div class="validation-error"
+               *ngIf="contactPerson.invalid && contactPerson.touched">
+            Contact person is required.
+          </div>
+        </div>
+
+
+        <!-- Email -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-envelope"></i>
+            Email
+            <span class="required">*</span>
+          </label>
+
+          <input type="email"
+                 name="email"
+                 [(ngModel)]="lead.email"
+                 #email="ngModel"
+                 class="form-control"
+                 placeholder="Enter email address"
+                 required
+                 email>
+
+          <div class="validation-error"
+               *ngIf="email.invalid && email.touched">
+            Please enter a valid email address.
+          </div>
+        </div>
+
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-phone"></i>
+            Phone
+            <span class="required">*</span>
+          </label>
+
+          <input type="tel"
+                 name="phone"
+                 [(ngModel)]="lead.phone"
+                 #phone="ngModel"
+                 class="form-control"
+                 placeholder="Enter phone number"
+                 maxlength="15"
+                 required>
+
+          <div class="validation-error"
+               *ngIf="phone.invalid && phone.touched">
+            Phone number is required.
+          </div>
+        </div>
+
+
+        <!-- Lead Source -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-globe"></i>
+            Lead Source
+            <span class="required">*</span>
+          </label>
+
+          <select name="leadSource"
+                  [(ngModel)]="lead.leadSource"
+                  #leadSource="ngModel"
+                  class="form-control"
+                  required>
+
+            <option value="">Select lead source</option>
+            <option value="Website Enquiry">Website Enquiry</option>
+            <option value="Referral">Referral</option>
+            <option value="Direct Enquiry">Direct Enquiry</option>
+            <option value="Social Media">Social Media</option>
+            <option value="Email Campaign">Email Campaign</option>
+            <option value="Trade Show">Trade Show</option>
+            <option value="Existing Customer">Existing Customer</option>
+
+          </select>
+
+          <div class="validation-error"
+               *ngIf="leadSource.invalid && leadSource.touched">
+            Please select a lead source.
+          </div>
+        </div>
+
+
+        <!-- Requirement -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-clipboard-list"></i>
+            Requirement
+            <span class="required">*</span>
+          </label>
+
+          <textarea name="requirement"
+                    [(ngModel)]="lead.requirement"
+                    #requirement="ngModel"
+                    class="form-control textarea-control"
+                    placeholder="Enter customer requirement"
+                    rows="3"
+                    required></textarea>
+
+          <div class="validation-error"
+               *ngIf="requirement.invalid && requirement.touched">
+            Requirement is required.
+          </div>
+        </div>
+
+
+        <!-- Estimated Value -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            Estimated Value
+          </label>
+
+          <div class="currency-input">
+            <span>₹</span>
+
+            <input type="number"
+                   name="estimatedValue"
+                   [(ngModel)]="lead.estimatedValue"
+                   class="form-control"
+                   placeholder="Enter estimated value"
+                   min="0">
+          </div>
+        </div>
+
+
+        <!-- Lead Status -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-circle-check"></i>
+            Lead Status
+            <span class="required">*</span>
+          </label>
+
+          <select name="leadStatus"
+                  [(ngModel)]="lead.leadStatus"
+                  class="form-control"
+                  required>
+
+            <option value="New">New</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Proposal">Proposal</option>
+            <option value="Negotiation">Negotiation</option>
+            <option value="Lost">Lost</option>
+
+          </select>
+        </div>
+
+
+        <!-- Assigned Sales Team -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-user-tie"></i>
+            Assigned Sales Team
+            <span class="required">*</span>
+          </label>
+
+          <select name="assignedSalesTeam"
+                  [(ngModel)]="lead.assignedSalesTeam"
+                  class="form-control"
+                  required>
+
+            <option value="">Select sales team</option>
+            <option value="Sales Team - John Dela Cruz">
+              Sales Team - John Dela Cruz
+            </option>
+
+            <option value="Sales Team - Maria Santos">
+              Sales Team - Maria Santos
+            </option>
+
+            <option value="Sales Team - David Wilson">
+              Sales Team - David Wilson
+            </option>
+
+            <option value="Sales Team - Robert Smith">
+              Sales Team - Robert Smith
+            </option>
+
+          </select>
+        </div>
+
+
+        <!-- Expected Close Date -->
+        <div class="form-group">
+          <label>
+            <i class="fa-solid fa-calendar-days"></i>
+            Expected Close Date
+          </label>
+
+          <input type="date"
+                 name="expectedCloseDate"
+                 [(ngModel)]="lead.expectedCloseDate"
+                 class="form-control">
+        </div>
+
+
+      </div>
+
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+
+        <button type="button"
+                class="btn-reset"
+                (click)="resetForm(leadForm)">
+
+          <i class="fa-solid fa-rotate-left"></i>
+          Reset
+        </button>
+
+
+        <button type="submit"
+                class="btn-submit"
+                [disabled]="leadForm.invalid">
+
+          <i class="fa-solid fa-user-plus"></i>
+          Generate Lead
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

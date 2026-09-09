@@ -1,0 +1,1074 @@
+/* =========================================
+   Lead List Page
+========================================= */
+
+.lead-list-page {
+  width: 100%;
+  padding: 18px 20px 30px;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+
+/* =========================================
+   Page Header
+========================================= */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 15px;
+}
+
+.header-left {
+  min-width: 0;
+}
+
+.page-header h1 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #174ea6;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #687789;
+}
+
+.home-icon {
+  font-size: 16px;
+  color: #174ea6;
+}
+
+.separator {
+  color: #9ba8b6;
+}
+
+
+/* =========================================
+   New Lead Button
+========================================= */
+
+.new-lead-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 40px;
+  padding: 0 16px;
+
+  border: 1px solid #078c68;
+  border-radius: 5px;
+
+  background: #079b72;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.new-lead-btn:hover {
+  background: #067e5d;
+  border-color: #067e5d;
+}
+
+.new-lead-btn i {
+  font-size: 13px;
+}
+
+
+/* =========================================
+   Filter Card
+========================================= */
+
+.filter-card {
+  width: 100%;
+
+  border: 1px solid #b8c4d1;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  box-shadow: 0 2px 7px rgba(32, 50, 70, 0.06);
+
+  margin-bottom: 18px;
+
+  overflow: hidden;
+}
+
+.filter-header {
+  padding: 15px 18px;
+
+  border-bottom: 1px solid #d6dee7;
+
+  background: #fafcff;
+}
+
+.filter-header h2 {
+  margin: 0 0 3px;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #29384d;
+}
+
+.filter-header p {
+  margin: 0;
+
+  font-size: 12px;
+
+  color: #718096;
+}
+
+.filter-body {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, 1.8fr)
+    minmax(170px, 1fr)
+    minmax(170px, 1fr)
+    auto;
+
+  gap: 14px;
+
+  padding: 16px 18px;
+
+  align-items: end;
+}
+
+
+/* =========================================
+   Filter Controls
+========================================= */
+
+.filter-control {
+  min-width: 0;
+}
+
+.filter-control label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #29384d;
+}
+
+.filter-control input,
+.filter-control select {
+  width: 100%;
+  height: 42px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #aeb9c6;
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #26364a;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.filter-control input {
+  padding: 0 12px 0 38px;
+}
+
+.filter-control select {
+  padding: 0 12px;
+}
+
+.filter-control input:focus,
+.filter-control select:focus {
+  border-color: #5084c4;
+
+  box-shadow:
+    0 0 0 2px rgba(80, 132, 196, 0.12);
+}
+
+.filter-control input::placeholder {
+  color: #8793a1;
+}
+
+
+/* =========================================
+   Search Input Icon
+========================================= */
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon i {
+  position: absolute;
+
+  left: 13px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #748296;
+
+  font-size: 13px;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   Filter Actions
+========================================= */
+
+.filter-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.search-btn,
+.reset-btn {
+  height: 42px;
+
+  padding: 0 14px;
+
+  border-radius: 5px;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  transition: all 0.2s ease;
+}
+
+
+/* Search */
+
+.search-btn {
+  background: #174ea6;
+
+  border: 1px solid #174ea6;
+
+  color: #ffffff;
+}
+
+.search-btn:hover {
+  background: #123e85;
+
+  border-color: #123e85;
+}
+
+
+/* Reset */
+
+.reset-btn {
+  background: #ffffff;
+
+  border: 1px solid #aeb9c6;
+
+  color: #425268;
+}
+
+.reset-btn:hover {
+  background: #f4f7fa;
+
+  border-color: #8f9dab;
+}
+
+.search-btn i,
+.reset-btn i {
+  font-size: 12px;
+}
+
+
+/* =========================================
+   List Card
+========================================= */
+
+.list-card {
+  width: 100%;
+
+  border: 1px solid #b8c4d1;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  box-shadow: 0 2px 7px rgba(32, 50, 70, 0.06);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   List Header
+========================================= */
+
+.list-header {
+  min-height: 70px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 18px;
+
+  border-bottom: 1px solid #d6dee7;
+
+  background: #fafcff;
+
+  gap: 15px;
+}
+
+.list-header h2 {
+  margin: 0 0 3px;
+
+  color: #29384d;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.list-header p {
+  margin: 0;
+
+  color: #718096;
+
+  font-size: 12px;
+}
+
+.total-count {
+  white-space: nowrap;
+
+  padding: 7px 11px;
+
+  border: 1px solid #c7d2df;
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #46566a;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   Table Wrapper
+========================================= */
+
+.table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+
+/* =========================================
+   Lead Table
+========================================= */
+
+.lead-table {
+  width: 100%;
+
+  min-width: 1180px;
+
+  border-collapse: collapse;
+
+  table-layout: auto;
+}
+
+
+/* =========================================
+   Table Header
+========================================= */
+
+.lead-table thead th {
+  padding: 11px 10px;
+
+  background: #f4f7fa;
+
+  border-bottom: 1px solid #c9d3de;
+
+  color: #29384d;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-align: left;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   Table Body
+========================================= */
+
+.lead-table tbody td {
+  padding: 11px 10px;
+
+  border-bottom: 1px solid #e0e6ed;
+
+  color: #37465a;
+
+  font-size: 12px;
+
+  vertical-align: middle;
+}
+
+.lead-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.lead-table tbody tr:hover {
+  background: #fbfdff;
+}
+
+
+/* =========================================
+   Column Widths
+========================================= */
+
+.lead-no-column {
+  width: 95px;
+}
+
+.value-column {
+  width: 115px;
+}
+
+.date-column {
+  width: 125px;
+}
+
+.status-column {
+  width: 145px;
+}
+
+.action-column {
+  width: 230px;
+}
+
+
+/* =========================================
+   Lead Number
+========================================= */
+
+.lead-number {
+  color: #174ea6;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.lead-date {
+  margin-top: 4px;
+
+  color: #7a8796;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   Company
+========================================= */
+
+.company-name {
+  color: #29384d;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  margin-bottom: 4px;
+
+  white-space: nowrap;
+}
+
+.company-email {
+  color: #788696;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   Contact
+========================================= */
+
+.contact-person {
+  color: #35455a;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  margin-bottom: 4px;
+
+  white-space: nowrap;
+}
+
+.contact-phone {
+  color: #788696;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   Lead Source
+========================================= */
+
+.source-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 4px 8px;
+
+  border: 1px solid #c9d5e2;
+
+  border-radius: 12px;
+
+  background: #f4f7fa;
+
+  color: #506176;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   Requirement
+========================================= */
+
+.requirement-text {
+  max-width: 170px;
+
+  color: #526174;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   Estimated Value
+========================================= */
+
+.value-cell {
+  color: #29384d !important;
+
+  font-size: 12px !important;
+
+  font-weight: 700 !important;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   Expected Close Date
+========================================= */
+
+.date-cell {
+  color: #526174 !important;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status-cell {
+  white-space: nowrap;
+}
+
+.status-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 5px 9px;
+
+  border-radius: 14px;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+
+/* =========================================
+   NEW STATUS
+
+   Background : Smokewhite
+   Font       : Black
+========================================= */
+
+.status-new {
+  background: whitesmoke;
+
+  border: 1px solid #d3d3d3;
+  color: #2459a6;
+}
+
+
+/* =========================================
+   CONVERTED TO OPPERTUNITY STATUS
+
+   Background : Light Green
+   Font       : Dark Green
+========================================= */
+
+.status-converted-opportunity {
+  background: #e3f7ed;
+
+  border: 1px solid #9bd4bc;
+
+  color: #087a59;
+}
+
+
+/* =========================================
+   DEFAULT STATUS
+========================================= */
+
+.status-default {
+  background: #f1f3f5;
+
+  border: 1px solid #d4d9df;
+
+  color: #66717f;
+}
+
+
+/* =========================================
+   ACTION COLUMN
+========================================= */
+
+.action-cell {
+  min-width: 230px;
+}
+
+.action-buttons {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 5px;
+}
+
+
+/* =========================================
+   Common Action Button
+========================================= */
+
+.action-button {
+  min-height: 29px;
+
+  padding: 4px 8px;
+
+  border-radius: 4px;
+
+  font-family: inherit;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.action-button i {
+  font-size: 10px;
+}
+
+
+/* =========================================
+   VIEW BUTTON
+
+   Background : Smokewhite
+   Font       : Black
+========================================= */
+
+.action-view {
+  background: whitesmoke;
+
+  border: 1px solid #d7d7d7;
+
+  color: #9a9a9a;
+}
+
+.action-view:hover {
+  color: gray;
+  border-color: gray;
+}
+
+
+/* =========================================
+   EDIT BUTTON
+
+   Background : Light Blue
+   Font       : Dark Blue
+========================================= */
+
+.action-edit {
+  background: #e8f1ff;
+
+  border: 1px solid #a9c4e8;
+
+  color: #174a8b;
+}
+
+.action-edit:hover {
+  background: #d9e8fc;
+
+  border-color: #88abd8;
+
+  color: #123e75;
+}
+
+
+/* =========================================
+   CONVERT TO OPPERTUNITY BUTTON
+
+   Background : Light Green
+   Font       : Dark Green
+========================================= */
+
+.action-opportunity {
+  background: #e3f7ed;
+
+  border: 1px solid #9bd4bc;
+
+  color: #087a59;
+}
+
+.action-opportunity:hover {
+  background: #d2f0e3;
+
+  border-color: #72bd9e;
+
+  color: #066548;
+}
+
+
+/* =========================================
+   No Records
+========================================= */
+
+.no-records {
+  padding: 45px 20px !important;
+
+  text-align: center;
+}
+
+.no-records-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.no-records-content i {
+  margin-bottom: 10px;
+
+  color: #9aa7b5;
+
+  font-size: 30px;
+}
+
+.no-records-content h3 {
+  margin: 0 0 5px;
+
+  color: #47566a;
+
+  font-size: 15px;
+}
+
+.no-records-content p {
+  margin: 0;
+
+  color: #8a96a4;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   Pagination
+========================================= */
+
+.pagination-container {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 12px 18px;
+
+  border-top: 1px solid #d6dee7;
+
+  background: #fafcff;
+}
+
+.pagination-info {
+  color: #718096;
+
+  font-size: 11px;
+
+  white-space: nowrap;
+}
+
+.pagination-info strong {
+  color: #46566a;
+}
+
+
+/* =========================================
+   Pagination Buttons
+========================================= */
+
+.pagination {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+.page-button {
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+
+  border: 1px solid #c3ccd7;
+
+  border-radius: 4px;
+
+  background: #ffffff;
+
+  color: #4d5d70;
+
+  font-family: inherit;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s ease;
+}
+
+.page-button:hover:not(:disabled) {
+  background: #f0f4f8;
+
+  border-color: #9caaba;
+}
+
+.page-button.active {
+  background: #174ea6;
+
+  border-color: #174ea6;
+
+  color: #ffffff;
+}
+
+.page-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+.page-button i {
+  font-size: 9px;
+}
+
+
+/* =========================================
+   Responsive - 1200px
+========================================= */
+
+@media (max-width: 1200px) {
+
+  .filter-body {
+    grid-template-columns:
+      minmax(220px, 1.5fr)
+      minmax(160px, 1fr)
+      minmax(160px, 1fr);
+  }
+
+  .filter-actions {
+    grid-column: 1 / -1;
+
+    justify-content: flex-end;
+  }
+}
+
+
+/* =========================================
+   Responsive - 768px
+========================================= */
+
+@media (max-width: 768px) {
+
+  .lead-list-page {
+    padding: 14px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .new-lead-btn {
+    align-self: flex-end;
+  }
+
+  .filter-body {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .filter-actions {
+    grid-column: auto;
+
+    justify-content: flex-start;
+  }
+
+  .list-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .total-count {
+    align-self: flex-start;
+  }
+
+  .pagination-container {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .pagination {
+    width: 100%;
+
+    justify-content: flex-end;
+  }
+}
+
+
+/* =========================================
+   Responsive - 480px
+========================================= */
+
+@media (max-width: 480px) {
+
+  .page-header h1 {
+    font-size: 21px;
+  }
+
+  .new-lead-btn {
+    width: 100%;
+  }
+
+  .filter-actions {
+    width: 100%;
+  }
+
+  .search-btn,
+  .reset-btn {
+    flex: 1;
+  }
+
+  .pagination-info {
+    white-space: normal;
+  }
+}

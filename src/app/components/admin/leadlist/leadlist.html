@@ -1,0 +1,415 @@
+<div class="lead-list-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-left">
+      <h1>Lead List</h1>
+
+      <div class="breadcrumb">
+        <span class="home-icon">⌂</span>
+        <span>Leads</span>
+        <span class="separator">›</span>
+        <span>Lead List</span>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="new-lead-btn"
+      (click)="newLead()">
+      <i class="fa-solid fa-plus"></i>
+      <span>New Lead</span>
+    </button>
+  </div>
+
+
+  <!-- Filter Card -->
+  <div class="filter-card">
+
+    <div class="filter-header">
+      <div>
+        <h2>Search & Filter</h2>
+        <p>Search and filter leads</p>
+      </div>
+    </div>
+
+    <div class="filter-body">
+
+      <!-- Search -->
+      <div class="filter-control">
+        <label for="searchText">Search</label>
+
+        <div class="input-with-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+
+          <input
+            id="searchText"
+            type="text"
+            [(ngModel)]="searchText"
+            placeholder="Search lead no., company or contact person"
+            (keyup.enter)="applyFilters()">
+        </div>
+      </div>
+
+
+      <!-- Status -->
+      <div class="filter-control">
+        <label for="status">Status</label>
+
+        <select
+          id="status"
+          [(ngModel)]="selectedStatus">
+          <option value="">All Status</option>
+          <option value="New">New</option>
+          <option value="Converted To Oppertunity">
+            Converted To Oppertunity
+          </option>
+        </select>
+      </div>
+
+
+      <!-- Lead Source -->
+      <div class="filter-control">
+        <label for="leadSource">Lead Source</label>
+
+        <select
+          id="leadSource"
+          [(ngModel)]="selectedLeadSource">
+
+          <option value="">All Sources</option>
+          <option value="Website">Website</option>
+          <option value="Referral">Referral</option>
+          <option value="Walk In">Walk In</option>
+          <option value="Social Media">Social Media</option>
+          <option value="Advertisement">Advertisement</option>
+
+        </select>
+      </div>
+
+
+      <!-- Buttons -->
+      <div class="filter-actions">
+
+        <button
+          type="button"
+          class="search-btn"
+          (click)="applyFilters()">
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Search
+        </button>
+
+        <button
+          type="button"
+          class="reset-btn"
+          (click)="resetFilters()">
+
+          <i class="fa-solid fa-rotate-left"></i>
+          Reset
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Lead List Card -->
+  <div class="list-card">
+
+    <!-- List Header -->
+    <div class="list-header">
+
+      <div>
+        <h2>Leads</h2>
+        <p>View and manage all leads</p>
+      </div>
+
+      <div class="total-count">
+        Total: {{ filteredLeads.length }}
+      </div>
+
+    </div>
+
+
+    <!-- Table -->
+    <div class="table-wrapper">
+
+      <table class="lead-table">
+
+        <thead>
+          <tr>
+
+            <th class="lead-no-column">
+              Lead No.
+            </th>
+
+            <th>
+              Company
+            </th>
+
+            <th>
+              Contact Person
+            </th>
+
+            <th>
+              Lead Source
+            </th>
+
+            <th>
+              Requirement
+            </th>
+
+            <th class="value-column">
+              Estimated Value
+            </th>
+
+            <th class="date-column">
+              Expected Close Date
+            </th>
+
+            <th class="status-column">
+              Status
+            </th>
+
+            <th class="action-column">
+              Action
+            </th>
+
+          </tr>
+        </thead>
+
+
+        <tbody>
+
+          <tr *ngFor="let lead of paginatedLeads">
+
+            <!-- Lead No -->
+            <td class="lead-number-cell">
+
+              <div class="lead-number">
+                {{ lead.leadId }}
+              </div>
+
+              <div class="lead-date">
+                {{ lead.leadDate }}
+              </div>
+
+            </td>
+
+
+            <!-- Company -->
+            <td>
+              <div class="company-name">
+                {{ lead.companyName }}
+              </div>
+
+              <div class="company-email">
+                {{ lead.email }}
+              </div>
+            </td>
+
+
+            <!-- Contact -->
+            <td>
+
+              <div class="contact-person">
+                {{ lead.contactPerson }}
+              </div>
+
+              <div class="contact-phone">
+                {{ lead.phone }}
+              </div>
+
+            </td>
+
+
+            <!-- Lead Source -->
+            <td>
+              <span class="source-badge">
+                {{ lead.leadSource }}
+              </span>
+            </td>
+
+
+            <!-- Requirement -->
+            <td>
+              <div class="requirement-text">
+                {{ lead.requirement }}
+              </div>
+            </td>
+
+
+            <!-- Estimated Value -->
+            <td class="value-cell">
+              ₹{{ lead.estimatedValue | number:'1.0-0' }}
+            </td>
+
+
+            <!-- Expected Close Date -->
+            <td class="date-cell">
+              {{ lead.expectedCloseDate }}
+            </td>
+
+
+            <!-- Status -->
+            <td class="status-cell">
+
+              <span
+                class="status-badge"
+                [ngClass]="getStatusClass(lead.status)">
+
+                <span class="status-dot"></span>
+
+                {{ lead.status }}
+
+              </span>
+
+            </td>
+
+
+            <!-- Actions -->
+            <td class="action-cell">
+
+              <div class="action-buttons">
+
+                <!-- View -->
+                <button
+                  type="button"
+                  class="action-button action-view"
+                  title="View"
+                  (click)="viewLead(lead)">
+
+                  <i class="fa-solid fa-eye"></i>
+                  <span>View</span>
+
+                </button>
+
+
+                <!-- Edit -->
+                <button
+                  type="button"
+                  class="action-button action-edit"
+                  title="Edit"
+                  (click)="editLead(lead)">
+
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <span>Edit</span>
+
+                </button>
+
+
+                <!-- Convert To Oppertunity -->
+                <!-- Hidden after conversion -->
+                <button
+                  *ngIf="lead.status !== 'Converted To Oppertunity'"
+                  type="button"
+                  class="action-button action-opportunity"
+                  title="Convert To Oppertunity"
+                  (click)="convertToOpportunity(lead)">
+
+                  <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                  <span>Convert To Oppertunity</span>
+
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+
+          <!-- No Records -->
+          <tr *ngIf="paginatedLeads.length === 0">
+
+            <td
+              colspan="9"
+              class="no-records">
+
+              <div class="no-records-content">
+
+                <i class="fa-regular fa-folder-open"></i>
+
+                <h3>No Leads Found</h3>
+
+                <p>
+                  No leads match your search criteria.
+                </p>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- Pagination -->
+    <div
+      class="pagination-container"
+      *ngIf="filteredLeads.length > 0">
+
+      <div class="pagination-info">
+
+        Showing
+        <strong>{{ startRecord }}</strong>
+        to
+        <strong>{{ endRecord }}</strong>
+        of
+        <strong>{{ filteredLeads.length }}</strong>
+        leads
+
+      </div>
+
+
+      <div class="pagination">
+
+        <!-- Previous -->
+        <button
+          type="button"
+          class="page-button previous"
+          [disabled]="currentPage === 1"
+          (click)="previousPage()">
+
+          <i class="fa-solid fa-chevron-left"></i>
+
+        </button>
+
+
+        <!-- Pages -->
+        <button
+          type="button"
+          *ngFor="let page of pages"
+          class="page-button"
+          [class.active]="currentPage === page"
+          (click)="goToPage(page)">
+
+          {{ page }}
+
+        </button>
+
+
+        <!-- Next -->
+        <button
+          type="button"
+          class="page-button next"
+          [disabled]="currentPage === totalPages"
+          (click)="nextPage()">
+
+          <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

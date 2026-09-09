@@ -14,6 +14,10 @@ import {Installationreqlistadmin } from './components/admin/installationreqlista
 import { Enquirycreationcustomer } from './components/customer/enquirycreationcustomer/enquirycreationcustomer';
 import { EnquiryListCustomer } from './components/customer/enquirylistcustomer/enquirylistcustomer';
 import { enquiryviewcustomer } from './components/customer/enquiryviewcustomer/enquiryviewcustomer';
+import { enquirylistadmin } from './components/admin/enquirylistadmin/enquirylistadmin';
+import { enquiryviewadmin } from './components/admin/enquiryviewadmin/enquiryviewadmin';
+import { leadgeneration } from './components/admin/leadgeneration/leadgeneration';
+import { leadlist } from './components/admin/leadlist/leadlist';
 
 export const routes: Routes = [
     {path:'', component:HomeLanding},
@@ -31,6 +35,10 @@ export const routes: Routes = [
             {path:'enquiry-creation-customer', component:Enquirycreationcustomer},
             {path:'enquiry-list-customer', component:EnquiryListCustomer},
             {path:'enquiry-view-customer', component:enquiryviewcustomer},
+            {path:'enquiry-list-admin', component:enquirylistadmin},
+            {path:'enquiry-view-admin', component:enquiryviewadmin},
+            {path:'lead-generation', component:leadgeneration},
+            {path:'lead-list', component:leadlist},
             
         ]
     }

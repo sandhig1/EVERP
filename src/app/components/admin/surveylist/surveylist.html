@@ -1,0 +1,694 @@
+<div class="page-container">
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <div class="page-header">
+
+        <div class="header-left">
+
+            <h1>Survey List</h1>
+
+            <div class="breadcrumb">
+                <span class="home-icon">⌂</span>
+                <span>Survey Schedule</span>
+                <span class="arrow">›</span>
+                <span>Survey List</span>
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            class="btn-schedule-survey"
+            (click)="scheduleSurvey()">
+
+            <span class="schedule-icon">＋</span>
+            Schedule Survey
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================================
+         FILTER CARD
+    ========================================== -->
+
+    <div class="filter-card">
+
+        <div class="filter-header">
+
+            <h2>
+                <span class="filter-icon">⚲</span>
+                Filter Survey
+            </h2>
+
+        </div>
+
+
+        <div class="filter-body">
+
+            <!-- =====================================
+                 ROW 1
+            ====================================== -->
+
+            <div class="filter-row">
+
+                <!-- Survey Against -->
+
+                <div class="filter-group survey-against-group">
+
+                    <label>
+                        Survey Against
+                    </label>
+
+                    <div class="radio-filter-options">
+
+                        <!-- All -->
+
+                        <label class="radio-filter-option">
+
+                            <input
+                                type="radio"
+                                name="surveyAgainst"
+                                value="all"
+                                [(ngModel)]="filters.surveyAgainst">
+
+                            <span>All</span>
+
+                        </label>
+
+
+                        <!-- Installation Request -->
+
+                        <label class="radio-filter-option">
+
+                            <input
+                                type="radio"
+                                name="surveyAgainst"
+                                value="installation"
+                                [(ngModel)]="filters.surveyAgainst">
+
+                            <span>Installation</span>
+
+                        </label>
+
+
+                        <!-- Enquiry Request -->
+
+                        <label class="radio-filter-option">
+
+                            <input
+                                type="radio"
+                                name="surveyAgainst"
+                                value="enquiry"
+                                [(ngModel)]="filters.surveyAgainst">
+
+                            <span>Enquiry</span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Request / Enquiry Number -->
+
+                <div class="filter-group">
+
+                    <label for="requestFilter">
+
+                        {{ requestFilterLabel }}
+
+                    </label>
+
+                    <select
+                        id="requestFilter"
+                        name="requestFilter"
+                        [(ngModel)]="filters.requestNo">
+
+                        <option value="">
+                            {{ requestFilterPlaceholder }}
+                        </option>
+
+                        <option
+                            *ngFor="let request of filteredRequestOptions"
+                            [value]="request.requestNo">
+
+                            {{ request.requestNo }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Dealer -->
+
+                <div
+                    class="filter-group"
+                    *ngIf="filters.surveyAgainst === 'enquiry'">
+
+                    <label for="dealerFilter">
+                        Dealer
+                    </label>
+
+                    <select
+                        id="dealerFilter"
+                        name="dealerFilter"
+                        [(ngModel)]="filters.dealer">
+
+                        <option value="">
+                            All Dealers
+                        </option>
+
+                        <option
+                            *ngFor="let dealer of dealers"
+                            [value]="dealer">
+
+                            {{ dealer }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Customer -->
+
+                <div
+                    class="filter-group"
+                    *ngIf="filters.surveyAgainst === 'installation'">
+
+                    <label for="customerFilter">
+                        Customer
+                    </label>
+
+                    <select
+                        id="customerFilter"
+                        name="customerFilter"
+                        [(ngModel)]="filters.customer">
+
+                        <option value="">
+                            All Customers
+                        </option>
+
+                        <option
+                            *ngFor="let customer of customers"
+                            [value]="customer">
+
+                            {{ customer }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 ROW 2
+            ====================================== -->
+
+            <div class="filter-row second-filter-row">
+
+                <!-- Status -->
+
+                <div class="filter-group">
+
+                    <label for="statusFilter">
+                        Status
+                    </label>
+
+                    <select
+                        id="statusFilter"
+                        name="statusFilter"
+                        [(ngModel)]="filters.status">
+
+                        <option value="">
+                            All Status
+                        </option>
+
+                        <option value="Scheduled">
+                            Scheduled
+                        </option>
+
+                        <option value="Cancelled">
+                            Cancelled
+                        </option>
+
+                        <option value="Done">
+                            Done
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Charger Type -->
+
+                <div class="filter-group">
+
+                    <label for="chargerTypeFilter">
+                        Charger Type
+                    </label>
+
+                    <select
+                        id="chargerTypeFilter"
+                        name="chargerTypeFilter"
+                        [(ngModel)]="filters.chargerType">
+
+                        <option value="">
+                            All Charger Types
+                        </option>
+
+                        <option
+                            *ngFor="let chargerType of chargerTypes"
+                            [value]="chargerType">
+
+                            {{ chargerType }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Search -->
+
+                <div class="filter-button-group">
+
+                    <button
+                        type="button"
+                        class="btn-search"
+                        (click)="searchSurveys()">
+
+                        <span class="button-icon">⌕</span>
+                        Search
+
+                    </button>
+
+                </div>
+
+
+                <!-- Clear -->
+
+                <div class="filter-button-group">
+
+                    <button
+                        type="button"
+                        class="btn-clear"
+                        (click)="clearFilters()">
+
+                        <span class="button-icon">↻</span>
+                        Clear
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         LIST SUMMARY
+    ========================================== -->
+
+    <div class="list-summary">
+
+        <span>
+            Showing
+            <strong>{{ paginatedSurveys.length }}</strong>
+            of
+            <strong>{{ filteredSurveys.length }}</strong>
+            surveys
+        </span>
+
+    </div>
+
+
+    <!-- =========================================
+         TABLE CARD
+    ========================================== -->
+
+    <div class="table-card">
+
+        <div class="table-wrapper">
+
+            <table class="survey-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th class="survey-no-column">
+                            Survey No.
+                        </th>
+
+                        <th>
+                            Scheduled Date &amp; Time
+                        </th>
+
+                        <th>
+                            Technician
+                        </th>
+
+                        <th class="survey-against-column">
+                            Survey Against
+                        </th>
+
+                        <th>
+                            Dealer
+                        </th>
+
+                        <th>
+                            Customer
+                        </th>
+
+                        <th class="site-column">
+                            Site
+                        </th>
+
+                        <th>
+                            Charger Type
+                        </th>
+
+                        <th class="status-column">
+                            Status
+                        </th>
+
+                        <th class="action-column">
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <!-- Survey Data -->
+
+                    <tr
+                        *ngFor="let survey of paginatedSurveys">
+
+                        <!-- Survey No -->
+
+                        <td class="survey-no-cell">
+
+                            <div class="survey-number">
+                                {{ survey.surveyNo }}
+                            </div>
+
+                        </td>
+
+
+                        <!-- Scheduled Date & Time -->
+
+                        <td>
+
+                            <div class="scheduled-date">
+                                {{ survey.scheduleDate }}
+                            </div>
+
+                            <div class="scheduled-time">
+                                {{ survey.timeSlot }}
+                            </div>
+
+                        </td>
+
+
+                        <!-- Technician -->
+
+                        <td>
+
+                            <div class="technician-name">
+                                {{ survey.technician }}
+                            </div>
+
+                        </td>
+
+
+                        <!-- Survey Against -->
+
+                        <td class="survey-against-cell">
+
+                            <div class="request-number">
+                                {{ survey.requestNo }}
+                            </div>
+
+                            <span
+                                class="against-badge"
+                                [ngClass]="{
+                                    'installation-badge':
+                                        survey.surveyAgainst === 'installation',
+
+                                    'enquiry-badge':
+                                        survey.surveyAgainst === 'enquiry'
+                                }">
+
+                                {{
+                                    survey.surveyAgainst === 'installation'
+                                    ? 'Installation Request'
+                                    : 'Enquiry Request'
+                                }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- Dealer -->
+
+                        <td>
+
+                            <div class="dealer-name">
+                                {{ survey.dealer }}
+                            </div>
+
+                        </td>
+
+
+                        <!-- Customer -->
+
+                        <td>
+
+                            <div class="customer-name">
+                                {{ survey.customer }}
+                            </div>
+
+                        </td>
+
+
+                        <!-- Site -->
+
+                        <td class="site-cell">
+
+                            <div class="site-address">
+                                {{ survey.siteAddress }}
+                            </div>
+
+                            <div class="site-location">
+                                {{ survey.city }}, {{ survey.state }}
+                            </div>
+
+                        </td>
+
+
+                        <!-- Charger Type -->
+
+                        <td>
+
+                            <span class="charger-type">
+                                {{ survey.chargerType }}
+                            </span>
+
+                        </td>
+
+
+                        <!-- Status -->
+
+                        <td class="status-cell">
+
+                            <span
+                                class="status-badge"
+                                [ngClass]="{
+                                    'status-scheduled':
+                                        survey.status === 'Scheduled',
+
+                                    'status-cancelled':
+                                        survey.status === 'Cancelled',
+
+                                    'status-done':
+                                        survey.status === 'Done'
+                                }">
+
+                                {{ survey.status }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- Action -->
+
+                        <td class="action-cell">
+
+                            <div class="action-buttons">
+
+                                <!-- View -->
+
+                                <button
+                                    type="button"
+                                    class="action-btn view-btn"
+                                    title="View Survey"
+                                    (click)="viewSurvey(survey)">
+
+                                    <span class="action-icon">👁</span>
+                                    <span class="action-text">View</span>
+
+                                </button>
+
+
+                                <!-- Edit -->
+
+                                <button
+                                    type="button"
+                                    class="action-btn edit-btn"
+                                    title="Edit Survey"
+                                    (click)="editSurvey(survey)">
+
+                                    <span class="action-icon">✎</span>
+                                    <span class="action-text">Edit</span>
+
+                                </button>
+
+
+                                <!-- Cancel -->
+
+                                <button
+                                    *ngIf="survey.status === 'Scheduled'"
+                                    type="button"
+                                    class="action-btn cancel-btn"
+                                    title="Cancel Survey"
+                                    (click)="cancelSurvey(survey)">
+
+                                    <span class="action-icon">✕</span>
+                                    <span class="action-text">Cancel</span>
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- No Records -->
+
+                    <tr *ngIf="paginatedSurveys.length === 0">
+
+                        <td
+                            colspan="10"
+                            class="no-records">
+
+                            <div class="no-records-icon">
+                                ⌕
+                            </div>
+
+                            <div class="no-records-title">
+                                No surveys found
+                            </div>
+
+                            <div class="no-records-text">
+                                Try changing your filter criteria.
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- =========================================
+             PAGINATION
+        ========================================== -->
+
+        <div
+            class="pagination-container"
+            *ngIf="filteredSurveys.length > 0">
+
+            <div class="pagination-info">
+
+                Showing
+                {{ startRecord }}
+                -
+                {{ endRecord }}
+                of
+                {{ filteredSurveys.length }}
+
+            </div>
+
+
+            <div class="pagination-controls">
+
+                <button
+                    type="button"
+                    class="pagination-btn"
+                    [disabled]="currentPage === 1"
+                    (click)="previousPage()">
+
+                    ‹
+
+                </button>
+
+
+                <button
+                    *ngFor="let page of pages"
+                    type="button"
+                    class="pagination-btn page-number"
+                    [class.active]="page === currentPage"
+                    (click)="goToPage(page)">
+
+                    {{ page }}
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pagination-btn"
+                    [disabled]="currentPage === totalPages"
+                    (click)="nextPage()">
+
+                    ›
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

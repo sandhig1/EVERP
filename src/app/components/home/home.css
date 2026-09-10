@@ -1057,6 +1057,11 @@
     calc(100vh - 76px);
 }
 
+@media print { 
+  .no-print { 
+    display: none !important; visibility: hidden !important; 
+  } 
+}
 
 /* ============================================================
    RESPONSIVE

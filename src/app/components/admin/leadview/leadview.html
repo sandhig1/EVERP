@@ -1,0 +1,398 @@
+<div class="lead-view-page">
+
+  <!-- =====================================================
+       SCREEN HEADER
+       ===================================================== -->
+  <div class="page-header screen-only">
+
+    <div class="page-title-area">
+
+      <h1>Lead View</h1>
+
+      <div class="breadcrumb">
+        <span class="home-icon">⌂</span>
+        <span>Leads</span>
+        <span class="separator">›</span>
+        <span>Lead View</span>
+      </div>
+
+    </div>
+
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+
+      <button
+        type="button"
+        class="btn btn-back"
+        (click)="goBack()">
+
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back</span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="btn btn-print"
+        (click)="printPage()">
+
+        <i class="fa-solid fa-print"></i>
+        <span>Print</span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       PRINTABLE DOCUMENT
+       ===================================================== -->
+  <div
+    class="print-document"
+    id="printableLead">
+
+
+    <!-- ===================================================
+         DOCUMENT HEADER
+         =================================================== -->
+    <div class="document-header">
+
+      <!-- Left -->
+      <div class="document-title">
+
+        <h2>LEAD DETAILS</h2>
+
+        <p>Lead Information</p>
+
+      </div>
+
+
+      <!-- Right -->
+      <div class="document-meta">
+
+        <div class="meta-row">
+
+          <span class="meta-label">
+            Lead No.
+          </span>
+
+          <span class="meta-value">
+            {{ lead.leadId }}
+          </span>
+
+        </div>
+
+
+        <div class="meta-row">
+
+          <span class="meta-label">
+            Lead Date
+          </span>
+
+          <span class="meta-value">
+            {{ lead.leadDate }}
+          </span>
+
+        </div>
+
+
+        <div class="meta-row">
+
+          <span class="meta-label">
+            Status
+          </span>
+
+          <span
+            class="status-badge"
+            [ngClass]="getStatusClass(lead.status)">
+
+            {{ lead.status }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ===================================================
+         LEAD INFORMATION
+         =================================================== -->
+    <section class="detail-section">
+
+
+      <div class="section-title">
+
+        <i class="fa-solid fa-file-lines"></i>
+
+        <span>
+          Lead Information
+        </span>
+
+      </div>
+
+
+
+      <div class="details-grid">
+
+
+        <!-- Lead No -->
+        <div class="detail-item">
+
+          <label>
+            Lead No.
+          </label>
+
+          <div class="detail-value">
+            {{ lead.leadId }}
+          </div>
+
+        </div>
+
+
+        <!-- Lead Date -->
+        <div class="detail-item">
+
+          <label>
+            Lead Date
+          </label>
+
+          <div class="detail-value">
+            {{ lead.leadDate }}
+          </div>
+
+        </div>
+
+
+        <!-- Lead Source -->
+        <div class="detail-item">
+
+          <label>
+            Lead Source
+          </label>
+
+          <div class="detail-value">
+            {{ lead.leadSource }}
+          </div>
+
+        </div>
+
+
+        <!-- Lead Status -->
+        <div class="detail-item">
+
+          <label>
+            Lead Status
+          </label>
+
+          <div class="detail-value">
+
+            <span
+              class="status-badge"
+              [ngClass]="getStatusClass(lead.status)">
+
+              {{ lead.status }}
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Assigned Sales Team -->
+        <div class="detail-item">
+
+          <label>
+            Assigned Sales Team
+          </label>
+
+          <div class="detail-value">
+            {{ lead.assignedSalesTeam }}
+          </div>
+
+        </div>
+
+
+        <!-- Expected Close Date -->
+        <div class="detail-item">
+
+          <label>
+            Expected Close Date
+          </label>
+
+          <div class="detail-value">
+            {{ lead.expectedCloseDate }}
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         COMPANY & CONTACT DETAILS
+         =================================================== -->
+    <section class="detail-section">
+
+
+      <div class="section-title">
+
+        <i class="fa-solid fa-building"></i>
+
+        <span>
+          Company &amp; Contact Details
+        </span>
+
+      </div>
+
+
+
+      <div class="details-grid">
+
+
+        <!-- Company Name -->
+        <div class="detail-item">
+
+          <label>
+            Company Name
+          </label>
+
+          <div class="detail-value">
+            {{ lead.companyName }}
+          </div>
+
+        </div>
+
+
+        <!-- Contact Person -->
+        <div class="detail-item">
+
+          <label>
+            Contact Person
+          </label>
+
+          <div class="detail-value">
+            {{ lead.contactPerson }}
+          </div>
+
+        </div>
+
+
+        <!-- Email -->
+        <div class="detail-item">
+
+          <label>
+            Email
+          </label>
+
+          <div class="detail-value">
+            {{ lead.email }}
+          </div>
+
+        </div>
+
+
+        <!-- Phone -->
+        <div class="detail-item">
+
+          <label>
+            Phone
+          </label>
+
+          <div class="detail-value">
+            {{ lead.phone }}
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         REQUIREMENT DETAILS
+         =================================================== -->
+    <section class="detail-section">
+
+
+      <div class="section-title">
+
+        <i class="fa-solid fa-clipboard-list"></i>
+
+        <span>
+          Requirement Details
+        </span>
+
+      </div>
+
+
+
+      <div class="details-grid">
+
+
+        <!-- Requirement -->
+        <div class="detail-item full-width">
+
+          <label>
+            Requirement
+          </label>
+
+          <div class="detail-value requirement-text">
+            {{ lead.requirement }}
+          </div>
+
+        </div>
+
+
+        <!-- Estimated Value -->
+        <div class="detail-item">
+
+          <label>
+            Estimated Value
+          </label>
+
+          <div class="detail-value estimated-value">
+            {{ lead.estimatedValue }}
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         DOCUMENT FOOTER
+         =================================================== -->
+    <div class="document-footer">
+
+      <div>
+        Lead Management System
+      </div>
+
+      <div>
+        Generated On: {{ currentDate }}
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>

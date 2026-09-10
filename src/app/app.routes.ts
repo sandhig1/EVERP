@@ -18,6 +18,9 @@ import { enquirylistadmin } from './components/admin/enquirylistadmin/enquirylis
 import { enquiryviewadmin } from './components/admin/enquiryviewadmin/enquiryviewadmin';
 import { leadgeneration } from './components/admin/leadgeneration/leadgeneration';
 import { leadlist } from './components/admin/leadlist/leadlist';
+import { leadview } from './components/admin/leadview/leadview';
+import { surveyschedule } from './components/admin/surveyschedule/surveyschedule';
+import { surveylist } from './components/admin/surveylist/surveylist';
 
 export const routes: Routes = [
     {path:'', component:HomeLanding},
@@ -39,6 +42,9 @@ export const routes: Routes = [
             {path:'enquiry-view-admin', component:enquiryviewadmin},
             {path:'lead-generation', component:leadgeneration},
             {path:'lead-list', component:leadlist},
+            {path:'lead-view', component:leadview},
+            {path:'survey-schedule', component:surveyschedule},
+            {path:'survey-list', component:surveylist},
             
         ]
     }

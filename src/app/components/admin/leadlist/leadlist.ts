@@ -496,9 +496,7 @@ export class leadlist {
 
   newLead(): void {
 
-    this.router.navigate([
-      '/admin/leadgeneration'
-    ]);
+    this.router.navigate(['/lead-generation']);
 
   }
 
@@ -513,6 +511,9 @@ export class leadlist {
       'View Lead:',
       lead
     );
+
+    this.router.navigate(['/lead-view']);
+
 
     // Replace with your actual route
     // this.router.navigate([

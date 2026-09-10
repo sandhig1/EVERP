@@ -366,6 +366,7 @@ export class enquirylistadmin {
 
   scheduleSurvey(enquiry: any): void {
     console.log('Schedule Survey:', enquiry);
+    this.router.navigate(['/survey-schedule']);
 
     // Add survey scheduling API/dialog logic here.
   }

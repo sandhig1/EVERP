@@ -1,0 +1,593 @@
+<div class="page-container">
+
+    <!-- =========================================
+       PAGE HEADER
+    ========================================== -->
+
+    <div class="page-header">
+
+        <div class="header-left">
+
+            <h1>Schedule Survey</h1>
+
+            <div class="breadcrumb">
+                <span class="home-icon">⌂</span>
+                <span>Survey Schedule</span>
+                <span class="arrow">›</span>
+                <span>Schedule Survey</span>
+            </div>
+
+        </div>
+
+        <!-- Survey List Button -->
+        <button
+            type="button"
+            class="btn-enquiry-list"
+            (click)="goToSurveyList()">
+
+            <span class="list-icon">☷</span>
+            Survey List
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================================
+       MAIN SURVEY FORM
+    ========================================== -->
+
+    <form
+        (ngSubmit)="scheduleSurvey()"
+        #surveyForm="ngForm">
+
+
+        <!-- =====================================================
+             SECTION 1 : SURVEY AGAINST
+        ====================================================== -->
+
+        <div class="survey-card">
+
+            <!-- =========================================
+                 SURVEY AGAINST
+            ========================================== -->
+
+            <div class="form-group survey-against-group">
+
+                <label>
+                    Survey Against
+                    <span class="required">*</span>
+                </label>
+
+                <div class="survey-against-options">
+
+                    <!-- Installation Request -->
+
+                    <label class="radio-option">
+
+                        <input
+                            type="radio"
+                            name="surveyAgainst"
+                            value="installation"
+                            [(ngModel)]="survey.surveyAgainst"
+                            (change)="onSurveyAgainstChange()"
+                            required>
+
+                        <span>Installation Request</span>
+
+                    </label>
+
+
+                    <!-- Enquiry Request -->
+
+                    <label class="radio-option">
+
+                        <input
+                            type="radio"
+                            name="surveyAgainst"
+                            value="enquiry"
+                            [(ngModel)]="survey.surveyAgainst"
+                            (change)="onSurveyAgainstChange()"
+                            required>
+
+                        <span>Enquiry Request</span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 REQUEST / ENQUIRY NUMBER
+            ========================================== -->
+
+            <div class="form-group">
+
+                <label for="requestNo">
+
+                    {{ requestNoLabel }}
+
+                    <span class="required">*</span>
+
+                </label>
+
+                <select
+                    id="requestNo"
+                    name="requestNo"
+                    [(ngModel)]="survey.requestNo"
+                    (change)="onRequestChange()"
+                    required>
+
+                    <option
+                        value="">
+
+                        {{ requestNoPlaceholder }}
+
+                    </option>
+
+                    <option
+                        *ngFor="let request of filteredRequests"
+                        [value]="request.requestNo">
+
+                        {{ request.requestNo }}
+
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- =========================================
+                 REQUEST INFORMATION
+            ========================================== -->
+
+            <div
+                class="request-info"
+                *ngIf="selectedRequest">
+
+                <!-- =====================================
+                     REQUEST / ENQUIRY DATE
+                ====================================== -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        {{ requestDateLabel }}
+                    </span>
+
+                    <span class="info-value">
+                        {{ selectedRequest?.requestDate }}
+                    </span>
+
+                </div>
+
+
+                <!-- =====================================
+                     DEALER NAME
+                ====================================== -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Dealer Name
+                    </span>
+
+                    <span class="info-value">
+                        {{ selectedRequest?.dealerName }}
+                    </span>
+
+                </div>
+
+
+                <!-- =====================================
+                     CUSTOMER NAME
+                ====================================== -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Customer Name
+                    </span>
+
+                    <span class="info-value">
+                        {{ selectedRequest?.customerName }}
+                    </span>
+
+                </div>
+
+
+                <!-- =====================================
+                     CHARGER TYPE
+                ====================================== -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Charger Type
+                    </span>
+
+                    <span class="info-value">
+                        {{ selectedRequest?.chargerType }}
+                    </span>
+
+                </div>
+
+
+                <!-- =====================================
+                     PREFERRED DATE
+                ====================================== -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Preferred Date
+                    </span>
+
+                    <span class="info-value">
+                        {{ selectedRequest?.preferredDate }}
+                    </span>
+
+                </div>
+
+
+                <!-- =====================================
+                     REQUEST DETAIL
+                ====================================== -->
+
+                <div class="info-item info-item-full">
+
+                    <span class="info-label">
+                        Request Detail
+                    </span>
+
+                    <span class="info-value request-detail-value">
+
+                        {{ selectedRequest?.requestDetail || 'No request detail available.' }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 NO REQUEST SELECTED
+            ========================================== -->
+
+            <div
+                class="no-selection"
+                *ngIf="!selectedRequest">
+
+                Please select an Installation Request/Enquiry No.
+                to view details.
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SECTION 2 : SITE DETAIL
+        ====================================================== -->
+
+        <div class="survey-card">
+
+            <h2>Site Detail</h2>
+
+
+            <!-- =========================================
+                 SITE ADDRESS
+            ========================================== -->
+
+            <div class="form-group full-width">
+
+                <label for="siteAddress">
+
+                    Site Address
+
+                    <span class="required">*</span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="siteAddress"
+                    name="siteAddress"
+                    [(ngModel)]="survey.siteAddress"
+                    placeholder="Site address"
+                    required>
+
+            </div>
+
+
+            <!-- =========================================
+                 CITY & STATE
+            ========================================== -->
+
+            <div class="form-row two-columns">
+
+
+                <!-- =====================================
+                     CITY
+                ====================================== -->
+
+                <div class="form-group">
+
+                    <label for="city">
+
+                        City
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <select
+                        id="city"
+                        name="city"
+                        [(ngModel)]="survey.city"
+                        required>
+
+                        <option
+                            value=""
+                            disabled>
+
+                            Select city
+
+                        </option>
+
+                        <option
+                            *ngFor="let city of cities"
+                            [value]="city">
+
+                            {{ city }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- =====================================
+                     STATE
+                ====================================== -->
+
+                <div class="form-group">
+
+                    <label for="state">
+
+                        State
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <select
+                        id="state"
+                        name="state"
+                        [(ngModel)]="survey.state"
+                        required>
+
+                        <option
+                            value=""
+                            disabled>
+
+                            Select state
+
+                        </option>
+
+                        <option
+                            *ngFor="let state of states"
+                            [value]="state">
+
+                            {{ state }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SECTION 3 : SURVEY DETAIL
+        ====================================================== -->
+
+        <div class="survey-card">
+
+            <h2>Survey Detail</h2>
+
+
+            <!-- =========================================
+                 SCHEDULE DATE & TIME SLOT
+            ========================================== -->
+
+            <div class="form-row two-columns">
+
+
+                <!-- =====================================
+                     SURVEY SCHEDULE DATE
+                ====================================== -->
+
+                <div class="form-group">
+
+                    <label for="surveyScheduleDate">
+
+                        Survey Schedule Date
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <input
+                        type="date"
+                        id="surveyScheduleDate"
+                        name="surveyScheduleDate"
+                        [(ngModel)]="survey.surveyScheduleDate"
+                        [min]="minDate"
+                        required>
+
+                </div>
+
+
+                <!-- =====================================
+                     PREFERRED TIME SLOT
+                ====================================== -->
+
+                <div class="form-group">
+
+                    <label for="timeSlot">
+
+                        Preferred Time Slot
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <select
+                        id="timeSlot"
+                        name="timeSlot"
+                        [(ngModel)]="survey.timeSlot"
+                        required>
+
+                        <option
+                            value=""
+                            disabled>
+
+                            Select time slot
+
+                        </option>
+
+                        <option value="09:00 AM - 11:00 AM">
+                            09:00 AM - 11:00 AM
+                        </option>
+
+                        <option value="11:00 AM - 01:00 PM">
+                            11:00 AM - 01:00 PM
+                        </option>
+
+                        <option value="01:00 PM - 03:00 PM">
+                            01:00 PM - 03:00 PM
+                        </option>
+
+                        <option value="03:00 PM - 05:00 PM">
+                            03:00 PM - 05:00 PM
+                        </option>
+
+                        <option value="05:00 PM - 07:00 PM">
+                            05:00 PM - 07:00 PM
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 TECHNICIAN NAME
+            ========================================== -->
+
+            <div class="form-group full-width">
+
+                <label for="technicianName">
+
+                    Technician Name
+
+                    <span class="required">*</span>
+
+                </label>
+
+                <select
+                    id="technicianName"
+                    name="technicianName"
+                    [(ngModel)]="survey.technicianName"
+                    required>
+
+                    <option
+                        value=""
+                        disabled>
+
+                        Select technician
+
+                    </option>
+
+                    <option
+                        *ngFor="let technician of technicians"
+                        [value]="technician">
+
+                        {{ technician }}
+
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- =========================================
+                 SURVEY SCHEDULE REMARKS
+            ========================================== -->
+
+            <div class="form-group full-width requirement-group">
+
+                <label for="surveyScheduleRemarks">
+
+                    Survey Schedule Remarks
+
+                </label>
+
+                <textarea
+                    id="surveyScheduleRemarks"
+                    name="surveyScheduleRemarks"
+                    [(ngModel)]="survey.surveyScheduleRemarks"
+                    placeholder="Enter survey schedule remarks"></textarea>
+
+            </div>
+
+
+            <!-- =========================================
+                 ACTION BUTTONS
+            ========================================== -->
+
+            <div class="form-actions">
+
+                <!-- Cancel -->
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    (click)="cancelSurvey()">
+
+                    Cancel
+
+                </button>
+
+
+                <!-- Schedule Survey -->
+
+                <button
+                    type="submit"
+                    class="btn-submit"
+                    [disabled]="surveyForm.invalid">
+
+                    Schedule Survey
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

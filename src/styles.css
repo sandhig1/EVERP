@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+/* SweetAlert - reduce first message/title size */
+.swal-title {
+  font-size: 18px !important;
+  line-height: 1.3 !important;
+  font-weight: 600 !important;
+}
+
+.swal-text {
+  font-size: 16px !important;
+  line-height: 1.3 !important;
+  font-weight: 500 !important;
+}

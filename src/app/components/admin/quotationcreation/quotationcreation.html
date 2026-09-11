@@ -1,0 +1,303 @@
+<div class="quotation-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-left">
+      <h2>Sales User – Create Quotation</h2>
+      <div class="breadcrumb">
+        <span class="breadcrumb-pill">Sales &amp; Quotations</span>
+        <span class="breadcrumb-separator">&gt;</span>
+        <span>Create Quotation</span>
+      </div>
+
+    </div>
+
+    <button
+        type="button"
+        class="btn-list"
+        (click)="goToQuotationList()">
+
+        <i class="fa-solid fa-list"></i>
+
+        Lead List
+
+      </button>
+
+    
+  </div>
+
+  <!-- Quotation Form -->
+  <div class="quotation-card">
+    <div class="section-title">Quotation Details</div>
+
+    <!-- Row 1: Quotation No + Date -->
+    <div class="form-row top-row">
+      <div class="form-group">
+        <label>Quotation No.</label>
+        <input
+          type="text"
+          [(ngModel)]="quotation.quotationNo"
+          class="form-control"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Quotation Date <span class="required">*</span></label>
+        <input
+          type="date"
+          [(ngModel)]="quotation.quotationDate"
+          class="form-control">
+      </div>
+    </div>
+
+    <!-- Quotation Against -->
+    <div class="against-section">
+      <label class="against-label">
+        Quotation Against <span class="required">*</span>
+      </label>
+
+      <div class="radio-group">
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="quotationAgainst"
+            value="Installation Request"
+            [(ngModel)]="quotation.quotationAgainst"
+            (change)="onQuotationAgainstChange()">
+          <span>Installation Request</span>
+        </label>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="quotationAgainst"
+            value="Enquiry Request"
+            [(ngModel)]="quotation.quotationAgainst"
+            (change)="onQuotationAgainstChange()">
+          <span>Enquiry Request</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Request + Dealer + Customer -->
+    <div class="form-row request-row">
+
+      <div class="form-group request-control">
+        <label>
+          {{ quotation.quotationAgainst === 'Installation Request'
+            ? 'Installation Request No.'
+            : 'Enquiry Request No.' }}
+          <span class="required">*</span>
+        </label>
+
+        <select
+          class="form-control"
+          name="requestNo"
+          [(ngModel)]="quotation.requestNo"
+          (change)="onRequestChange()">
+
+          <option value="">
+            Select {{ quotation.quotationAgainst === 'Installation Request'
+              ? 'Installation Request No.'
+              : 'Enquiry Request No.' }}
+          </option>
+
+          <option
+            *ngFor="let request of requestList"
+            [value]="request.requestNo">
+            {{ request.requestNo }}
+          </option>
+
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Dealer Name</label>
+        <input
+          type="text"
+          class="form-control readonly-field"
+          [value]="selectedDealerName || '—'"
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Customer Name</label>
+        <input
+          type="text"
+          class="form-control readonly-field"
+          [value]="selectedCustomerName || '—'"
+          readonly>
+      </div>
+    </div>
+
+    <!-- Items -->
+    <div class="items-section">
+      <div class="items-heading-row">
+        <div class="section-title items-title">Items</div>
+
+        <button type="button" class="btn-add-item" (click)="openItemPopup()">
+          <span class="plus-icon">+</span> Add Item
+        </button>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th class="item-col">Item</th>
+              <th class="description-col">Description</th>
+              <th class="qty-col">Qty</th>
+              <th class="rate-col">Unit Price (₹)</th>
+              <th class="amount-col">Amount (₹)</th>
+              <th class="action-col no-print">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of quotation.items; let i = index">
+              <td>{{ item.itemName }}</td>
+              <td>{{ item.description }}</td>
+              <td class="center">{{ item.quantity }}</td>
+              <td class="number">{{ item.rate | number:'1.2-2' }}</td>
+              <td class="number">{{ item.totalAmount | number:'1.2-2' }}</td>
+              <td class="action-cell no-print">
+                <button
+                  type="button"
+                  class="btn-delete"
+                  title="Remove item"
+                  (click)="removeItem(i)">
+                  <span>&times;</span>
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="quotation.items.length === 0">
+              <td colspan="6" class="empty-row">
+                No items added
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot *ngIf="quotation.items.length > 0">
+            <tr>
+              <td colspan="4" class="total-label">Total (₹)</td>
+              <td class="total-value">{{ grandTotal | number:'1.2-2' }}</td>
+              <td class="no-print"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="mobile-total" *ngIf="quotation.items.length > 0">
+        <span>Total (₹)</span>
+        <strong>{{ grandTotal | number:'1.2-2' }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Actions -->
+  <div class="bottom-actions">
+    <button type="button" class="btn btn-cancel" (click)="cancelQuotation()">
+      Cancel
+    </button>
+
+    <button type="button" class="btn btn-draft" (click)="saveAsDraft()">
+      Save as Draft
+    </button>
+
+    <button type="button" class="btn btn-save" (click)="saveQuotation()">
+      Save
+    </button>
+  </div>
+
+</div>
+
+
+<!-- Add Item Popup -->
+<div
+  class="modal-backdrop"
+  *ngIf="showItemPopup"
+  (click)="onBackdropClick($event)">
+
+  <div class="item-modal" role="dialog" aria-modal="true" aria-labelledby="addItemTitle">
+    <div class="modal-header">
+      <div>
+        <h3 id="addItemTitle">Add Item</h3>
+        <p>Add item details to quotation</p>
+      </div>
+
+      <button
+        type="button"
+        class="modal-close"
+        aria-label="Close"
+        (click)="closeItemPopup()">
+        &times;
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="form-group">
+        <label>Item Name <span class="required">*</span></label>
+        <select
+          class="form-control"
+          [(ngModel)]="newItem.itemName"
+          (change)="onItemSelected()">
+          <option value="">Select Item</option>
+          <option
+            *ngFor="let item of itemMaster"
+            [value]="item.itemName">
+            {{ item.itemName }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-row modal-two-column">
+        <div class="form-group">
+          <label>Quantity <span class="required">*</span></label>
+          <input
+            type="number"
+            min="1"
+            class="form-control"
+            [(ngModel)]="newItem.quantity"
+            (input)="calculateItemTotal()"
+            placeholder="Enter quantity">
+        </div>
+
+        <div class="form-group">
+          <label>Rate (₹) <span class="required">*</span></label>
+          <input
+            type="number"
+            min="0"
+            class="form-control"
+            [(ngModel)]="newItem.rate"
+            (input)="calculateItemTotal()"
+            placeholder="Enter rate">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Total Amount (₹)</label>
+        <input
+          type="text"
+          class="form-control total-input"
+          [value]="newItem.totalAmount | number:'1.2-2'"
+          readonly>
+        <small class="calculation-note">
+          Total Amount = Quantity × Rate
+        </small>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="modal-btn modal-cancel" (click)="closeItemPopup()">
+        Cancel
+      </button>
+
+      <button type="button" class="modal-btn modal-save" (click)="saveItem()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>

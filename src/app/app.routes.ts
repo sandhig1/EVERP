@@ -21,6 +21,8 @@ import { leadlist } from './components/admin/leadlist/leadlist';
 import { leadview } from './components/admin/leadview/leadview';
 import { surveyschedule } from './components/admin/surveyschedule/surveyschedule';
 import { surveylist } from './components/admin/surveylist/surveylist';
+import { quotationcreation } from './components/admin/quotationcreation/quotationcreation';
+import { quotationlistadmin } from './components/admin/quotationlistadmin/quotationlistadmin';
 
 export const routes: Routes = [
     {path:'', component:HomeLanding},
@@ -45,6 +47,8 @@ export const routes: Routes = [
             {path:'lead-view', component:leadview},
             {path:'survey-schedule', component:surveyschedule},
             {path:'survey-list', component:surveylist},
+            {path:'quotation-creation', component:quotationcreation},
+            {path:'quotation-list', component:quotationlistadmin},
             
         ]
     }

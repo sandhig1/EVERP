@@ -479,6 +479,24 @@
 
                 </button>
 
+                <!-- CREATE QUOTATION -->
+                <button
+                  *ngIf="installation.status === 'Survey Done'"
+                  type="button"
+                  class="action-link survey-action"
+                  (click)="createQuotation(installation)"
+                  title="Create Quotation">
+
+                  <span class="action-icon survey-icon">
+                    <i class="fa fa-notes"></i>
+                  </span>
+
+                  <span>
+                    Create Quotation
+                  </span>
+
+                </button>
+
               </div>
 
             </td>

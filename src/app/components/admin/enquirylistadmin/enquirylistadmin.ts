@@ -247,6 +247,13 @@ export class enquirylistadmin {
         className: 'action-survey'
       });
     }
+    else if (enquiry.status === 'Survey Done') {
+      actions.push({
+        label: 'Generate Quotation',
+        icon: '◷',
+        className: 'action-survey'
+      });
+    }
 
     // All other statuses: View + Edit only.
     return actions;
@@ -384,6 +391,7 @@ export class enquirylistadmin {
 
   generateQuotation(enquiry: any): void {
     console.log('Generate Quotation:', enquiry);
+    this.router.navigate(['/quotation-creation']);
   }
 
   sendQuotation(enquiry: any): void {

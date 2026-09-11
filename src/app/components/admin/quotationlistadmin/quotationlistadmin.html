@@ -1,0 +1,197 @@
+<div class="quotation-list-page">
+  <div class="page-header">
+    <div>
+      <h2>Admin – Quotation List</h2>
+      <div class="breadcrumb">
+        <span class="breadcrumb-pill">Sales &amp; Quotations</span>
+        <span class="breadcrumb-separator">&gt;</span>
+        <span>Quotation List</span>
+      </div>
+    </div>
+    <button class="btn-create" type="button" (click)="createQuotation()">
+      <i class="fa-solid fa-plus"></i> Create Quotation
+    </button>
+  </div>
+
+  <div class="filter-card">
+    <div class="filter-title"><i class="fa-solid fa-filter"></i> Filter Quotations</div>
+
+    <div class="filter-row row-one">
+      <div class="filter-group">
+        <label>Quotation No.</label>
+        <input class="form-control" type="text" [(ngModel)]="filters.quotationNo"
+               placeholder="Search quotation no.">
+      </div>
+
+      <div class="filter-group">
+        <label>Quotation Against</label>
+        <div class="radio-group">
+          <label><input type="radio" name="against" value=""
+                        [(ngModel)]="filters.quotationAgainst"
+                        (change)="onAgainstChange()"> All</label>
+          <label><input type="radio" name="against" value="Installation Request"
+                        [(ngModel)]="filters.quotationAgainst"
+                        (change)="onAgainstChange()"> Installation Request</label>
+          <label><input type="radio" name="against" value="Enquiry Request"
+                        [(ngModel)]="filters.quotationAgainst"
+                        (change)="onAgainstChange()"> Enquiry Request</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-row row-two">
+      <div class="filter-group" *ngIf="filters.quotationAgainst === 'Installation Request'">
+        <label>Installation Request No.</label>
+        <select class="form-control" [(ngModel)]="filters.requestNo">
+          <option value="">All Installation Requests</option>
+          <option *ngFor="let r of installationRequests" [value]="r.requestNo">{{r.requestNo}}</option>
+        </select>
+      </div>
+
+      <div class="filter-group" *ngIf="filters.quotationAgainst === 'Installation Request'">
+        <label>Customer</label>
+        <select class="form-control" [(ngModel)]="filters.partyName">
+          <option value="">All Customers</option>
+          <option *ngFor="let c of customerList" [value]="c">{{c}}</option>
+        </select>
+      </div>
+
+      <div class="filter-group" *ngIf="filters.quotationAgainst === 'Enquiry Request'">
+        <label>Enquiry Request No.</label>
+        <select class="form-control" [(ngModel)]="filters.requestNo">
+          <option value="">All Enquiry Requests</option>
+          <option *ngFor="let r of enquiryRequests" [value]="r.requestNo">{{r.requestNo}}</option>
+        </select>
+      </div>
+
+      <div class="filter-group" *ngIf="filters.quotationAgainst === 'Enquiry Request'">
+        <label>Dealer</label>
+        <select class="form-control" [(ngModel)]="filters.partyName">
+          <option value="">All Dealers</option>
+          <option *ngFor="let d of dealerList" [value]="d">{{d}}</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>From Date</label>
+        <input class="form-control" type="date" [(ngModel)]="filters.fromDate">
+      </div>
+
+      <div class="filter-group">
+        <label>To Date</label>
+        <input class="form-control" type="date" [(ngModel)]="filters.toDate">
+      </div>
+
+      <div class="filter-group">
+        <label>Status</label>
+        <select class="form-control" [(ngModel)]="filters.status">
+          <option value="">All Status</option>
+          <option *ngFor="let s of statusList" [value]="s">{{s}}</option>
+        </select>
+      </div>
+
+      <div class="filter-actions">
+        <button class="btn-search" type="button" (click)="applyFilters()">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+        <button class="btn-reset" type="button" (click)="resetFilters()">
+          <i class="fa-solid fa-rotate-left"></i> Reset
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-card">
+    <div class="list-header">
+      <div>
+        <h3>Quotation List</h3>
+        <span class="record-count">{{filteredQuotations.length}} quotation(s)</span>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="quotation-table">
+        <thead>
+          <tr>
+            <th class="w-no">Quotation No. / Dt.</th>
+            <th class="w-against">Quotation Against</th>
+            <th class="w-for">Quotation For</th>
+            <th class="w-amount">Quotation Amt.</th>
+            <th class="w-status">Status</th>
+            <th class="w-action no-print">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="filteredQuotations.length === 0">
+            <td colspan="6" class="no-data">
+              <i class="fa-regular fa-file-lines"></i>
+              <div>No quotations found</div>
+              <small>Try changing your filter criteria.</small>
+            </td>
+          </tr>
+
+          <tr *ngFor="let q of filteredQuotations">
+            <td>
+              <div class="quotation-number">{{q.quotationNo}}</div>
+              <div class="quotation-date">{{q.quotationDate | date:'dd-MMM-yyyy'}}</div>
+            </td>
+
+            <td>
+              <div class="request-number">{{q.requestNo}}</div>
+              <span class="against-badge"
+                    [ngClass]="q.quotationAgainst === 'Installation Request'
+                      ? 'installation-badge' : 'enquiry-badge'">
+                <i class="fa-solid"
+                   [ngClass]="q.quotationAgainst === 'Installation Request'
+                     ? 'fa-screwdriver-wrench' : 'fa-file-circle-question'"></i>
+                {{q.quotationAgainst}}
+              </span>
+            </td>
+
+            <td>
+              <div class="quotation-for-name">{{q.quotationFor}}</div>
+              <div class="quotation-for-label">
+                {{q.quotationAgainst === 'Installation Request' ? 'Customer' : 'Dealer'}}
+              </div>
+            </td>
+
+            <td class="amount-cell">₹{{q.amount | number:'1.2-2'}}</td>
+
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(q.status)">{{q.status}}</span>
+            </td>
+
+            <td class="action-cell no-print">
+              <div class="action-buttons">
+                <button class="action-btn view" (click)="viewQuotation(q)">
+                  <i class="fa-solid fa-eye"></i> View
+                </button>
+                <button class="action-btn edit" [disabled]="!canEdit(q)" (click)="editQuotation(q)">
+                  <i class="fa-solid fa-pen-to-square"></i> Edit
+                </button>
+                <button class="action-btn cancel" [disabled]="!canCancel(q)" (click)="cancelQuotation(q)">
+                  <i class="fa-solid fa-ban"></i> Cancel
+                </button>
+                <button class="action-btn project" [disabled]="!canCreateProject(q)" (click)="createProject(q)">
+                  <i class="fa-solid fa-folder-plus"></i> Create Project
+                </button>
+                <button class="action-btn invoice" [disabled]="!canGenerateInvoice(q)" (click)="generateInvoice(q)">
+                  <i class="fa-solid fa-file-invoice-dollar"></i> Generate Invoice
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-row" *ngIf="filteredQuotations.length">
+      <div>Showing <strong>{{filteredQuotations.length}}</strong> of
+        <strong>{{quotations.length}}</strong> quotations</div>
+      <div class="pagination-buttons">
+        <button class="page-btn active">1</button>
+      </div>
+    </div>
+  </div>
+</div>

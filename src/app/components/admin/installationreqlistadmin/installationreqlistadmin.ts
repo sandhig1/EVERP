@@ -986,14 +986,14 @@ export class Installationreqlistadmin {
      SCHEDULE SURVEY
      ======================================================= */
 
-  scheduleSurvey(
-    installation: InstallationRequest
-  ): void {
+  scheduleSurvey(installation: InstallationRequest): void {
 
     console.log(
       'Schedule Survey:',
       installation
     );
+
+    this.router.navigate(['/survey-schedule']);
 
     /*
       Example:
@@ -1003,6 +1003,20 @@ export class Installationreqlistadmin {
         installation.installationNo
       ]);
     */
+  }
+
+  /* =======================================================
+     CREATE QUOTATION
+     ======================================================= */
+
+  createQuotation(installation: InstallationRequest): void {
+
+    console.log(
+      'Create Quotation:',
+      installation
+    );
+
+    this.router.navigate(['/quotation-creation']);
 
   }
 

@@ -1,0 +1,162 @@
+<div class="main-content">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Admin - Project List</h1>
+      <div class="breadcrumb"><span>⌂</span><span>Projects</span><span>›</span><span class="active">Project List</span></div>
+    </div>
+    <button type="button" class="btn-create" (click)="createNewProject()"><i class="fa-solid fa-plus"></i> Create Project</button>
+  </div>
+
+  <section class="filter-card">
+    <div class="filter-title"><i class="fa-solid fa-filter"></i> Project Filters</div>
+
+    <div class="filter-grid">
+      <!-- Row 1 -->
+      <div class="form-group">
+        <label>Project Name</label>
+        <input type="text" [(ngModel)]="projectName" placeholder="Search project name">
+      </div>
+
+      <div class="form-group against-filter">
+        <label>Project Against</label>
+        <div class="radio-group">
+          <label class="radio-option all-option" [class.selected]="projectAgainst === 'all'">
+            <input type="radio" name="against" value="all" [(ngModel)]="projectAgainst" (change)="onAgainstChange()">
+            <span class="radio-circle"></span><span>All</span>
+          </label>
+
+          <label class="radio-option installation-option" [class.selected]="projectAgainst === 'installation'">
+            <input type="radio" name="against" value="installation" [(ngModel)]="projectAgainst" (change)="onAgainstChange()">
+            <span class="radio-circle"></span><span>Installation</span>
+          </label>
+
+          <label class="radio-option enquiry-option" [class.selected]="projectAgainst === 'enquiry'">
+            <input type="radio" name="against" value="enquiry" [(ngModel)]="projectAgainst" (change)="onAgainstChange()">
+            <span class="radio-circle"></span><span>Enquiry</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>{{ projectAgainst === 'installation' ? 'Installation Request No.' : projectAgainst === 'enquiry' ? 'Enquiry Request No.' : 'Enquiry / Installation Request No.' }}</label>
+
+        <select *ngIf="projectAgainst === 'installation'" [(ngModel)]="installationRequest">
+          <option value="">Select request no.</option>
+          <option *ngFor="let item of installationRequests" [value]="item">{{ item }}</option>
+        </select>
+
+        <select *ngIf="projectAgainst === 'enquiry'" [(ngModel)]="enquiryRequest">
+          <option value="">Select request no.</option>
+          <option *ngFor="let item of enquiryRequests" [value]="item">{{ item }}</option>
+        </select>
+
+        <select *ngIf="projectAgainst === 'all'" [(ngModel)]="allRequest">
+          <option value="">Select request no.</option>
+          <option *ngFor="let item of allRequests" [value]="item">{{ item }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>{{ projectAgainst === 'installation' ? 'Customer' : projectAgainst === 'enquiry' ? 'Dealer' : 'Dealer / Customer' }}</label>
+
+        <select *ngIf="projectAgainst === 'installation'" [(ngModel)]="customer">
+          <option value="">Select customer</option>
+          <option *ngFor="let item of customers" [value]="item">{{ item }}</option>
+        </select>
+
+        <select *ngIf="projectAgainst === 'enquiry'" [(ngModel)]="dealer">
+          <option value="">Select dealer</option>
+          <option *ngFor="let item of dealers" [value]="item">{{ item }}</option>
+        </select>
+
+        <select *ngIf="projectAgainst === 'all'" [(ngModel)]="allParty">
+          <option value="">Select dealer / customer</option>
+          <option *ngFor="let item of allParties" [value]="item">{{ item }}</option>
+        </select>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="form-group">
+        <label>Scheduled From</label>
+        <input type="date" [(ngModel)]="fromDate">
+      </div>
+
+      <div class="form-group">
+        <label>Scheduled To</label>
+        <input type="date" [(ngModel)]="toDate">
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <select [(ngModel)]="status">
+          <option value="">All Status</option>
+          <option *ngFor="let item of statuses" [value]="item">{{ item }}</option>
+        </select>
+      </div>
+
+      <div class="filter-actions">
+        <button type="button" class="btn-search" (click)="applyFilters()"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+        <button type="button" class="btn-reset" (click)="resetFilters()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="list-card">
+    <div class="list-header">
+      <div><h2 class="section-title">Project List</h2><span class="result-count">{{ resultCountText }}</span></div>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>Project Against</th>
+            <th>Quotation No./Dt</th>
+            <th>Dealer / Customer Name</th>
+            <th>Project Cost</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="projectBody">
+          <tr *ngFor="let project of filteredProjects">
+            <td><div class="primary-text">{{ project.projectName }}</div><div class="secondary-text">Created On: {{ formatDate(project.createdOn) }}</div></td>
+            <td>
+              <div class="primary-text">{{ project.requestNo }}</div>
+              <div class="against-badge" [class.installation-badge]="project.projectAgainst === 'installation'" [class.enquiry-badge]="project.projectAgainst === 'enquiry'">
+                {{ project.projectAgainst === 'installation' ? 'Installation Request' : 'Enquiry Request' }}
+              </div>
+            </td>
+            <td><div class="primary-text">{{ project.quotationNo }}</div><div class="secondary-text">{{ formatDate(project.quotationDate) }}</div></td>
+            <td><div class="party-name">{{ project.party }}</div><div class="secondary-text">{{ project.projectAgainst === 'installation' ? 'Customer' : 'Dealer' }}</div></td>
+            <td><span class="cost">₹{{ formatAmount(project.projectCost) }}</span></td>
+            <td><span class="status" [ngClass]="getStatusClass(project.status)">{{ project.status }}</span></td>
+            <td>
+              <div class="action-buttons">
+                <button type="button" class="action-btn view-btn" (click)="viewProject(project)"><i class="fa-solid fa-eye"></i> View</button>
+                <button type="button" class="action-btn edit-btn" (click)="editProject(project)"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                <button type="button" class="action-btn cancel-btn" *ngIf="project.status !== 'Cancelled' && project.status !== 'Installation Done'" (click)="cancelProject(project)"><i class="fa-solid fa-ban"></i> Cancel</button>
+                <button type="button" class="action-btn create-project-btn" *ngIf="project.status === 'Approved'" (click)="createProject(project)"><i class="fa-solid fa-folder-plus"></i> Create Project</button>
+                <button type="button" class="action-btn invoice-btn" *ngIf="project.status === 'Installation Done'" (click)="createInvoice(project)"><i class="fa-solid fa-file-invoice"></i> Generate Invoice</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="empty-state" *ngIf="filteredProjects.length === 0">
+        <i class="fa-solid fa-folder-open"></i><h3>No Projects Found</h3><p>No projects match the selected filters.</p>
+      </div>
+    </div>
+
+    <div class="pagination-bar">
+      <span>{{ paginationText }}</span>
+      <div class="pagination-controls">
+        <button type="button" class="page-btn disabled"><i class="fa-solid fa-chevron-left"></i></button>
+        <button type="button" class="page-number active">1</button>
+        <button type="button" class="page-btn disabled"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+</div>

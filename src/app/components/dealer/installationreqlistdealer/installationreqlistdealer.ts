@@ -1,11 +1,11 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  imports: [FormsModule, NgClass, NgFor],
+  imports: [FormsModule, NgClass, NgFor,NgIf],
   selector: 'app-installationreqlistdealer',
   styleUrl: './installationreqlistdealer.css',
   templateUrl: './installationreqlistdealer.html',

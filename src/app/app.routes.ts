@@ -23,6 +23,9 @@ import { surveyschedule } from './components/admin/surveyschedule/surveyschedule
 import { surveylist } from './components/admin/surveylist/surveylist';
 import { quotationcreation } from './components/admin/quotationcreation/quotationcreation';
 import { quotationlistadmin } from './components/admin/quotationlistadmin/quotationlistadmin';
+import { projectcreation } from './components/admin/projectcreation/projectcreation';
+import { projectlist } from './components/admin/projectlist/projectlist';
+import { projectview } from './components/admin/projectview/projectview';
 
 export const routes: Routes = [
     {path:'', component:HomeLanding},
@@ -49,6 +52,9 @@ export const routes: Routes = [
             {path:'survey-list', component:surveylist},
             {path:'quotation-creation', component:quotationcreation},
             {path:'quotation-list', component:quotationlistadmin},
+            {path:'project-creation', component:projectcreation},
+            {path:'project-list', component:projectlist},
+            {path:'project-view', component:projectview},
             
         ]
     }

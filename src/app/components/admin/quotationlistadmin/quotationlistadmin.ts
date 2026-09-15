@@ -17,7 +17,7 @@ interface Quotation {
 @Component({
   selector:'app-quotationlistadmin',
   standalone:true,
-  imports:[FormsModule,NgClass,NgFor,NgIf,DecimalPipe,DatePipe],
+  imports:[FormsModule, NgClass, NgFor, NgIf, DecimalPipe,DatePipe],
   templateUrl:'./quotationlistadmin.html',
   styleUrl:'./quotationlistadmin.css'
 })
@@ -139,7 +139,10 @@ export class quotationlistadmin {
       showCancelButton:true,confirmButtonText:'Create Project',cancelButtonText:'Cancel',
       confirmButtonColor:'#6746a9',cancelButtonColor:'#6c757d'
     }).then(r=>{
-      if(r.isConfirmed){q.status='Project Created';this.applyFilters();}
+      if(r.isConfirmed){
+        //q.status='Project Created';this.applyFilters();
+        this.router.navigate(['/project-creation']);
+      }
     });
   }
 

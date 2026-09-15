@@ -1,0 +1,134 @@
+<div class="main-content">
+  <div class="page-header">
+    <div class="header-left">
+      <h1 class="page-title">Admin - Create New Project</h1>
+      <div class="breadcrumb">
+        <span>⌂</span><span>Projects</span><span>›</span>
+        <span class="active">Create Project</span>
+      </div>
+    </div>
+    <button type="button" class="btn-list" (click)="goToProjectList()">
+      <i class="fa-solid fa-list"></i> Project List
+    </button>
+  </div>
+
+  <section class="content-card">
+    <h2 class="section-title">Quotation Details</h2>
+
+    <div class="form-grid quotation-grid">
+      <div class="form-group">
+        <label>Quotation No. <span class="required">*</span></label>
+        <select [(ngModel)]="quotationNo" (change)="onQuotationSelect()" style="width: 98%;">
+          <option value="">Select quotation no.</option>
+          <option *ngFor="let item of quotations" [value]="item.quotationNo">
+            {{ item.quotationNo }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group quotation-date-group">
+        <label>Quotation Date</label>
+        <input type="date" [(ngModel)]="quotationDate" disabled style="width: 60%;">
+      </div>
+
+      <div class="form-group quotation-amt-group">
+        <label>Quotation Amt</label>
+        <input type="text" [(ngModel)]="quotationAmt" disabled placeholder="Quotation amount" style="width: 75%;">
+      </div>
+
+
+      <div class="form-group quotation-against-group">
+        <label>Quotation Against</label>
+        <div class="quotation-radio-group quotation-disabled">
+          <label class="quotation-radio installation-radio"
+                 [class.radio-selected]="quotationAgainst === 'Installation Request'">
+            <input type="radio" name="quotationAgainst" value="Installation Request"
+                   [(ngModel)]="quotationAgainst" disabled>
+            <span class="custom-radio"></span>
+            <span>Installation Request</span>
+          </label>
+          <label class="quotation-radio enquiry-radio"
+                 [class.radio-selected]="quotationAgainst === 'Enquiry Request'">
+            <input type="radio" name="quotationAgainst" value="Enquiry Request"
+                   [(ngModel)]="quotationAgainst" disabled>
+            <span class="custom-radio"></span>
+            <span>Enquiry Request</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group quotation-reference-group">
+        <label>
+          {{ quotationAgainst === 'Installation Request'
+            ? 'Installation Request No.' : 'Enquiry Request No.' }}
+        </label>
+        <input type="text" [(ngModel)]="referenceNo" disabled placeholder="Request number" style="width:95%">
+      </div>
+
+      <div class="form-group quotation-party-group">
+        <label>
+          {{ quotationAgainst === 'Enquiry Request' ? 'Dealer' : 'Customer' }}
+        </label>
+        <input type="text" [(ngModel)]="party" disabled style="width: 95%;"
+               [placeholder]="quotationAgainst === 'Enquiry Request' ? 'Dealer name' : 'Customer name'">
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2 class="section-title">Project Details</h2>
+
+    <div class="form-grid project-grid">
+      <div class="form-group project-name-group">
+        <label>Project Name <span class="required">*</span></label>
+        <input type="text" [(ngModel)]="projectName" placeholder="Enter project name" style="width: 98%;">
+      </div>
+
+      <div class="form-group project-type-group">
+        <label>Project Type <span class="required">*</span></label>
+        <select [(ngModel)]="projectType">
+          <option value="">Select type</option>
+          <option>Commercial</option>
+          <option>Residential</option>
+          <option>Fleet</option>
+          <option>Industrial</option>
+        </select>
+      </div>
+
+      <div class="form-group project-manager-group">
+        <label>Project Manager</label>
+        <select [(ngModel)]="projectManager" style="width: 90%;">
+          <option value="">Select manager</option>
+          <option>Rahul Sharma</option>
+          <option>Priya Mehta</option>
+          <option>Amit Verma</option>
+        </select>
+      </div>
+
+      <div class="form-group project-cost-group">
+        <label>Project Cost <span class="required">*</span></label>
+        <input type="text" [(ngModel)]="projectCost" disabled placeholder="Project cost" style="width: 40%;">
+      </div>
+
+      <div class="form-group scheduled-start-group">
+        <label>Scheduled Start Date <span class="required">*</span></label>
+        <input type="date" [(ngModel)]="scheduledStartDate">
+      </div>
+
+      <div class="form-group schedule-end-group">
+        <label>Schedule End Date <span class="required">*</span></label>
+        <input type="date" [(ngModel)]="scheduleEndDate">
+      </div>
+
+      <div class="form-group full">
+        <label>Description</label>
+        <textarea [(ngModel)]="description" placeholder="Enter project description"></textarea>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+      <button type="button" class="btn btn-save" (click)="saveProject()">Save Project</button>
+    </div>
+  </section>
+</div>

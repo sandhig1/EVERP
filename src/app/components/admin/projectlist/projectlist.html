@@ -110,30 +110,30 @@
       <table>
         <thead>
           <tr>
-            <th>Project Name</th>
-            <th>Project Against</th>
-            <th>Quotation No./Dt</th>
-            <th>Dealer / Customer Name</th>
-            <th>Project Cost</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th style="width: 200px!important">Project Name</th>
+            <th style="width: 140px!important">Project Against</th>
+            <th  style="width: 140px!important">Quotation No./Dt</th>
+            <th  style="width: 160px!important;">Dealer / Customer Name</th>
+            <th  style="width: 100px!important;">Project Cost</th>
+            <th style="width: 140px!important;text-align: center;">Status</th>
+            <th style="width: 280px!important;text-align: center">Action</th>
           </tr>
         </thead>
         <tbody id="projectBody">
           <tr *ngFor="let project of filteredProjects">
-            <td><div class="primary-text">{{ project.projectName }}</div><div class="secondary-text">Created On: {{ formatDate(project.createdOn) }}</div></td>
-            <td>
+            <td style="width: 200px!important;"><div class="primary-text">{{ project.projectName }}</div><div class="secondary-text">Created On: {{ formatDate(project.createdOn) }}</div></td>
+            <td style="width: 140px!important;">
               <div class="primary-text">{{ project.requestNo }}</div>
               <div class="against-badge" [class.installation-badge]="project.projectAgainst === 'installation'" [class.enquiry-badge]="project.projectAgainst === 'enquiry'">
                 {{ project.projectAgainst === 'installation' ? 'Installation Request' : 'Enquiry Request' }}
               </div>
             </td>
-            <td><div class="primary-text">{{ project.quotationNo }}</div><div class="secondary-text">{{ formatDate(project.quotationDate) }}</div></td>
-            <td><div class="party-name">{{ project.party }}</div><div class="secondary-text">{{ project.projectAgainst === 'installation' ? 'Customer' : 'Dealer' }}</div></td>
-            <td><span class="cost">₹{{ formatAmount(project.projectCost) }}</span></td>
-            <td><span class="status" [ngClass]="getStatusClass(project.status)">{{ project.status }}</span></td>
-            <td>
-              <div class="action-buttons">
+            <td  style="width: 140px!important"><div class="primary-text">{{ project.quotationNo }}</div><div class="secondary-text">{{ formatDate(project.quotationDate) }}</div></td>
+            <td  style="width: 160px!important"><div class="party-name">{{ project.party }}</div><div class="secondary-text">{{ project.projectAgainst === 'installation' ? 'Customer' : 'Dealer' }}</div></td>
+            <td  style="width: 100px!important;padding-top: 0px;"><span class="cost">₹{{ formatAmount(project.projectCost) }}</span></td>
+            <td style="width: 130px;text-align: center"><span class="status" style="width: auto;" [ngClass]="getStatusClass(project.status)">{{ project.status }}</span></td>
+            <td style="width: 280px!important;text-align: center">
+              <div class="action-buttons1">
                 <button type="button" class="action-btn view-btn" (click)="viewProject(project)"><i class="fa-solid fa-eye"></i> View</button>
                 <button type="button" class="action-btn edit-btn" (click)="editProject(project)"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
                 <button type="button" class="action-btn cancel-btn" *ngIf="project.status !== 'Cancelled' && project.status !== 'Installation Done'" (click)="cancelProject(project)"><i class="fa-solid fa-ban"></i> Cancel</button>

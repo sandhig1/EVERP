@@ -15,7 +15,7 @@ interface Quotation {
 
 @Component({
   selector: 'app-projectcreation',
-  imports: [FormsModule, NgClass, NgFor, NgIf],
+  imports: [FormsModule, NgFor],
   templateUrl: './projectcreation.html',
   styleUrls: ['./projectcreation.css']
 })

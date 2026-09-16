@@ -30,7 +30,7 @@
     display: flex;
     gap: 9px;
     color: #7a8798;
-    font-size: 13px
+    font-size: 12px
 }
 
 .breadcrumb .active {
@@ -126,7 +126,7 @@
     min-height: 43px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap
 }
 
@@ -134,9 +134,9 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    min-height: 38px;
-    padding: 7px 4px;
+    gap: 7px;
+    min-height: 30px;
+    padding: 0;
     border: 0;
     border-radius: 0;
     cursor: pointer;
@@ -146,9 +146,30 @@
     background: transparent
 }
 
-.radio-option input {
-    position: absolute;
-    opacity: 0
+.radio-option input[type="radio"] {
+    position: static;
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    opacity: 1;
+    accent-color: #52677f;
+    cursor: pointer
+}
+
+.radio-option .radio-circle {
+    display: none
+}
+
+.all-option input[type="radio"] {
+    accent-color: #52677f;
+}
+
+.installation-option input[type="radio"] {
+    accent-color: #d99f00;
+}
+
+.enquiry-option input[type="radio"] {
+    accent-color: #176ab9;
 }
 
 .radio-option span:last-child {
@@ -303,7 +324,7 @@ thead th:nth-child(1) {
 }
 
 thead th:nth-child(2) {
-    width: 17%
+    width: 16%
 }
 
 thead th:nth-child(3) {
@@ -311,19 +332,19 @@ thead th:nth-child(3) {
 }
 
 thead th:nth-child(4) {
-    width: 17%
+    width: 16%
 }
 
 thead th:nth-child(5) {
-    width: 10%
+    width: 9%
 }
 
 thead th:nth-child(6) {
-    width: 11%
+    width: 10%
 }
 
 thead th:nth-child(7) {
-    width: 13%
+    width: 17%
 }
 
 .primary-text {
@@ -345,7 +366,9 @@ thead th:nth-child(7) {
 
 .cost {
     font-weight: 400;
-    white-space: nowrap
+    white-space: nowrap;
+    margin-top: 0px;
+    padding-top: 0px;
 }
 
 .against-badge {
@@ -418,23 +441,37 @@ thead th:nth-child(7) {
 .action-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
 }
 
 .action-btn {
-    min-height: 30px;
-    padding: 4px 8px;
+    flex: 1 1 calc(50% - 3px);
+    min-width: 0;
+    min-height: 28px;
+    height: auto;
+    padding: 5px 6px;
+    margin: 0 4px 4px;
     border-radius: 4px;
     border: 1px solid;
     background: #fff;
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 400;
     cursor: pointer;
-    white-space: nowrap
+    white-space: normal;
+    line-height: 1.2;
+    text-align: center;
+    overflow: visible;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .action-btn i {
-    margin-right: 4px
+    margin-right: 3px;
+    flex: 0 0 auto;
 }
 
 .view-btn {

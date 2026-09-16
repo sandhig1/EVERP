@@ -1,259 +1,205 @@
-<!-- Navigation Header -->
-<header class="navbar">
-  <div class="logo">
-    <div class="logo-icon">⚡</div>
-    <div class="logo-text">
-      <span class="main-title">EV Charging</span>
-      <span class="sub-title">Solutions <strong>ERP</strong></span>
+<div class="page-shell">
+  <header class="topbar">
+    <a class="brand" href="#home" data-page="home" (click)="scrollToSection('home', $event)">
+      <img src="assets/images/homelayout/home-logo.png" alt="EV Charging Solutions ERP">
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#home" data-page="home" class="nav-link" [class.active]="activeTab() === 'home'" (click)="scrollToSection('home', $event)">Home</a>
+      <a href="#dealers" data-page="dealers" class="nav-link" [class.active]="activeTab() === 'dealers'" (click)="scrollToSection('dealers', $event)">Dealer Count</a>
+      <a href="#about" data-page="about" class="nav-link" [class.active]="activeTab() === 'about'" (click)="scrollToSection('about', $event)">About Us</a>
+      <a href="#contact" data-page="contact" class="nav-link" [class.active]="activeTab() === 'contact'" (click)="scrollToSection('contact', $event)">Contact Us</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn btn-outline" type="button" (click)="login()">Login</button>
+      <button class="btn btn-primary" type="button" (click)="signup()">Signup</button>
     </div>
-  </div>
+  </header>
 
-  <nav class="nav-links">
-    <a href="#home" [class.active]="activeTab === 'home'" (click)="setActiveTab('home')">Home</a>
-    <a href="#about" [class.active]="activeTab === 'about'" (click)="setActiveTab('about')">About Us</a>
-    <a href="#dealer" [class.active]="activeTab === 'dealer'" (click)="setActiveTab('dealer')">Dealer Count</a>
-    <a href="#contact" [class.active]="activeTab === 'contact'" (click)="setActiveTab('contact')">Contact Us</a>
-  </nav>
-
-  <div class="auth-buttons">
-    <button class="btn btn-outline" (click) ="login()" >Login</button>
-    <button class="btn btn-primary" (click) = "signUp()" >Signup</button>
-  </div>
-</header>
-
-<main class="content-container">
-
-  <!-- HERO / HOME SECTION -->
-  <section id="home" class="section hero-section">
-    <div class="hero-text">
-      <p class="tagline">Powering a Cleaner Tomorrow</p>
-      <h1>EV Charging <br><span class="highlight">Solutions</span> <span class="highlight-green">ERP</span></h1>
-      <p class="subtitle">Complete EV Charging Infrastructure Management for a Sustainable Future</p>
-      <div class="hero-actions">
-        <button class="btn btn-primary">Get Started &rarr;</button>
-        <button class="btn btn-outline">Learn More</button>
-      </div>
-    </div>
-    <div class="hero-image-wrapper">
-      <img src="https://via.placeholder.com/600x350?text=EV+Car+%26+Charger" alt="EV Charging Station" class="hero-img">
-    </div>
-  </section>
-
-  <!-- HOME METRICS & SPECIFICATION -->
-  <section class="section specs-section">
-    <h2 class="section-title">Our EV Installation Specification</h2>
-    <div class="cards-grid">
-      <div class="info-card">
-        <div class="card-icon blue-bg">🔌</div>
-        <h3>EV Charger Products</h3>
-        <p>AC & DC Chargers, Accessories and More</p>
-        <a href="#" class="card-link">View Products &rarr;</a>
-      </div>
-
-      <div class="info-card">
-        <div class="card-icon green-bg">📋</div>
-        <h3>EV Installation Process</h3>
-        <p>Survey &rarr; BOQ &rarr; Installation &rarr; Commissioning</p>
-        <a href="#" class="card-link">View Process &rarr;</a>
-      </div>
-
-      <!-- Stats Cards -->
-      <div class="stat-card blue-tint">
-        <div class="stat-icon">👥</div>
-        <span class="stat-label">Total Dealer Count</span>
-        <span class="stat-value">25</span>
-      </div>
-
-      <div class="stat-card green-tint">
-        <div class="stat-icon">🛠️</div>
-        <span class="stat-label">Total Technicians</span>
-        <span class="stat-value">48</span>
-      </div>
-
-      <div class="stat-card purple-tint">
-        <div class="stat-icon">⚡</div>
-        <span class="stat-label">Total Installation</span>
-        <span class="stat-value">320</span>
-      </div>
-
-      <div class="stat-card orange-tint">
-        <div class="stat-icon">👤</div>
-        <span class="stat-label">Total Clients</span>
-        <span class="stat-value">280</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT US SECTION -->
-  <section id="about" class="section about-section">
-    <div class="breadcrumb">Home &gt; About Us</div>
-    <div class="about-grid">
-      <div class="about-content">
-        <h2>Driving the Future of Sustainable Mobility</h2>
-        <p><strong>EV Charging Solutions ERP</strong> is a next-generation platform built to manage the complete EV charging infrastructure lifecycle — from sales and quotations to installation, maintenance and service.</p>
-        <p>We empower businesses, dealers, technicians and customers with a seamless, transparent and efficient experience, helping accelerate the adoption of electric vehicles worldwide.</p>
-        
-        <div class="about-features">
-          <div class="feature-item">
-            <div class="feature-icon">⚙️</div>
-            <span>Reliable Solutions</span>
+  <main>
+    <!-- HOME -->
+    <section id="home" class="page-section active-page">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Powering a Cleaner Tomorrow</div>
+          <h1>EV Charging<br>Solutions <span>ERP</span></h1>
+          <p>Complete EV Charging Infrastructure Management<br>for a Sustainable Future</p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary" type="button" (click)="login()">
+              Get Started <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-outline" type="button" (click)="scrollToSection('about')">
+              Learn More
+            </button>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon">🌿</div>
-            <span>Efficient Processes</span>
+        </div>
+        <div class="hero-art">
+          <img src="assets/images/homelayout/home-ev-illustration.png" alt="Electric vehicle and EV charger">
+        </div>
+      </div>
+
+      <div class="section-content">
+        <h2>Our EV Installation Specification</h2>
+        <div class="home-grid">
+          <article class="info-card">
+            <div class="card-icon"><i class="fa-solid fa-charging-station"></i></div>
+            <h3>EV Charger Products</h3>
+            <p>AC &amp; DC Chargers, Accessories and More</p>
+            <button class="text-link" type="button" (click)="login()">View Products <i
+                class="fa-solid fa-arrow-right"></i></button>
+          </article>
+
+          <article class="info-card">
+            <div class="card-icon"><i class="fa-solid fa-plug-circle-bolt"></i></div>
+            <h3>EV Installation Process</h3>
+            <p>Survey → BOQ → Installation → Commissioning</p>
+            <button class="text-link" type="button" (click)="login()">View Process <i
+                class="fa-solid fa-arrow-right"></i></button>
+          </article>
+
+          <div class="stat-card blue">
+            <i class="fa-solid fa-users"></i>
+            <small>Total Dealer Count</small><strong>25</strong>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon">⚡</div>
-            <span>Sustainable Future</span>
+          <div class="stat-card green">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <small>Total Technicians</small><strong>48</strong>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon">💙</div>
-            <span>Customer First</span>
+          <div class="stat-card purple">
+            <i class="fa-solid fa-bolt"></i>
+            <small>Total Installations</small><strong>320</strong>
+          </div>
+          <div class="stat-card orange">
+            <i class="fa-solid fa-user"></i>
+            <small>Total Clients</small><strong>280</strong>
           </div>
         </div>
       </div>
-      <div class="about-banner">
-        <img src="https://via.placeholder.com/500x350?text=Cleaner+Energy+Greener+Tomorrow" alt="About EV ERP" class="rounded-img">
+    </section>
+
+    <!-- DEALER NETWORK -->
+    <section id="dealers" class="page-section">
+      <div class="page-banner">
+        <h1>Our Dealer Network</h1>
+        <div class="breadcrumb">Home <span>›</span> Dealer Count</div>
       </div>
-    </div>
-  </section>
 
-  <!-- DEALER NETWORK SECTION -->
-  <section id="dealer" class="section dealer-section">
-    <div class="breadcrumb">Home &gt; Dealer Count</div>
-    <h2>Our Dealer Network</h2>
-    <p class="section-desc">We work with a wide network of trusted dealers across the country to bring EV charging solutions closer to you.</p>
-
-    <div class="map-container">
-      <div class="map-placeholder">
-        <img src="https://via.placeholder.com/600x300?text=India+Map+Network" alt="India Map Network">
-      </div>
-      <div class="total-dealers-card">
-        <div class="card-icon">👤</div>
-        <div class="dealers-info">
-          <span>Total Dealers</span>
-          <h3>25</h3>
+      <div class="dealer-intro">
+        <div class="dealer-copy">
+          <p>We work with a wide network of trusted dealers across the country to bring EV charging solutions closer to
+            you.</p>
         </div>
-      </div>
-    </div>
-
-    <h3>Dealers by Region</h3>
-    <div class="regions-grid">
-      <div class="region-card blue-tint">
-        <div class="pin-icon blue-pin">📍</div>
-        <div>
-          <h4>North Zone</h4>
-          <p>8 Dealers</p>
-        </div>
-      </div>
-      <div class="region-card green-tint">
-        <div class="pin-icon green-pin">📍</div>
-        <div>
-          <h4>South Zone</h4>
-          <p>6 Dealers</p>
-        </div>
-      </div>
-      <div class="region-card purple-tint">
-        <div class="pin-icon purple-pin">📍</div>
-        <div>
-          <h4>East Zone</h4>
-          <p>5 Dealers</p>
-        </div>
-      </div>
-      <div class="region-card orange-tint">
-        <div class="pin-icon orange-pin">📍</div>
-        <div>
-          <h4>West Zone</h4>
-          <p>6 Dealers</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT US SECTION -->
-  <section id="contact" class="section contact-section">
-    <div class="breadcrumb">Home &gt; Contact Us</div>
-    <h2>Get in Touch</h2>
-
-    <div class="contact-grid">
-      <!-- Contact Info -->
-      <div class="contact-info">
-        <div class="info-block">
-          <div class="info-icon">🏢</div>
-          <div>
-            <h4>Our Office</h4>
-            <p>123 Green Energy Avenue,<br>Tech Park, Bangalore - 560001<br>India</p>
-          </div>
-        </div>
-
-        <div class="info-block">
-          <div class="info-icon">📞</div>
-          <div>
-            <h4>Phone</h4>
-            <p>+91 98765 43210<br>+91 87654 32109</p>
-          </div>
-        </div>
-
-        <div class="info-block">
-          <div class="info-icon">✉️</div>
-          <div>
-            <h4>Email</h4>
-            <p>info&#64;evchargingsolutions.com<br>support&#64;evchargingsolutions.com</p>
-          </div>
-        </div>
-
-        <div class="info-block">
-          <div class="info-icon">⏰</div>
-          <div>
-            <h4>Business Hours</h4>
-            <p>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat - Sun: 10:00 AM - 4:00 PM</p>
+        <div class="dealer-visual">
+          <img src="assets/images/homelayout/home-dealer-map.png" alt="Dealer network map of India">
+          <div class="dealer-total">
+            <div class="round-icon"><i class="fa-solid fa-user"></i></div>
+            <div><small>Total Dealers</small><strong>25</strong></div>
           </div>
         </div>
       </div>
 
-      <!-- Contact Form -->
-      <div class="contact-form-card">
-        <h3>Send us a Message</h3>
-        <form (ngSubmit)="onSubmit()">
+      <div class="region-section">
+        <h2>Dealers by Region</h2>
+        <div class="region-grid">
+          <div class="region-card north"><i class="fa-solid fa-location-dot"></i>
+            <div><b>North Zone</b><span>8 Dealers</span></div>
+          </div>
+          <div class="region-card south"><i class="fa-solid fa-location-dot"></i>
+            <div><b>South Zone</b><span>6 Dealers</span></div>
+          </div>
+          <div class="region-card east"><i class="fa-solid fa-location-dot"></i>
+            <div><b>East Zone</b><span>5 Dealers</span></div>
+          </div>
+          <div class="region-card west"><i class="fa-solid fa-location-dot"></i>
+            <div><b>West Zone</b><span>6 Dealers</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page-section">
+      <div class="page-banner">
+        <h1>About Us</h1>
+        <div class="breadcrumb">Home <span>›</span> About Us</div>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-copy">
+          <h2>Driving the Future of<br>Sustainable Mobility</h2>
+          <p><strong>EV Charging Solutions ERP</strong> is a next-generation platform built to manage the complete EV
+            charging infrastructure lifecycle — from sales and quotations to installation, maintenance and service.</p>
+          <p>We empower businesses, dealers, technicians and customers with a seamless, transparent and efficient
+            ecosystem, helping accelerate the adoption of electric vehicles worldwide.</p>
+
+          <div class="value-grid">
+            <div><i class="fa-solid fa-gear"></i><b>Reliable<br>Solutions</b></div>
+            <div><i class="fa-solid fa-screwdriver-wrench"></i><b>Efficient<br>Processes</b></div>
+            <div><i class="fa-solid fa-bolt"></i><b>Sustainable<br>Future</b></div>
+            <div><i class="fa-regular fa-heart"></i><b>Customer<br>First</b></div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="assets/images/homelayout/home-about-ev-illustration.png" alt="EV charging station with electric vehicle">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page-section">
+      <div class="page-banner">
+        <h1>Get in Touch</h1>
+        <div class="breadcrumb">Home <span>›</span> Contact Us</div>
+      </div>
+
+      <div class="contact-layout">
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div><b>Our Office</b><span>123 Green Energy Avenue<br>Tech Park, Bengaluru - 560001<br>India</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+            <div><b>Phone</b><span>+91 88065 45210<br>+91 81654 23109</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div><b>Email</b><span>info@evchargingsolutions.com<br>support@evchargingsolutions.com</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-regular fa-clock"></i></div>
+            <div><b>Business Hours</b><span>Mon - Fri : 9:00 AM - 6:00 PM<br>Sat - Sun : 10:00 AM - 4:00 PM</span></div>
+          </div>
+        </div>
+
+        <form class="contact-form" (submit)="sendMessage($event)">
+          <h2>Send us a Message</h2>
           <div class="form-row">
-            <div class="form-group">
-              <label>Name *</label>
-              <input type="text" [(ngModel)]="contactData.name" name="name" placeholder="Enter your name" required>
-            </div>
-            <div class="form-group">
-              <label>Email *</label>
-              <input type="email" [(ngModel)]="contactData.email" name="email" placeholder="Enter your email" required>
-            </div>
+            <label>Name <em>*</em><input name="name" type="text" placeholder="Enter your name" required></label>
+            <label>Email <em>*</em><input name="email" type="email" placeholder="Enter your email" required></label>
           </div>
-
-          <div class="form-group">
-            <label>Subject</label>
-            <select [(ngModel)]="contactData.subject" name="subject">
-              <option value="" disabled selected>Select subject</option>
-              <option value="Inquiry">General Inquiry</option>
-              <option value="Dealership">Dealership</option>
-              <option value="Support">Support</option>
+          <label>Subject
+            <select name="subject">
+              <option value="">Select subject</option>
+              <option>General Enquiry</option>
+              <option>Dealer Enquiry</option>
+              <option>Installation Support</option>
+              <option>Service &amp; Maintenance</option>
             </select>
-          </div>
-
-          <div class="form-group">
-            <label>Message *</label>
-            <textarea [(ngModel)]="contactData.message" name="message" rows="4" placeholder="Enter your message" required></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          </label>
+          <label>Message <em>*</em>
+            <textarea name="message" rows="5" placeholder="Enter your message" required></textarea>
+          </label>
+          <button class="btn btn-primary full-width" type="submit">Send Message</button>
         </form>
-      </div>
 
-      <!-- Location Map Side Box -->
-      <div class="location-box">
-        <div class="map-thumb">
-          <img src="https://via.placeholder.com/250x200?text=Map+Location" alt="Location Map">
+        <div class="map-card">
+          <img src="assets/images/homelayout/home-contact-map.png" alt="Office location map">
+          <b>Find us on the map</b>
+          <button class="btn btn-outline" type="button" (click)="openMap()">View on Google Maps</button>
         </div>
-        <p class="map-label">Find us on the map</p>
-        <button class="btn btn-outline btn-block">View on Google Maps</button>
       </div>
-    </div>
-  </section>
-
-</main>
+    </section>
+  </main>
+</div>

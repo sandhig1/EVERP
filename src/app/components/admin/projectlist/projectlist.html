@@ -137,7 +137,7 @@
                 <button type="button" class="action-btn view-btn" (click)="viewProject(project)"><i class="fa-solid fa-eye"></i> View</button>
                 <button type="button" class="action-btn edit-btn" (click)="editProject(project)"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
                 <button type="button" class="action-btn cancel-btn" *ngIf="project.status !== 'Cancelled' && project.status !== 'Installation Done'" (click)="cancelProject(project)"><i class="fa-solid fa-ban"></i> Cancel</button>
-                <button type="button" class="action-btn create-project-btn" *ngIf="project.status === 'Approved'" (click)="createProject(project)"><i class="fa-solid fa-folder-plus"></i> Create Project</button>
+                <button type="button" class="action-btn create-project-btn" *ngIf="project.status === 'Approved'" (click)="scheduleInstallation(project)"><i class="fa-solid fa-folder-plus"></i> Schedule Installation</button>
                 <button type="button" class="action-btn invoice-btn" *ngIf="project.status === 'Installation Done'" (click)="createInvoice(project)"><i class="fa-solid fa-file-invoice"></i> Generate Invoice</button>
               </div>
             </td>

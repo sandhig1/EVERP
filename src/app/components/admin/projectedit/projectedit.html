@@ -1,0 +1,273 @@
+<div class="main-content">
+  <div class="page-header">
+    <div class="header-left">
+      <h1 class="page-title">Admin - Edit Project</h1>
+      <div class="breadcrumb">
+        <span>⌂</span><span>Projects</span><span>›</span><span class="active">Edit Project</span>
+      </div>
+    </div>
+    <button type="button" class="btn-list" (click)="goToProjectList()">
+      <i class="fa-solid fa-list"></i> Project List
+    </button>
+  </div>
+
+  <section class="content-card">
+    <h2 class="section-title">Project Section</h2>
+
+    <!-- Project Name + Project Code / Type / Status -->
+    <div class="project-top-card">
+      <div class="project-name-area">
+        <label class="form-label">Project <span class="required">*</span></label>
+        <input class="project-name-input" type="text" [(ngModel)]="projectName" placeholder="Enter project name">
+        <div class="project-meta-row">
+          <div class="meta-item">
+            <span class="meta-caption">Project Code</span>
+            <span class="meta-value code-value">{{projectCode}}</span>
+          </div>
+          <div class="meta-item type-item">
+            <span class="meta-caption">Project Type <span class="required">*</span></span>
+            <select class="form-control project-type-select" [(ngModel)]="projectType">
+              <option>Commercial</option>
+              <option>Residential</option>
+              <option>Fleet</option>
+              <option>Industrial</option>
+            </select>
+          </div>
+          <div class="meta-item manager-item">
+            <span class="meta-caption">Project Manager <span class="required">*</span></span>
+            <select class="form-control project-manager-top" [(ngModel)]="projectManager">
+              <option value="">Select project manager</option>
+              <option *ngFor="let manager of projectManagers">{{manager}}</option>
+            </select>
+          </div>
+          <div class="meta-item status-item">
+            <span class="meta-caption">Status</span>
+            <span class="status-bar" [ngClass]="getStatusClass(status)">
+              <span class="status-dot"></span>{{status}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-box">
+        <span class="cost-caption">Project Cost</span>
+        <div class="project-cost">{{projectCost}}</div>
+      </div>
+    </div>
+
+    <!-- Creation / Schedule / Project Start-End -->
+    <div class="section-divider"></div>
+    <div class="three-card-row">
+      <div class="info-card">
+        <div class="card-heading">
+          <span class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></span>
+          <div><h3>Creation</h3><small>Project audit information</small></div>
+        </div>
+        <div class="two-value-row">
+          <div><span>Created On</span><strong>{{formatDate(createdOn)}}</strong></div>
+          <div><span>Created By</span><strong>{{createdBy}}</strong></div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="card-heading">
+          <span class="card-icon blue"><i class="fa-regular fa-calendar-days"></i></span>
+          <div><h3>Project Schedule</h3><small>Planned execution dates</small></div>
+        </div>
+        <div class="date-fields-row">
+          <div><label>Schedule Start <span class="required">*</span></label><input class="edit-input" type="date" [(ngModel)]="scheduledStartDate"></div>
+          <div><label>Schedule End <span class="required">*</span></label><input class="edit-input" type="date" [(ngModel)]="scheduledEndDate"></div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="card-heading">
+          <span class="card-icon green"><i class="fa-solid fa-flag-checkered"></i></span>
+          <div><h3>Project Start / End</h3><small>Actual project dates</small></div>
+        </div>
+        <div class="date-fields-row">
+          <div><label>Project Start <span class="required">*</span></label><input class="edit-input" type="date" [(ngModel)]="projectStartDate"></div>
+          <div><label>Project End <span class="required">*</span></label><input class="edit-input" type="date" [(ngModel)]="projectEndDate"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Site Address + Project Detail -->
+    <div class="two-field-row details-row">
+      <div class="form-group">
+        <label class="form-label">Site Address <span class="required">*</span></label>
+        <textarea class="edit-textarea" [(ngModel)]="siteAddress" placeholder="Enter project site address"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Project Detail <span class="required">*</span></label>
+        <textarea class="edit-textarea" [(ngModel)]="projectDetail" placeholder="Enter project description or scope"></textarea>
+      </div>
+    </div>
+
+    <!-- Installation / Enquiry Detail + Quotation Detail -->
+    <div class="reference-quotation-row">
+      <div class="reference-column">
+        <h2 class="section-title">Installation / Enquiry Detail</h2>
+
+      <div class="reference-grid">
+        <div class="reference-item">
+          <span class="field-caption">PROJECT AGAINST</span>
+          <span class="against-badge" [ngClass]="projectAgainst==='Installation Request'?'against-installation':'against-enquiry'">
+            <i class="fa-solid" [ngClass]="projectAgainst==='Installation Request'?'fa-plug':'fa-file-lines'"></i>
+            {{projectAgainst}}
+          </span>
+        </div>
+        <div class="reference-item">
+          <span class="field-caption">
+            {{projectAgainst==='Installation Request'?'INSTALLATION REQUEST NO.':'ENQUIRY REQUEST NO.'}}
+          </span>
+          <strong>{{referenceNo}}</strong>
+        </div>
+        <div class="reference-item">
+          <span class="field-caption">
+            {{projectAgainst==='Installation Request'?'CUSTOMER NAME':'DEALER NAME'}}
+          </span>
+          <strong>{{partyName}}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quotation -->
+    <div class="section-divider">      </div>
+      <div class="reference-column">
+        <h2 class="section-title">Quotation Detail</h2>
+
+      <div class="quotation-item">
+        <span>Quotation No.</span><strong>{{quotationNo}}</strong>
+      </div>
+      <div class="quotation-item">
+        <span>Quotation Date</span><strong>{{formatDate(quotationDate)}}</strong>
+      </div>
+      <div class="quotation-item amount">
+        <span>Quotation Amt</span><strong>{{quotationAmt}}</strong>
+      </div>
+          </div>
+    </div>
+
+    <!-- Detail Tabs -->
+    <div class="section-divider"></div>
+    <div class="details-tabs">
+      <button type="button" class="tab-button" [class.active]="activeTab==='boq'" (click)="setActiveTab('boq')">
+        <i class="fa-solid fa-boxes-stacked"></i><span>BOQ / Product Details</span><small>{{boqItems.length}}</small>
+      </button>
+      <button type="button" class="tab-button" [class.active]="activeTab==='installation'" (click)="setActiveTab('installation')">
+        <i class="fa-solid fa-screwdriver-wrench"></i><span>Installation Detail</span>
+      </button>
+      <button type="button" class="tab-button" [class.active]="activeTab==='maintenance'" (click)="setActiveTab('maintenance')">
+        <i class="fa-solid fa-clipboard-check"></i><span>Maintenance Contract</span>
+      </button>
+      <button type="button" class="tab-button" [class.active]="activeTab==='service'" (click)="setActiveTab('service')">
+        <i class="fa-solid fa-headset"></i><span>Service Detail</span>
+      </button>
+    </div>
+
+    <!-- BOQ -->
+    <div class="tab-panel" *ngIf="activeTab==='boq'">
+      <div class="panel-title-row">
+        <div><h3>BOQ / Product Detail</h3><p>Products, quantity, tax and commercial amount.</p></div>
+      </div>
+      <div class="table-wrap">
+        <table class="detail-table boq-table">
+          <thead><tr>
+            <th class="sr">Sr No</th><th>Item Code</th><th>Item Name</th><th>Rate</th><th>Qty</th><th>Tax</th><th>Amount</th>
+          </tr></thead>
+          <tbody>
+            <tr *ngFor="let item of boqItems;let i=index">
+              <td>{{i+1}}</td><td><span class="code-chip">{{item.itemCode}}</span></td>
+              <td class="item-name">{{item.itemName}}</td><td class="text-right">{{item.rate}}</td>
+              <td class="qty-cell">{{item.qty}}</td><td class="text-right">{{item.tax}}</td>
+              <td class="text-right amount-text">{{item.amount}}</td>
+            </tr>
+            <tr *ngIf="!boqItems.length"><td colspan="7" class="empty-row">No product details available.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="financial-summary">
+        <div><span>Total</span><strong>{{boqTotal}}</strong></div>
+        <div><span>Total Tax</span><strong>{{totalTax}}</strong></div>
+        <div><span>SubTotal</span><strong>{{subtotal}}</strong></div>
+        <div><span>Discount</span><strong>{{discount}}</strong></div>
+        <div class="grand"><span>Grand Total</span><strong>{{grandTotal}}</strong></div>
+      </div>
+    </div>
+
+    <!-- Installation -->
+    <div class="tab-panel" *ngIf="activeTab==='installation'">
+      <div class="panel-title-row">
+        <div><h3>Installation Detail</h3><p>Installation assignment, technician and execution schedule.</p></div>
+      </div>
+      <div class="installation-grid">
+        <div class="data-card"><span>Installation No.</span><strong>{{installationNo}}</strong></div>
+        <div class="data-card"><span>Installation Date</span><strong>{{formatDate(installationDate)}}</strong></div>
+        <div class="data-card"><span>Status</span><strong><span class="installation-status-badge">{{installationStatus}}</span></strong></div>
+        <div class="data-card"><span>Technician Name</span><strong>{{technicianName}}</strong></div>
+        <div class="data-card"><span>Technician Assigned On</span><strong>{{formatDate(technicianAssignedOn)}}</strong></div>
+        <div class="data-card"><span>Installation Schedule Date</span><input class="edit-input" type="date" [(ngModel)]="installationScheduleDate"></div>
+        <div class="data-card"><span>Installation End Date</span><input class="edit-input" type="date" [(ngModel)]="installationEndDate"></div>
+      </div>
+    </div>
+
+    <!-- Maintenance -->
+    <div class="tab-panel" *ngIf="activeTab==='maintenance'">
+      <div class="panel-title-row">
+        <div><h3>Maintenance Contract</h3><p>Contract period, service allocation and cost details.</p></div>
+      </div>
+      <div class="table-wrap">
+        <table class="detail-table maintenance-table">
+          <thead><tr>
+            <th>Sr No</th><th>Contract No</th><th>Contract Period</th><th>Contract Cost</th>
+            <th>Total Service</th><th>Pending</th><th>Completed</th><th>Service Cost</th>
+          </tr></thead>
+          <tbody>
+            <tr *ngFor="let c of maintenanceContracts;let i=index">
+              <td>{{i+1}}</td><td><span class="code-chip">{{c.contractNo}}</span></td><td><span class="contract-period">{{formatDate(c.contractStartDate)}} <span>to</span> {{formatDate(c.contractEndDate)}}</span></td>
+              <td class="text-right">{{c.contractCost}}</td><td>{{c.totalService}}</td><td>{{c.pending}}</td>
+              <td>{{c.completed}}</td><td class="text-right amount-text">{{c.serviceCost}}</td>
+            </tr>
+            <tr *ngIf="!maintenanceContracts.length"><td colspan="8" class="empty-row">No maintenance contracts available.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="maintenance-summary">
+        <div><span>Contract Cost</span><strong>{{totalContractCost}}</strong></div>
+        <div><span>Total Service</span><strong>{{totalService}}</strong></div>
+        <div><span>Pending</span><strong>{{totalPending}}</strong></div>
+        <div><span>Completed</span><strong>{{totalCompleted}}</strong></div>
+        <div class="highlight"><span>Service Cost</span><strong>{{totalServiceCost}}</strong></div>
+      </div>
+    </div>
+
+    <!-- Service -->
+    <div class="tab-panel" *ngIf="activeTab==='service'">
+      <div class="panel-title-row">
+        <div><h3>Service Detail</h3><p>Recorded service activity and service cost.</p></div>
+      </div>
+      <div class="table-wrap">
+        <table class="detail-table service-table">
+          <thead><tr>
+            <th>Service No.</th><th>Service Date</th><th>Contract No.</th><th>Service Detail</th><th>Service Cost</th>
+          </tr></thead>
+          <tbody>
+            <tr *ngFor="let s of serviceDetails">
+              <td><span class="code-chip">{{s.serviceNo}}</span></td><td>{{formatDate(s.serviceDate)}}</td>
+              <td>{{s.contractNo}}</td><td class="service-description">{{s.serviceDetail}}</td>
+              <td class="text-right amount-text">{{s.serviceCost}}</td>
+            </tr>
+            <tr *ngIf="!serviceDetails.length"><td colspan="5" class="empty-row">No service details available.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="service-total"><span>Total Service Cost</span><strong>{{totalServiceCost}}</strong></div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-cancel" type="button" (click)="onCancel()">Cancel</button>
+      <button class="btn btn-save" type="button" (click)="saveProject()"><i class="fa-solid fa-check"></i> Save Changes</button>
+    </div>
+  </section>
+</div>

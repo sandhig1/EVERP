@@ -226,16 +226,12 @@
 
 .quotation-table th,
 .quotation-table td {
-    border-right: 1px solid #dce2ea;
-    border-bottom: 1px solid #dce2ea;
+    border: 0;
     vertical-align: middle;
     word-break: break-word
 }
 
-.quotation-table th:last-child,
-.quotation-table td:last-child {
-    border-right: 0
-}
+
 
 .quotation-table th {
     height: 39px;
@@ -255,9 +251,7 @@
     font-size: 11px
 }
 
-.quotation-table tbody tr:last-child td {
-    border-bottom: 0
-}
+
 
 .w-no {
     width: 14%

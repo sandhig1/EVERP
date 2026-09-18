@@ -26,6 +26,7 @@ import { quotationlistadmin } from './components/admin/quotationlistadmin/quotat
 import { projectcreation } from './components/admin/projectcreation/projectcreation';
 import { projectlist } from './components/admin/projectlist/projectlist';
 import { projectview } from './components/admin/projectview/projectview';
+import { projectedit } from './components/admin/projectedit/projectedit';
 
 export const routes: Routes = [
     {path:'', component:homelanding},
@@ -54,6 +55,7 @@ export const routes: Routes = [
             {path:'quotation-list', component:quotationlistadmin},
             {path:'project-creation', component:projectcreation},
             {path:'project-list', component:projectlist},
+            {path:'project-edit', component:projectedit},
             {path:'project-view', component:projectview},
             
         ]

@@ -172,7 +172,8 @@ export class projectlist {
   }
 
   editProject(project: Project): void {
-    Swal.fire({icon:'info', title:'Edit Project', text:`Project: ${project.projectName}`, confirmButtonColor:'#075dc9'});
+    //Swal.fire({icon:'info', title:'Edit Project', text:`Project: ${project.projectName}`, confirmButtonColor:'#075dc9'});
+    this.router.navigate(['project-edit']);
   }
 
   cancelProject(project: Project): void {
@@ -189,8 +190,9 @@ export class projectlist {
     });
   }
 
-  createProject(project: Project): void {
-    Swal.fire({icon:'info', title:'Create Project', text:`Create project from quotation ${project.quotationNo}.`, confirmButtonColor:'#075dc9'});
+  scheduleInstallation(project: Project): void {
+    //Swal.fire({icon:'info', title:'Create Project', text:`Create project from quotation ${project.quotationNo}.`, confirmButtonColor:'#075dc9'});
+    this.router.navigate(["/project-creation"]);
   }
 
   createInvoice(project: Project): void {
@@ -198,7 +200,8 @@ export class projectlist {
   }
 
   createNewProject(): void {
-    Swal.fire({icon:'info', title:'Create Project', text:'Open the Create Project page.', confirmButtonColor:'#075dc9'});
+    //aqSwal.fire({icon:'info', title:'Create Project', text:'Open the Create Project page.', confirmButtonColor:'#075dc9'});
+    this.router.navigate(["/project-creation"]);
   }
 
   getStatusClass(status: Project['status']): string {

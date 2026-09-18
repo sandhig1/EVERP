@@ -167,16 +167,16 @@
                 <button class="action-btn view" (click)="viewQuotation(q)">
                   <i class="fa-solid fa-eye"></i> View
                 </button>
-                <button class="action-btn edit" *ngif="!canEdit(q)" (click)="editQuotation(q)">
+                <button class="action-btn edit" *ngIf="canEdit(q)" (click)="editQuotation(q)">
                   <i class="fa-solid fa-pen-to-square"></i> Edit
                 </button>
-                <button class="action-btn cancel" *ngif="!canCancel(q)" (click)="cancelQuotation(q)">
+                <button class="action-btn cancel" *ngIf="canCancel(q)" (click)="cancelQuotation(q)">
                   <i class="fa-solid fa-ban"></i> Cancel
                 </button>
                 <button class="action-btn project" *ngIf="canCreateProject(q)" (click)="createProject(q)">
                   <i class="fa-solid fa-folder-plus"></i> Create Project
                 </button>
-                <button class="action-btn invoice" *ngif="!canGenerateInvoice(q)" (click)="generateInvoice(q)">
+                <button class="action-btn invoice" *ngIf="canGenerateInvoice(q)" (click)="generateInvoice(q)">
                   <i class="fa-solid fa-file-invoice-dollar"></i> Generate Invoice
                 </button>
               </div>

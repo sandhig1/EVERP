@@ -192,7 +192,7 @@ export class projectlist {
 
   scheduleInstallation(project: Project): void {
     //Swal.fire({icon:'info', title:'Create Project', text:`Create project from quotation ${project.quotationNo}.`, confirmButtonColor:'#075dc9'});
-    this.router.navigate(["/project-creation"]);
+    this.router.navigate(["/installation-creation"]);
   }
 
   createInvoice(project: Project): void {

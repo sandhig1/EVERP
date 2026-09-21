@@ -17,7 +17,7 @@
     <!-- Project Name + Project Code / Type / Status -->
     <div class="project-top-card">
       <div class="project-name-area">
-        <label class="form-label">Project <span class="required">*</span></label>
+        <label class="form-label">Project Name <span class="required">*</span></label>
         <input class="project-name-input" type="text" [(ngModel)]="projectName" placeholder="Enter project name">
         <div class="project-meta-row">
           <div class="meta-item">
@@ -25,19 +25,12 @@
             <span class="meta-value code-value">{{projectCode}}</span>
           </div>
           <div class="meta-item type-item">
-            <span class="meta-caption">Project Type <span class="required">*</span></span>
-            <select class="form-control project-type-select" [(ngModel)]="projectType">
+            <span class="meta-caption">Project Type</span>
+            <select class="project-type-select" [(ngModel)]="projectType">
               <option>Commercial</option>
               <option>Residential</option>
               <option>Fleet</option>
               <option>Industrial</option>
-            </select>
-          </div>
-          <div class="meta-item manager-item">
-            <span class="meta-caption">Project Manager <span class="required">*</span></span>
-            <select class="form-control project-manager-top" [(ngModel)]="projectManager">
-              <option value="">Select project manager</option>
-              <option *ngFor="let manager of projectManagers">{{manager}}</option>
             </select>
           </div>
           <div class="meta-item status-item">
@@ -61,11 +54,11 @@
       <div class="info-card">
         <div class="card-heading">
           <span class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></span>
-          <div><h3>Creation</h3><small>Project audit information</small></div>
+          <div><h3>Creation</h3><small style="font-size: 10px;">Project audit information</small></div>
         </div>
-        <div class="two-value-row">
-          <div><span>Created On</span><strong>{{formatDate(createdOn)}}</strong></div>
-          <div><span>Created By</span><strong>{{createdBy}}</strong></div>
+        <div class="two-value-row meta-item">
+          <div><span class="meta-caption">Created On</span><strong>{{formatDate(createdOn)}}</strong></div>
+          <div><span class="meta-caption">Created By</span><strong>{{createdBy}}</strong></div>
         </div>
       </div>
 
@@ -74,9 +67,9 @@
           <span class="card-icon blue"><i class="fa-regular fa-calendar-days"></i></span>
           <div><h3>Project Schedule</h3><small>Planned execution dates</small></div>
         </div>
-        <div class="date-fields-row">
-          <div><label>Schedule Start <span class="required">*</span></label><input class="edit-input" type="date" [(ngModel)]="scheduledStartDate"></div>
-          <div><label>Schedule End <span class="required">*</span></label><input class="edit-input" type="date" [(ngModel)]="scheduledEndDate"></div>
+        <div class="date-fields-row meta-item">
+          <div><label class="meta-caption">Schedule Start</label><input class="edit-input" type="date" [(ngModel)]="scheduledStartDate"></div>
+          <div><label class="meta-caption">Schedule End</label><input class="edit-input" type="date" [(ngModel)]="scheduledEndDate"></div>
         </div>
       </div>
 
@@ -85,33 +78,47 @@
           <span class="card-icon green"><i class="fa-solid fa-flag-checkered"></i></span>
           <div><h3>Project Start / End</h3><small>Actual project dates</small></div>
         </div>
-        <div class="date-fields-row">
-          <div><label>Project Start <span class="required">*</span></label><input class="edit-input" type="date" [(ngModel)]="projectStartDate"></div>
-          <div><label>Project End <span class="required">*</span></label><input class="edit-input" type="date" [(ngModel)]="projectEndDate"></div>
+        <div class="date-fields-row meta-item">
+          <div><label class="meta-caption">Project Start</label><input class="edit-input" type="date" [(ngModel)]="projectStartDate"></div>
+          <div><label class="meta-caption">Project End</label><input class="edit-input" type="date" [(ngModel)]="projectEndDate"></div>
         </div>
+      </div>
+    </div>
+
+    <!-- Cost + Manager -->
+    <div class="two-field-row">
+      <div class="form-group">
+        <label class="form-label">Project Cost</label>
+        <div class="readonly-value cost-value">{{projectCost}}</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Project Manager Name <span class="required">*</span></label>
+        <select class="edit-select" [(ngModel)]="projectManager">
+          <option value="">Select project manager</option>
+          <option *ngFor="let manager of projectManagers">{{manager}}</option>
+        </select>
       </div>
     </div>
 
     <!-- Site Address + Project Detail -->
     <div class="two-field-row details-row">
       <div class="form-group">
-        <label class="form-label">Site Address <span class="required">*</span></label>
+        <label class="form-label">Site Address</label>
         <textarea class="edit-textarea" [(ngModel)]="siteAddress" placeholder="Enter project site address"></textarea>
       </div>
       <div class="form-group">
-        <label class="form-label">Project Detail <span class="required">*</span></label>
+        <label class="form-label">Project Detail</label>
         <textarea class="edit-textarea" [(ngModel)]="projectDetail" placeholder="Enter project description or scope"></textarea>
       </div>
     </div>
 
-    <!-- Installation / Enquiry Detail + Quotation Detail -->
-    <div class="reference-quotation-row">
-      <div class="reference-column">
-        <h2 class="section-title">Installation / Enquiry Detail</h2>
-
+    <!-- Installation / Enquiry Detail -->
+    <div class="section-divider"></div>
+    <h2 class="section-title">Installation / Enquiry Detail</h2>
+    <div class="reference-card">
       <div class="reference-grid">
         <div class="reference-item">
-          <span class="field-caption">PROJECT AGAINST</span>
+          <span class="field-caption">INSTALLATION / ENQUIRY AGAINST</span>
           <span class="against-badge" [ngClass]="projectAgainst==='Installation Request'?'against-installation':'against-enquiry'">
             <i class="fa-solid" [ngClass]="projectAgainst==='Installation Request'?'fa-plug':'fa-file-lines'"></i>
             {{projectAgainst}}
@@ -119,13 +126,13 @@
         </div>
         <div class="reference-item">
           <span class="field-caption">
-            {{projectAgainst==='Installation Request'?'INSTALLATION REQUEST NO.':'ENQUIRY REQUEST NO.'}}
+            {{projectAgainst==='Installation Request'?'Installation Request No.':'Enquiry Request No.'}}
           </span>
           <strong>{{referenceNo}}</strong>
         </div>
         <div class="reference-item">
           <span class="field-caption">
-            {{projectAgainst==='Installation Request'?'CUSTOMER NAME':'DEALER NAME'}}
+            {{projectAgainst==='Installation Request'?'Customer':'Dealer'}}
           </span>
           <strong>{{partyName}}</strong>
         </div>
@@ -133,20 +140,18 @@
     </div>
 
     <!-- Quotation -->
-    <div class="section-divider">      </div>
-      <div class="reference-column">
-        <h2 class="section-title">Quotation Detail</h2>
-
+    <div class="section-divider"></div>
+    <h2 class="section-title">Quotation Details</h2>
+    <div class="quotation-card">
       <div class="quotation-item">
-        <span>Quotation No.</span><strong>{{quotationNo}}</strong>
+        <span class="meta-caption">Quotation No.</span><strong>{{quotationNo}}</strong>
       </div>
       <div class="quotation-item">
-        <span>Quotation Date</span><strong>{{formatDate(quotationDate)}}</strong>
+        <span class="meta-caption">Quotation Date</span><strong>{{formatDate(quotationDate)}}</strong>
       </div>
       <div class="quotation-item amount">
-        <span>Quotation Amt</span><strong>{{quotationAmt}}</strong>
+        <span class="meta-caption">Quotation Amt</span><strong>{{quotationAmt}}</strong>
       </div>
-          </div>
     </div>
 
     <!-- Detail Tabs -->
@@ -174,7 +179,9 @@
       <div class="table-wrap">
         <table class="detail-table boq-table">
           <thead><tr>
-            <th class="sr">Sr No</th><th>Item Code</th><th>Item Name</th><th>Rate</th><th>Qty</th><th>Tax</th><th>Amount</th>
+            <th class="sr" style="font-size: 10px;" >Sr No</th><th style="font-size: 10px;">Item Code</th>
+            <th style="font-size: 10px;">Item Name</th><th style="font-size: 10px;">Rate</th><th style="font-size: 10px;">Qty</th>
+            <th style="font-size: 10px;">Tax</th><th style="font-size: 10px;">Amount</th>
           </tr></thead>
           <tbody>
             <tr *ngFor="let item of boqItems;let i=index">
@@ -188,11 +195,11 @@
         </table>
       </div>
       <div class="financial-summary">
-        <div><span>Total</span><strong>{{boqTotal}}</strong></div>
-        <div><span>Total Tax</span><strong>{{totalTax}}</strong></div>
-        <div><span>SubTotal</span><strong>{{subtotal}}</strong></div>
-        <div><span>Discount</span><strong>{{discount}}</strong></div>
-        <div class="grand"><span>Grand Total</span><strong>{{grandTotal}}</strong></div>
+        <div><span class="meta-caption">Total</span><strong>{{boqTotal}}</strong></div>
+        <div><span class="meta-caption">Total Tax</span><strong>{{totalTax}}</strong></div>
+        <div><span class="meta-caption">SubTotal</span><strong>{{subtotal}}</strong></div>
+        <div><span class="meta-caption">Discount</span><strong>{{discount}}</strong></div>
+        <div class="grand"><span class="meta-caption">Grand Total</span><strong>{{grandTotal}}</strong></div>
       </div>
     </div>
 
@@ -202,13 +209,13 @@
         <div><h3>Installation Detail</h3><p>Installation assignment, technician and execution schedule.</p></div>
       </div>
       <div class="installation-grid">
-        <div class="data-card"><span>Installation No.</span><strong>{{installationNo}}</strong></div>
-        <div class="data-card"><span>Installation Date</span><strong>{{formatDate(installationDate)}}</strong></div>
-        <div class="data-card"><span>Status</span><strong><span class="installation-status-badge">{{installationStatus}}</span></strong></div>
-        <div class="data-card"><span>Technician Name</span><strong>{{technicianName}}</strong></div>
-        <div class="data-card"><span>Technician Assigned On</span><strong>{{formatDate(technicianAssignedOn)}}</strong></div>
-        <div class="data-card"><span>Installation Schedule Date</span><input class="edit-input" type="date" [(ngModel)]="installationScheduleDate"></div>
-        <div class="data-card"><span>Installation End Date</span><input class="edit-input" type="date" [(ngModel)]="installationEndDate"></div>
+        <div class="data-card"><span class="meta-caption">Installation No.</span><strong>{{installationNo}}</strong></div>
+        <div class="data-card"><span class="meta-caption">Installation Date</span><strong>{{formatDate(installationDate)}}</strong></div>
+        <div class="data-card"><span class="meta-caption">Status</span><strong><span class="installation-status-badge">{{installationStatus}}</span></strong></div>
+        <div class="data-card"><span class="meta-caption">Technician Name</span><strong>{{technicianName}}</strong></div>
+        <div class="data-card"><span class="meta-caption">Technician Assigned On</span><strong>{{formatDate(technicianAssignedOn)}}</strong></div>
+        <div class="data-card"><span class="meta-caption">Installation Schedule Date</span><input class="edit-input" type="date" [(ngModel)]="installationScheduleDate"></div>
+        <div class="data-card"><span class="meta-caption">Installation End Date</span><input class="edit-input" type="date" [(ngModel)]="installationEndDate"></div>
       </div>
     </div>
 
@@ -220,12 +227,14 @@
       <div class="table-wrap">
         <table class="detail-table maintenance-table">
           <thead><tr>
-            <th>Sr No</th><th>Contract No</th><th>Contract Period</th><th>Contract Cost</th>
-            <th>Total Service</th><th>Pending</th><th>Completed</th><th>Service Cost</th>
+            <th style="font-size: 10px;">Sr No</th><th  style="font-size: 10px;">Contract No</th>
+            <th style="font-size: 10px;">Contract Period</th><th style="font-size: 10px;">Contract Cost</th>
+            <th style="font-size: 10px;">Total Service</th><th style="font-size: 10px;">Pending</th>
+            <th style="font-size: 10px;">Completed</th><th style="font-size: 10px;">Service Cost</th>
           </tr></thead>
           <tbody>
-            <tr *ngFor="let c of maintenanceContracts;let i=index">
-              <td>{{i+1}}</td><td><span class="code-chip">{{c.contractNo}}</span></td><td><span class="contract-period">{{formatDate(c.contractStartDate)}} <span>to</span> {{formatDate(c.contractEndDate)}}</span></td>
+            <tr *ngFor="let c of maintenanceContracts;let i=index"  >
+              <td>{{i+1}}</td><td><span class="code-chip">{{c.contractNo}}</span></td><td>{{c.contractPeriod}}</td>
               <td class="text-right">{{c.contractCost}}</td><td>{{c.totalService}}</td><td>{{c.pending}}</td>
               <td>{{c.completed}}</td><td class="text-right amount-text">{{c.serviceCost}}</td>
             </tr>
@@ -233,12 +242,12 @@
           </tbody>
         </table>
       </div>
-      <div class="maintenance-summary">
-        <div><span>Contract Cost</span><strong>{{totalContractCost}}</strong></div>
-        <div><span>Total Service</span><strong>{{totalService}}</strong></div>
-        <div><span>Pending</span><strong>{{totalPending}}</strong></div>
-        <div><span>Completed</span><strong>{{totalCompleted}}</strong></div>
-        <div class="highlight"><span>Service Cost</span><strong>{{totalServiceCost}}</strong></div>
+      <div class="maintenance-summary" >
+        <div style="text-align: left;"><span class="meta-caption">Contract Cost</span><strong style="text-align: left;">{{totalContractCost}}</strong></div>
+        <div><span class="meta-caption">Total Service</span><strong style="text-align: left;">{{totalService}}</strong></div>
+        <div><span class="meta-caption">Pending</span><strong style="text-align: left;">{{totalPending}}</strong></div>
+        <div><span class="meta-caption">Completed</span><strong style="text-align: left;">{{totalCompleted}}</strong></div>
+        <div class="highlight"><span class="meta-caption">Service Cost</span><strong style="text-align: left;">{{totalServiceCost}}</strong></div>
       </div>
     </div>
 
@@ -250,7 +259,9 @@
       <div class="table-wrap">
         <table class="detail-table service-table">
           <thead><tr>
-            <th>Service No.</th><th>Service Date</th><th>Contract No.</th><th>Service Detail</th><th>Service Cost</th>
+            <th style="font-size: 10px;">Service No.</th><th style="font-size: 10px;">Service Date</th>
+            <th style="font-size: 10px;">Contract No.</th><th style="font-size: 10px;">Service Detail</th>
+            <th style="font-size: 10px;">Service Cost</th>
           </tr></thead>
           <tbody>
             <tr *ngFor="let s of serviceDetails">
@@ -262,7 +273,7 @@
           </tbody>
         </table>
       </div>
-      <div class="service-total"><span>Total Service Cost</span><strong>{{totalServiceCost}}</strong></div>
+      <div class="service-total"><span class="meta-caption">Total Service Cost</span><strong>{{totalServiceCost}}</strong></div>
     </div>
 
     <div class="action-row">

@@ -1,0 +1,328 @@
+<div class="page-container">
+
+  <!-- =========================
+       PAGE HEADER
+       ========================= -->
+  <div class="page-header">
+    <div>
+      <h2>Installation Creation</h2>
+      <div class="breadcrumb">
+        <span>Home</span>
+        <span class="breadcrumb-separator">/</span>
+        <span>Installation</span>
+        <span class="breadcrumb-separator">/</span>
+        <span>Create Installation</span>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary" (click)="goToInstallationList()">
+      <span>☰</span>
+      Installation List
+    </button>
+  </div>
+
+  <!-- =========================
+       PROJECT DETAIL SECTION
+       ========================= -->
+  <section class="section-card">
+    <div class="section-title">
+      <span class="section-icon">▣</span>
+      <span>Project Detail</span>
+    </div>
+
+    <!-- Project Name -->
+    <div class="project-name-row">
+      <div class="form-group project-name-group">
+        <label for="projectName">Project Name <span class="required">*</span></label>
+        <select
+          id="projectName"
+          name="projectName"
+          [(ngModel)]="selectedProjectId"
+          (change)="onProjectChange()"
+          required>
+          <option value="">Select Project Name</option>
+          <option *ngFor="let project of createdProjects" [value]="project.id">
+            {{ project.projectName }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Project Code + Project Schedule -->
+    <div class="project-summary-grid" *ngIf="selectedProject">
+      <div class="detail-field project-code-field">
+        <label>Project Code</label>
+        <div class="detail-value">{{ selectedProject.projectCode }}</div>
+      </div>
+
+      <div class="detail-field">
+        <label>Project Schedule Start Date</label>
+        <div class="detail-value">{{ selectedProject.scheduleStartDate }}</div>
+      </div>
+
+      <div class="detail-field">
+        <label>Project Schedule End Date</label>
+        <div class="detail-value">{{ selectedProject.scheduleEndDate }}</div>
+      </div>
+
+      <div class="detail-field">
+        <label>Project Against</label>
+        <div class="radio-group disabled-radio-group">
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="projectAgainst"
+              value="Enquiry Request"
+              [checked]="selectedProject.projectAgainst === 'Enquiry Request'"
+              disabled>
+            <span>Enquiry Request</span>
+          </label>
+
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="projectAgainst"
+              value="Installation Request"
+              [checked]="selectedProject.projectAgainst === 'Installation Request'"
+              disabled>
+            <span>Installation Request</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enquiry Request details -->
+    <div class="detail-grid" *ngIf="selectedProject && selectedProject.projectAgainst === 'Enquiry Request'">
+      <div class="detail-field">
+        <label>Enquiry Request No.</label>
+        <div class="detail-value">{{ selectedProject.requestNo }}</div>
+      </div>
+
+      <div class="detail-field">
+        <label>Enquiry Request Date</label>
+        <div class="detail-value">{{ selectedProject.requestDate }}</div>
+      </div>
+
+      <div class="detail-field">
+        <label>Dealer Name</label>
+        <div class="detail-value">{{ selectedProject.dealerName }}</div>
+      </div>
+
+      <div class="detail-field">
+        <label>Charger Type</label>
+        <div class="detail-value">{{ selectedProject.chargerType }}</div>
+      </div>
+    </div>
+
+    <!-- Installation Request details -->
+    <div class="detail-grid" *ngIf="selectedProject && selectedProject.projectAgainst === 'Installation Request'">
+      <div class="detail-field">
+        <label>Installation Request No.</label>
+        <div class="detail-value">{{ selectedProject.requestNo }}</div>
+      </div>
+
+      <div class="detail-field">
+        <label>Installation Request Date</label>
+        <div class="detail-value">{{ selectedProject.requestDate }}</div>
+      </div>
+
+      <div class="detail-field">
+        <label>Customer Name</label>
+        <div class="detail-value">{{ selectedProject.customerName }}</div>
+      </div>
+
+      <div class="detail-field">
+        <label>Charger Type</label>
+        <div class="detail-value">{{ selectedProject.chargerType }}</div>
+      </div>
+    </div>
+
+    <!-- BOQ / Item Detail -->
+    <div class="sub-section" *ngIf="selectedProject">
+      <div class="sub-section-title underlined-title">BOQ / Item Detail</div>
+
+      <div class="table-card">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th class="sr-column">Sr No</th>
+                <th class="item-code-column">Item Code</th>
+                <th class="item-name-column">Item Name</th>
+                <th class="qty-column">Qty</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of selectedProject.boqItems; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.itemCode }}</td>
+                <td>{{ item.itemName }}</td>
+                <td>{{ item.qty }}</td>
+              </tr>
+
+              <tr *ngIf="selectedProject.boqItems.length === 0">
+                <td colspan="4" class="empty-state">
+                  No BOQ / Item details available
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       INSTALLATION DETAIL SECTION
+       ========================= -->
+  <section class="section-card">
+    <div class="section-title">
+      <span class="section-icon">⚙</span>
+      <span>Installation Detail</span>
+    </div>
+
+    <!-- Installation Schedule -->
+    <div class="sub-section">
+      <div class="sub-section-title underlined-title">Installation Schedule Detail</div>
+
+      <div class="form-grid two-column-grid">
+        <div class="form-group">
+          <label for="scheduleStartDate">
+            Schedule Start Date <span class="required">*</span>
+          </label>
+          <input
+            id="scheduleStartDate"
+            name="scheduleStartDate"
+            type="date"
+            [(ngModel)]="installationScheduleStartDate"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="scheduleEndDate">
+            Schedule End Date <span class="required">*</span>
+          </label>
+          <input
+            id="scheduleEndDate"
+            name="scheduleEndDate"
+            type="date"
+            [(ngModel)]="installationScheduleEndDate"
+            required>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section-divider"></div>
+
+    <!-- Assign Technician -->
+    <div class="sub-section">
+      <div class="sub-section-title underlined-title">Assign Technician</div>
+
+      <div class="form-grid technician-grid">
+        <div class="form-group">
+          <label for="technician1">
+            Technician 1 <span class="required">*</span>
+          </label>
+          <select
+            id="technician1"
+            name="technician1"
+            [(ngModel)]="technician1"
+            required>
+            <option value="">Select Technician</option>
+            <option *ngFor="let technician of technicians" [value]="technician">
+              {{ technician }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="technician2">Technician 2</label>
+          <select id="technician2" name="technician2" [(ngModel)]="technician2">
+            <option value="">Select Technician</option>
+            <option *ngFor="let technician of technicians" [value]="technician">
+              {{ technician }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="technician3">Technician 3</label>
+          <select id="technician3" name="technician3" [(ngModel)]="technician3">
+            <option value="">Select Technician</option>
+            <option *ngFor="let technician of technicians" [value]="technician">
+              {{ technician }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="technician4">Technician 4</label>
+          <select id="technician4" name="technician4" [(ngModel)]="technician4">
+            <option value="">Select Technician</option>
+            <option *ngFor="let technician of technicians" [value]="technician">
+              {{ technician }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="technician5">Technician 5</label>
+          <select id="technician5" name="technician5" [(ngModel)]="technician5">
+            <option value="">Select Technician</option>
+            <option *ngFor="let technician of technicians" [value]="technician">
+              {{ technician }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="technician6">Technician 6</label>
+          <select id="technician6" name="technician6" [(ngModel)]="technician6">
+            <option value="">Select Technician</option>
+            <option *ngFor="let technician of technicians" [value]="technician">
+              {{ technician }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section-divider"></div>
+
+    <!-- Remarks -->
+    <div class="sub-section">
+      <div class="form-group">
+        <label for="remarks">
+          Remarks <span class="required">*</span>
+        </label>
+        <textarea
+          id="remarks"
+          name="remarks"
+          [(ngModel)]="remarks"
+          maxlength="1000"
+          rows="5"
+          placeholder="Enter installation remarks (maximum 1000 characters)"
+          required></textarea>
+
+        <div class="character-count">
+          {{ remarks.length }}/1000
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-primary" (click)="saveInstallation()">
+        <span>✓</span>
+        Create Installation
+      </button>
+
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">
+        <span>↻</span>
+        Reset
+      </button>
+    </div>
+  </section>
+
+</div>

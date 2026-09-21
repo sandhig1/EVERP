@@ -1,0 +1,488 @@
+/* =========================================================
+   INSTALLATION CREATION
+   Based on the Admin Installation Request List visual style
+   ========================================================= */
+
+.page-container {
+  width: 100%;
+  min-height: 100%;
+  padding: 18px 20px 28px;
+  box-sizing: border-box;
+  background: #f5f7fa;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #263238;
+}
+
+/* =========================
+   PAGE HEADER
+   ========================= */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 16px;
+}
+
+.page-header h2 {
+  margin: 0 0 7px 0;
+  color: #174ea6;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #6b7785;
+  font-size: 12px;
+}
+
+.breadcrumb-separator {
+  color: #9aa6b2;
+}
+
+/* =========================
+   SECTION CARD
+   ========================= */
+
+.section-card {
+  width: 100%;
+  padding: 17px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #b8c4d1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d7dee5;
+  color: #174ea6;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1769aa;
+  font-size: 15px;
+}
+
+.sub-section {
+  margin-top: 18px;
+}
+
+.sub-section-title {
+  margin: 0 0 10px;
+  color: #344454;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.underlined-title {
+  padding-bottom: 7px;
+  border-bottom: 1px solid #d7dee5;
+}
+
+.sub-section-divider {
+  width: 100%;
+  border-bottom: 1px solid #d7dee5;
+  margin: 18px 0 0;
+}
+
+/* =========================
+   FORM GRID
+   ========================= */
+
+.form-grid {
+  display: grid;
+  width: 100%;
+  gap: 13px;
+  box-sizing: border-box;
+}
+
+.project-name-row {
+  width: 100%;
+}
+
+.project-summary-grid {
+  display: grid;
+  grid-template-columns: 30% minmax(0, 35%) minmax(0, 35%);
+  gap: 13px;
+  margin-top: 13px;
+  box-sizing: border-box;
+  align-items: start;
+}
+
+.two-column-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.technician-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* =========================
+   DETAIL GRID
+   ========================= */
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px 18px;
+  margin-top: 14px;
+}
+
+.detail-field {
+  min-width: 0;
+}
+
+.detail-field label,
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #394755;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.detail-value {
+  min-height: 30px;
+  width: 100%;
+  padding: 3px 0 6px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #263238;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  overflow-wrap: anywhere;
+}
+
+.project-code-field .detail-value {
+  color: #1769aa;
+  background: transparent;
+  border: 0;
+  font-weight: 700;
+}
+
+/* =========================
+   INPUT / SELECT / TEXTAREA
+   ========================= */
+
+.form-group {
+  min-width: 0;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #9eabb8;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #263238;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-group input,
+.form-group select {
+  height: 40px;
+  padding: 0 12px;
+}
+
+.sub-section .two-column-grid .form-group input[type="date"] {
+  width: 190px;
+  max-width: 100%;
+}
+
+.form-group textarea {
+  min-height: 115px;
+  padding: 10px 12px;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #8995a3;
+  font-size: 13px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #4285f4;
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.12);
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.required {
+  color: #d32f2f;
+}
+
+/* =========================
+   RADIO BUTTONS
+   ========================= */
+
+.radio-group {
+  min-height: 39px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  padding: 0 4px;
+}
+
+.radio-option {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 7px;
+  margin: 0 !important;
+  color: #394755 !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  cursor: default;
+}
+
+.radio-option input[type="radio"] {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #1769aa;
+  cursor: default;
+}
+
+.radio-option input[type="radio"]:disabled {
+  opacity: 1;
+}
+
+/* =========================
+   BOQ TABLE
+   ========================= */
+
+.table-card {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #b8c4d1;
+  border-radius: 7px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: #ffffff;
+}
+
+.table-scroll th {
+  height: 42px;
+  padding: 0 9px;
+  border-bottom: 1px solid #b8c4d1;
+  background: #eef3f8;
+  color: #344454;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table-scroll td {
+  min-height: 46px;
+  padding: 8px 9px;
+  border-bottom: 1px solid #e2e7ec;
+  color: #394755;
+  font-size: 11px;
+  font-weight: 400;
+  vertical-align: middle;
+  overflow-wrap: break-word;
+}
+
+.table-scroll tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-scroll tbody tr:hover {
+  background: #fafcff;
+}
+
+.sr-column {
+  width: 70px;
+}
+
+.item-code-column {
+  width: 150px;
+}
+
+.item-name-column {
+  width: auto;
+}
+
+.qty-column {
+  width: 90px;
+}
+
+.empty-state {
+  height: 70px;
+  text-align: center !important;
+  vertical-align: middle !important;
+  color: #71808f !important;
+}
+
+/* =========================
+   CHARACTER COUNT
+   ========================= */
+
+.character-count {
+  margin-top: 5px;
+  color: #7b8794;
+  font-size: 10px;
+  text-align: right;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.btn {
+  min-height: 39px;
+  padding: 0 15px;
+  border-radius: 6px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn span {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background: #1769aa;
+  border: 1px solid #1769aa;
+}
+
+.btn-primary:hover {
+  background: #0d5b96;
+  border-color: #0d5b96;
+}
+
+.btn-secondary {
+  color: #4f5d6b;
+  background: #ffffff;
+  border: 1px solid #aebbc8;
+}
+
+.btn-secondary:hover {
+  background: #f4f6f8;
+  border-color: #8e9baa;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid #d7dee5;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+  .project-summary-grid,
+  .detail-grid,
+  .two-column-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .technician-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-header {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-container {
+    padding: 14px 12px 24px;
+  }
+
+  .section-card {
+    padding: 13px;
+  }
+
+  .technician-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    flex-direction: column;
+  }
+
+  .page-header .btn {
+    width: 100%;
+  }
+
+  .radio-group {
+    gap: 12px;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+  .form-actions .btn {
+    flex: 1;
+  }
+}

@@ -27,6 +27,8 @@ import { projectcreation } from './components/admin/projectcreation/projectcreat
 import { projectlist } from './components/admin/projectlist/projectlist';
 import { projectview } from './components/admin/projectview/projectview';
 import { projectedit } from './components/admin/projectedit/projectedit';
+import { InstallationScheduleCreation } from './components/admin/installationschedulecreation/installationschedulecreation';
+import { InstallationScheduleList } from './components/admin/installationschedulelist/installationschedulelist';
 
 export const routes: Routes = [
     {path:'', component:homelanding},
@@ -57,6 +59,8 @@ export const routes: Routes = [
             {path:'project-list', component:projectlist},
             {path:'project-edit', component:projectedit},
             {path:'project-view', component:projectview},
+            {path:'installation-creation', component:InstallationScheduleCreation},
+            {path:'installation-list', component:InstallationScheduleList},
             
         ]
     }
